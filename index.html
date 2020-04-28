@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="./jquery-3.4.1.slim.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
+		<script type="text/javascript" src="./Screens/RegistrationScreen.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 	</head>
 
@@ -17,5 +20,36 @@
 		<div id="game">
 			<canvas id="canvas" height="600" width="600"></canvas>
 		</div>
+		<div id="registration" hidden>
+            <H1>Registration</H1>
+            <form id="registrationForm"> 
+                <div>
+                    <label for="username">Username:</label>
+                    <input name="username" type="text" />
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input name="password" type="password" />
+                </div>
+                <div>
+                    <label for="fullName">Full Name:</label>
+                    <input name="fullName" type="text" />
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input name="email" type="email" />
+                </div>
+                <div>
+                    <label for="dateOfBirth">Date Of Birth:</label>
+                    <select class="days" name="days" ></select>
+                    <select class="months" name="months" ></select>
+                </select>
+                <select class="years" name="years" ></select>
+                </div>
+                <div>
+                    <button id="registerBtn" type="submit">Register</button>
+                </div>
+            </form>
+        </div>
 	</body>
 </html>
