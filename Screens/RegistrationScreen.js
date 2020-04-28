@@ -8,12 +8,17 @@ $(document).ready( function() {
         return this.optional(element)
         || /\d/.test(value)
         && /[a-z]/i.test(value);
-    }, 'Your password should contain at least one number and one character.')
+    }, 'Your password should contain at least one number and one character')
+    $.validator.addMethod('existUsername', function(value, element){
+        return this.optional(element)
+        || !localStorage.getItem(value);
+    }, 'Please choose a different username')
     $('#registrationForm').validate({
         rules: {
             username: {
                 required: true,
-                alphanumeric: true
+                alphanumeric: true,
+                existUsername: true
             },
             password: {
                 required: true,
@@ -43,7 +48,9 @@ $(document).ready( function() {
             },
         },
         messages: {
-            username: "Please enter a username",
+            username: {
+                required: "Please enter a username",
+            },
             password: {
                 required: "Please provide a password",
                 minlength: "Your password must be at least 6 characters long"
@@ -51,7 +58,9 @@ $(document).ready( function() {
             fullName:  {
                 required: "Please enter your full name",
             },
-            email:  "Please provide your email",
+            email: {
+                required: "Please provide your email",
+            } 
         },
         submitHandler: function() {
             saveToLocalStorage();
@@ -109,10 +118,10 @@ function initYears(){
 }
 
 function saveToLocalStorage() {
-    const username = document.getElementsByName("username").value;
-    const password = document.getElementsByName("password").value;
-    const fullName = document.getElementsByName("fullName").value;
-    const email = document.getElementsByName("email").value;
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+    const fullName = document.getElementById("fullName").value;
+    const email = document.getElementById("email").value;
 
     const dateOfBirth = {
         day: daySelected,
