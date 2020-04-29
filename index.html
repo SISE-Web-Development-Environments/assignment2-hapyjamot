@@ -1,12 +1,44 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="./jquery-3.4.1.slim.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+		<link rel="stylesheet" href="./Styles/modal.css" />
+		<link rel="stylesheet" href="./Styles/index.css" />
+
+		<script type="text/javascript" src="./Screens/RegistrationScreen.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 	</head>
 
 	<body>
-		<div id="score">
+
+		<Header class="header">
+			<h1>PACMAN</h1>
+		  </Header>
+		  
+		  <div class="row">
+			<Menu class="col-2 menu">
+			  <ul>
+				<li>Welcome</li>
+				<li>Register</li>
+				<li>Login</li>
+				<li><a href="#about" rel="modal:open">About</a></li>
+			  </ul>
+			</Menu>
+		  
+			<Content class="col-9">
+			  <h1>The Content</h1>
+			</Content>
+		  </div>
+		  <Footer class="Footer">
+			  <h1> The Footer </h1>
+		  </Footer>
+
+
+		<!-- <div id="score">
 			<label for="lblScore">SCORE:</label>
 			<input id="lblScore" type="text" />
 		</div>
@@ -16,6 +48,54 @@
 		</div>
 		<div id="game">
 			<canvas id="canvas" height="600" width="600"></canvas>
+		</div> -->
+		<div id="registration" hidden>
+            <H1>Registration</H1>
+            <form id="registrationForm"> 
+                <div>
+                    <label for="username">Username:</label>
+                    <input id="username" name="username" type="text" />
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input id="password" name="password" type="password" />
+                </div>
+                <div>
+                    <label for="fullName">Full Name:</label>
+                    <input id="fullName" name="fullName" type="text" />
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input id="email" name="email" type="email" />
+                </div>
+                <div>
+                    <label for="dateOfBirth">Date Of Birth:</label>
+                    <select class="days" name="days" ></select>
+                    <select class="months" name="months" ></select>
+               		<select class="years" name="years" ></select>
+                </div>
+                <div>
+                    <button id="registerBtn" type="submit">Register</button>
+                </div>
+            </form>
 		</div>
+		<!-- Modal HTML embedded directly into document -->
+		<div id="about" class="modal">
+			<p>Sapir Shamay --- Haim Reyes</p>
+			<p>We used the following jQuery plugins:</p>
+			<ul>
+				<li>jQuery Validation</li>
+				<li>jQuery Modal</li>
+			</ul>
+			<p>The difficulties we faced:</p>
+			<ul>
+				<li>first</li>
+				<li>second</li>
+			</ul>
+			
+		</div>
+		
+		<!-- Link to open the modal -->
+		<!-- <button><a href="#about" rel="modal:open">About</a></button> -->
 	</body>
 </html>
