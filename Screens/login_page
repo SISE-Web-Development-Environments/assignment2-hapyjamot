@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <script text="javascript/text" src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+        <script text="javascript/text">   
+            
+        </script>
+	</head>
+	<body>
+        <button id="login_button_id" name="login_button">Login</button>
+        <label id="guest_label" >Guest</label>
+		<div id="login_div_id" name="login_div_name">
+            <p id="after_login_label" hidden=false>Welcome, </p>
+            <label class="login_element" hidden=false> Username:</label>
+            <input class="login_element" type="text" placeholder="Username" id="username_id_test" hidden = false><br>
+            <label class="login_element" hidden=false> Password:</label>
+            <input class="login_element" type="password" placeholder="Password" id="password_id_test" hidden = false><br>
+            <button class="login_element"  id="send_button" hidden=false;>Send</button>
+        </div>
+    </body>
+    
+</html>
