@@ -4,6 +4,10 @@
         <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+		<link rel="stylesheet" href="./Styles/modal.css" />
+
 		<script type="text/javascript" src="./Screens/RegistrationScreen.js"></script>
 		<script type="text/javascript" src="./app.js"></script>
 	</head>
@@ -49,6 +53,24 @@
                     <button id="registerBtn" type="submit">Register</button>
                 </div>
             </form>
-        </div>
+		</div>
+		<!-- Modal HTML embedded directly into document -->
+		<div id="about" class="modal">
+			<p>Sapir Shamay --- Haim Reyes</p>
+			<p>We used the following jQuery plugins:</p>
+			<ul>
+				<li>jQuery Validation</li>
+				<li>jQuery Modal</li>
+			</ul>
+			<p>The difficulties we faced:</p>
+			<ul>
+				<li>first</li>
+				<li>second</li>
+			</ul>
+			
+		</div>
+		
+		<!-- Link to open the modal -->
+		<button><a href="#about" rel="modal:open">About</a></button>
 	</body>
 </html>
