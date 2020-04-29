@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 		<link rel="stylesheet" href="./Styles/modal.css" />
 		<link rel="stylesheet" href="./Styles/index.css" />
-
+		<!-- set our script files -->
 		<script type="text/javascript" src="./Screens/LoginScreen.js"></script>
 		<script type="text/javascript" src="./Screens/RegistrationScreen.js"></script>
 		<script type="text/javascript" src="./Screens/ContentScreen.js"></script>
@@ -16,104 +16,88 @@
 	</head>
 
 	<body>
-
 		<Header class="header">
 			<h1>PACMAN</h1>
-		  </Header>
+		</Header>
 		  
-		  <div class="row">
+		<div class="row">
 			<Menu class="col-2 menu">
 			  <ul>
-				<li>Welcome</li>
-				<li>Register</li>
-				<li>Login</li>
+				<li id="menu_welcome">Welcome</li>
+				<li id="menu_register">Register</li>
+				<li id="menu_login">Login</li>
 				<li><a href="#about" rel="modal:open">About</a></li>
 			  </ul>
 			</Menu>
-		  
-			<Content class="col-9">
-			  <h1>The Content</h1>
-			  <div id="content_container">
-				
-			  </div>
-
+			<Content class="col-9">	
+			  	<div id="content_container">
+					<div class="page" id="welcome">
+						<H1>Welcome</H1>
+						<button id="welcome_to_registration">Register</button>
+						<button id="welcome_to_login">Login</button>
+					</div>
+					<div class="page" id="registration">
+						<H1>Registration</H1>
+						<form id="registrationForm"> 
+							<div>
+								<label for="username">Username:</label>
+								<input id="username" name="username" type="text" />
+							</div>
+							<div>
+								<label for="password">Password:</label>
+								<input id="password" name="password" type="password" />
+							</div>
+							<div>
+								<label for="fullName">Full Name:</label>
+								<input id="fullName" name="fullName" type="text" />
+							</div>
+							<div>
+								<label for="email">Email:</label>
+								<input id="email" name="email" type="email" />
+							</div>
+							<div>
+								<label for="dateOfBirth">Date Of Birth:</label>
+								<select class="days" name="days" ></select>
+								<select class="months" name="months" ></select>
+								<select class="years" name="years" ></select>
+							</div>
+							<div>
+								<button id="registerBtn" type="submit">Register</button>
+							</div>
+						</form>
+						<button id="register_to_login">Login</button>
+						<button id="register_to_welcome">Back</button>
+					</div>
+					<!-- Modal HTML embedded directly into document -->
+					<div id="login" class="page" name="login_div_name">
+						<H1>Login</H1>
+						<p id="after_login_label">Welcome, </p>
+						<label class="login_element"> Username:</label>
+						<input class="login_element" type="text" placeholder="Username" id="login_username_id"><br>
+						<label class="login_element"> Password:</label>
+						<input class="login_element" type="password" placeholder="Password" id="login_password_id"><br>
+						<button class="login_element" id="send_button">Send</button>
+						<button class="login_element" id="login_to_register">Register</button>
+						<button class="login_element" id="login_to_welcome">Back</button>
+					</div>
+					<div id="about" class="modal">
+						<p>Sapir Shamay --- Haim Reyes</p>
+						<p>We used the following jQuery plugins:</p>
+						<ul>
+							<li>jQuery Validation</li>
+							<li>jQuery Modal</li>
+						</ul>
+						<p>The difficulties we faced:</p>
+						<ul>
+							<li>first</li>
+							<li>second</li>
+						</ul>	
+					</div>
+			  	</div>
 			</Content>
-		  </div>
-		  <Footer class="Footer">
-			  <h1> The Footer </h1>
-		  </Footer>
-
-
-		<!-- <div id="score">
-			<label for="lblScore">SCORE:</label>
-			<input id="lblScore" type="text" />
 		</div>
-		<div id="time">
-			<label for="lblTime">TIME:</label>
-			<input id="lblTime" type="text" />
-		</div>
-		<div id="game">
-			<canvas id="canvas" height="600" width="600"></canvas>
-		</div> -->
-		<div id="registration" hidden>
-            <H1>Registration</H1>
-            <form id="registrationForm"> 
-                <div>
-                    <label for="username">Username:</label>
-                    <input id="username" name="username" type="text" />
-                </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <input id="password" name="password" type="password" />
-                </div>
-                <div>
-                    <label for="fullName">Full Name:</label>
-                    <input id="fullName" name="fullName" type="text" />
-                </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input id="email" name="email" type="email" />
-                </div>
-                <div>
-                    <label for="dateOfBirth">Date Of Birth:</label>
-                    <select class="days" name="days" ></select>
-                    <select class="months" name="months" ></select>
-               		<select class="years" name="years" ></select>
-                </div>
-                <div>
-                    <button id="registerBtn" type="submit">Register</button>
-                </div>
-            </form>
-		</div>
-		<!-- Modal HTML embedded directly into document -->
-		<div id="about" class="modal">
-			<p>Sapir Shamay --- Haim Reyes</p>
-			<p>We used the following jQuery plugins:</p>
-			<ul>
-				<li>jQuery Validation</li>
-				<li>jQuery Modal</li>
-			</ul>
-			<p>The difficulties we faced:</p>
-			<ul>
-				<li>first</li>
-				<li>second</li>
-			</ul>
-			
-		</div>
-		<div id="login_div_id" name="login_div_name" hidden>
-            <p id="after_login_label" hidden=false>Welcome, </p>
-            <label class="login_element" hidden=false> Username:</label>
-            <input class="login_element" type="text" placeholder="Username" id="username_id_test" hidden = false><br>
-            <label class="login_element" hidden=false> Password:</label>
-            <input class="login_element" type="password" placeholder="Password" id="password_id_test" hidden = false><br>
-            <button class="login_element"  id="send_button" hidden=false;>Send</button>
-		</div>
-		<div id="welcome">
-			Welcome<br>
-			<button id="welcome_login">login</button>
-			<button id="welcome_registration">register</button>
-		</div>
-		<!-- Link to open the modal -->
-		<!-- <button><a href="#about" rel="modal:open">About</a></button> -->
+		<Footer class="Footer">
+			<h1> The Footer </h1>
+		</Footer>
 	</body>
 </html>
