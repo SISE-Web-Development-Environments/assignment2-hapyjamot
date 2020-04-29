@@ -1,5 +1,3 @@
-console.log("Hello World!");
-
 function setUpLoginScreen(){
     //set up the input elements
     var userNameText = document.createElement("input");

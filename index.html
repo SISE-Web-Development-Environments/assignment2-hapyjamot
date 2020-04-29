@@ -9,8 +9,10 @@
 		<link rel="stylesheet" href="./Styles/modal.css" />
 		<link rel="stylesheet" href="./Styles/index.css" />
 
+		<script type="text/javascript" src="./Screens/LoginScreen.js"></script>
 		<script type="text/javascript" src="./Screens/RegistrationScreen.js"></script>
-		<script type="text/javascript" src="./app.js"></script>
+		<script type="text/javascript" src="./Screens/ContentScreen.js"></script>
+		<!-- <script type="text/javascript" src="./app.js"></script> -->
 	</head>
 
 	<body>
@@ -31,6 +33,10 @@
 		  
 			<Content class="col-9">
 			  <h1>The Content</h1>
+			  <div id="content_container">
+				
+			  </div>
+
 			</Content>
 		  </div>
 		  <Footer class="Footer">
@@ -94,7 +100,19 @@
 			</ul>
 			
 		</div>
-		
+		<div id="login_div_id" name="login_div_name" hidden>
+            <p id="after_login_label" hidden=false>Welcome, </p>
+            <label class="login_element" hidden=false> Username:</label>
+            <input class="login_element" type="text" placeholder="Username" id="username_id_test" hidden = false><br>
+            <label class="login_element" hidden=false> Password:</label>
+            <input class="login_element" type="password" placeholder="Password" id="password_id_test" hidden = false><br>
+            <button class="login_element"  id="send_button" hidden=false;>Send</button>
+		</div>
+		<div id="welcome">
+			Welcome<br>
+			<button id="welcome_login">login</button>
+			<button id="welcome_registration">register</button>
+		</div>
 		<!-- Link to open the modal -->
 		<!-- <button><a href="#about" rel="modal:open">About</a></button> -->
 	</body>
