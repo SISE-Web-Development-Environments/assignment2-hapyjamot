@@ -127,6 +127,13 @@ function Draw() {
 				context.fillStyle = "grey"; //color
 				context.fill();
 			}
+			/// extra custom item 
+			else if (board[i][j] == 5) {
+				context.beginPath();
+				context.rect(center.x - 30, center.y - 30, 60, 60);
+				context.fillStyle = "blue"; //color
+				context.fill();
+			}
 		}
 	}
 }

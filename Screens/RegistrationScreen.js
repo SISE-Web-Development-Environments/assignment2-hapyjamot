@@ -66,6 +66,7 @@ $(document).ready( function() {
             saveToLocalStorage();
             window.alert("You have registered successfully");
             // move to login screen 
+            showInContentByID("login");
         }
     });
 

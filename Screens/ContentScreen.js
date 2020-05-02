@@ -13,7 +13,7 @@ $(document).ready(function(){
     $("#login_to_register").click(function(){showInContentByID("registration")});
     $("#login_to_welcome").click(function(){showInContentByID("welcome")});
     //set register page
-    $("#register_to_login").click(function(){showInContentByID("login")});
+    //$("#register_to_login").click(function(){showInContentByID("login")});
     $("#register_to_welcome").click(function(){showInContentByID("welcome")});
 })
 function showInContentByID(id){

@@ -1,4 +1,4 @@
-localStorage.setItem("p","p");
+localStorage.setItem("p","{\"password\":\"p\"}");
 $(document).ready(function(){
     $("#login_button_id").click(function(){
          $(".login_element").toggle("slow","swing");
