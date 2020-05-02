@@ -6,7 +6,8 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
-
+//for the pacman lives
+var pacman_remain;
 $(document).ready(function() {
 	context = canvas.getContext("2d");
 	Start();
@@ -18,7 +19,7 @@ function Start() {
 	pac_color = "yellow";
 	var cnt = 100;
 	var food_remain = 50;
-	var pacman_remain = 1;
+	pacman_remain = 1;
 	start_time = new Date();
 	for (var i = 0; i < 10; i++) {
 		board[i] = new Array();
@@ -49,6 +50,10 @@ function Start() {
 			}
 		}
 	}
+	//set a random pill in an empty cell
+	var pillCell = findRandomEmptyCell(board);
+	board[pillCell[0]][pillCell[1]] = 5;
+
 	while (food_remain > 0) {
 		var emptyCell = findRandomEmptyCell(board);
 		board[emptyCell[0]][emptyCell[1]] = 1;
@@ -101,6 +106,7 @@ function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
+	lblLives.value = pacman_remain;
 	for (var i = 0; i < 10; i++) {
 		for (var j = 0; j < 10; j++) {
 			var center = new Object();
@@ -127,11 +133,11 @@ function Draw() {
 				context.fillStyle = "grey"; //color
 				context.fill();
 			}
-			/// extra custom item 
+			/// extra custom item will look like a red circle
 			else if (board[i][j] == 5) {
 				context.beginPath();
-				context.rect(center.x - 30, center.y - 30, 60, 60);
-				context.fillStyle = "blue"; //color
+				context.arc(center.x, center.y, 20, 0, 2 * Math.PI);//circle
+				context.fillStyle = "red"; //color
 				context.fill();
 			}
 		}
@@ -160,6 +166,11 @@ function UpdatePosition() {
 		if (shape.i < 9 && board[shape.i + 1][shape.j] != 4) {
 			shape.i++;
 		}
+	}
+	//increment the lives counter
+	if(board[shape.i][shape.j] == 5){
+		pacman_remain++;
+		lblLives.value = pacman_remain;
 	}
 	if (board[shape.i][shape.j] == 1) {
 		score++;
