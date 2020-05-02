@@ -29,6 +29,15 @@
 				<li id="menu_login">Login</li>
 				<li><a href="#about" rel="modal:open">About</a></li>
 			  </ul>
+			  <div id="game_settings">
+				<H3>Game Settings:</H3>
+				<output>Player:</output><br>
+				<output>Game keys:</output><br>
+				<output>n. of balls:</output><br>
+				<output>balls colors:</output><br>
+				<output>Game time:</output><br>
+				<output>n. of monsters:</output>
+			  </div>
 			</Menu>
 			<Content class="col-9">	
 			  	<div id="content_container">
@@ -38,6 +47,7 @@
 						<button id="welcome_to_login">Login</button>
 					</div>
 					<div class="page" id="registration">
+						<button id="register_to_welcome">Back to Welcome</button>
 						<H1>Registration</H1>
 						<form id="registrationForm"> 
 							<div>
@@ -66,19 +76,20 @@
 								<button id="registerBtn" type="submit">Register</button>
 							</div>
 						</form>
-						<button id="register_to_welcome">Back</button>
 					</div>
 					<!-- Modal HTML embedded directly into document -->
 					<div id="login" class="page" name="login_div_name">
+						<button class="login_element" id="login_to_welcome">Back to Welcome</button>
 						<H1>Login</H1>
-						<p id="after_login_label">Welcome, </p>
 						<label class="login_element"> Username:</label>
 						<input class="login_element" type="text" placeholder="Username" id="login_username_id"><br>
 						<label class="login_element"> Password:</label>
 						<input class="login_element" type="password" placeholder="Password" id="login_password_id"><br>
-						<button class="login_element" id="send_button">Send</button>
-						<button class="login_element" id="login_to_register">Register</button>
-						<button class="login_element" id="login_to_welcome">Back</button>
+						<div id="message">
+							<p id="login_error_message" hidden>Wrong user details, please try again or</p>
+							<button class="login_element" id="login_to_register" hidden>Register</button>
+						</div><br>
+						<button class="login_element" id="send_button">Login</button>
 					</div>
 					<div id="about" class="modal">
 						<p>Sapir Shamay --- Haim Reyes</p>
@@ -97,6 +108,7 @@
 				  <div class="page" id="definitions">
 					<H1>Settings</H1>
 					<div>
+						<p id="after_login_label" hidden>Welcome, </p>
 						<label for="playButtons">Choose press buttons:</label><br>
 						<output id="upKeySelectedValue">up key:</output>
 						<button onclick=handleKeyEvent()>choose up button</button>
@@ -132,6 +144,8 @@
 					<button id="save_settings">Save</button>
 				</div>
 				<div class="page" id="app">
+					<button id="switch"> Switch Account</button>
+					<button id="newGame"> New Game</button>
 					<div id="score">
 						<label for="lblScore">SCORE:</label>
 						<input id="lblScore" type="text" />

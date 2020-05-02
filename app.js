@@ -8,9 +8,26 @@ var time_elapsed;
 var interval;
 
 $(document).ready(function() {
-	context = canvas.getContext("2d");
-	Start();
+	$("#switch").click(function(){
+		stopGame();
+		// showInContentByID("login")
+	});
+	$("#newGame").click(function(){
+		stopGame();
+		Play();
+	});
+	Play();
 });
+
+function stopGame() {
+	settingToggle("hide");
+	window.clearInterval(interval);
+}
+
+function Play() {
+	context = canvas.getContext("2d");
+	Start();	
+}
 
 function Start() {
 	board = new Array();

@@ -13,10 +13,20 @@ $(document).ready(function(){
     $("#login_to_register").click(function(){showInContentByID("registration")});
     $("#login_to_welcome").click(function(){showInContentByID("welcome")});
     //set register page
-    //$("#register_to_login").click(function(){showInContentByID("login")});
     $("#register_to_welcome").click(function(){showInContentByID("welcome")});
+    settingToggle("hide");
 })
+
 function showInContentByID(id){
     $('.page').hide();
     $('#'.concat(id)).show("fast","swing");
+}
+
+function settingToggle(value){
+    if (value === "hide") {
+        $('#game_settings').hide();
+    }
+    else {
+        $('#game_settings').show("fast","swing");
+    }
 }

@@ -21,5 +21,7 @@ function handleKeyEvent(){
 }
 
 $(document).ready(function() {
-    $("#save_settings").click(function(){showInContentByID("app")});
+    $("#save_settings").click(function(){
+        settingToggle("show");
+        showInContentByID("app")});
 })
