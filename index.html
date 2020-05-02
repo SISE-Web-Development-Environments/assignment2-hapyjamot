@@ -42,7 +42,11 @@
 			<Content class="col-9">	
 			  	<div id="content_container">
 					<div class="page" id="welcome">
-						<H1>Welcome</H1>
+						<H1>Welcome to PACMAN</H1>
+						<!-- use the external html file with the very long svg tag -->
+						<object data="logo.html"> 
+							Your browser doesn’t support the object tag. 
+						</object><br>
 						<button id="welcome_to_registration">Register</button>
 						<button id="welcome_to_login">Login</button>
 					</div>
@@ -146,6 +150,11 @@
 				<div class="page" id="app">
 					<button id="switch"> Switch Account</button>
 					<button id="newGame"> New Game</button>
+					<!-- custom added label-->
+					<div id="lives">
+						<label for="lblLives">LIVES:</label>
+						<input id="lblLives" type="text" />
+					</div>
 					<div id="score">
 						<label for="lblScore">SCORE:</label>
 						<input id="lblScore" type="text" />
@@ -162,6 +171,10 @@
 		</div>
 		<Footer class="Footer">
 			<h1> The Footer </h1>
+			<audio controls autoplay>
+				<source src="Sounds\music.mp3" type="audio/mpeg">
+			  Your browser does not support the audio element.
+			  </audio>
 		</Footer>
 	</body>
 </html>
