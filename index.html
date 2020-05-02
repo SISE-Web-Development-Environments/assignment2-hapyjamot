@@ -27,7 +27,7 @@
 				<li id="menu_welcome">Welcome</li>
 				<li id="menu_register">Register</li>
 				<li id="menu_login">Login</li>
-				<li><a href="#about" rel="modal:open">About</a></li>
+				<li><a href="#about" rel="modal:open" class="aboutLink">About</a></li>
 			  </ul>
 			  <div id="game_settings">
 				<H3>Game Settings:</H3>
@@ -109,19 +109,37 @@
 						</ul>	
 					</div>
 				  </div>
+				  <div id="keyUp" class="modal" tabindex="0">
+					<p>Please press a key</p>
+					<p id="chosenUp"></p>
+				  </div>
+				  <div id="keyDown" class="modal" tabindex="0">
+					<p>Please press a key</p>
+					<p id="chosenDown"></p>
+				  </div>
+				  <div id="keyLeft" class="modal" tabindex="0">
+					<p>Please press a key</p>
+					<p id="chosenLeft"></p>
+				  </div>
+				  <div id="keyRight" class="modal" tabindex="0">
+					<p>Please press a key</p>
+					<p id="chosenRight"></p>
+				  </div>
 				  <div class="page" id="definitions">
+					<p id="after_login_label" hidden>Welcome, </p>
 					<H1>Settings</H1>
-					<div>
-						<p id="after_login_label" hidden>Welcome, </p>
-						<label for="playButtons">Choose press buttons:</label><br>
-						<output id="upKeySelectedValue">up key:</output>
-						<button onclick=handleKeyEvent()>choose up button</button>
-					</div>
+					<div class="keys">
+						<label for="playButtons">Choose game buttons:</label><br><br>
+						<a href="#keyUp" rel="modal:open" id="linkUp">Up</a>
+						<a href="#keyDown" rel="modal:open" id="linkDown">Down</a>
+						<a href="#keyLeft" rel="modal:open" id="linkLeft">Left</a>
+						<a href="#keyRight" rel="modal:open" id="linkRight">Right</a>
+					</div><br>
 					<div>
 						<label for="balls">Choose number of balls:</label> <br>
 						<input type="range" min="50" max="90" value="70" id="rangeOfBalls" step="1" oninput="outputUpdate(value)">
 						<output for="balls" id="balls">70</output>
-					</div>
+					</div><br>
 					<div>
 						<label for="colors">Choose balls colors:</label><br>
 						<label for="favcolor5">5 points:</label>
@@ -130,11 +148,11 @@
 						<input type="color" id="favcolor15" name="favcolor15" value="#ffff00">
 						<label for="favcolor25">25 points:</label>
 						<input type="color" id="favcolor25" name="favcolor25" value="#0000ff">
-					</div>
+					</div><br>
 					<div>
 						<label for="time">Choose time for the game:</label><br>
 						<span>Check it</span>
-					</div>
+					</div><br>
 					<div>
 						<label for="monster">Choose number of monsters:</label><br>
 						<select class="monsters" name="monsters" >
@@ -143,7 +161,7 @@
 							<option>3</option>
 							<option>4</option>
 						</select>
-					</div>
+					</div><br>
 					<button id="random">Random</button>
 					<button id="save_settings">Save</button>
 				</div>

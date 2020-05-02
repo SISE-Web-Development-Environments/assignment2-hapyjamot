@@ -9,18 +9,21 @@ var interval;
 //for the pacman lives
 var pacman_remain;
 $(document).ready(function() {
+	Play();
+
 	$("#switch").click(function(){
 		stopGame();
-		// showInContentByID("login")
+		settingToggle("hide");
+		showInContentByID("login");
 	});
 	$("#newGame").click(function(){
 		stopGame();
 		Play();
 	});
-	Play();
 });
 
 function stopGame() {
+	time_elapsed = 0;
 	settingToggle("hide");
 	window.clearInterval(interval);
 }

@@ -14,6 +14,7 @@ function authenticate(userName,password){
     if(details!=null){
         var insertedPassword = details.split("\"")[3];
         if(insertedPassword==password){
+            UserLabel.innerText = "Welcome, ";
             UserLabel.append(userName);
             UserLabel.hidden=false;
             document.getElementById("login_username_id").value="";
