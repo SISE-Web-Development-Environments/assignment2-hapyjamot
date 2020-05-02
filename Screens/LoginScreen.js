@@ -22,6 +22,7 @@ function authenticate(userName,password){
             document.getElementById("login_username_id").value="";
             document.getElementById("login_password_id").value="";
             LoginButton.innerText="Switch Account";
+            showInContentByID("definitions");
         }
         else{
             alert("Wrong user details, please try again.")

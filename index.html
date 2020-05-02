@@ -12,7 +12,8 @@
 		<script type="text/javascript" src="./Screens/LoginScreen.js"></script>
 		<script type="text/javascript" src="./Screens/RegistrationScreen.js"></script>
 		<script type="text/javascript" src="./Screens/ContentScreen.js"></script>
-		<!-- <script type="text/javascript" src="./app.js"></script> -->
+		<script type="text/javascript" src="./Screens/SettingsScreen.js"></script>
+		<script type="text/javascript" src="./app.js"></script>
 	</head>
 
 	<body>
@@ -92,7 +93,57 @@
 							<li>second</li>
 						</ul>	
 					</div>
-			  	</div>
+				  </div>
+				  <div class="page" id="definitions">
+					<H1>Settings</H1>
+					<div>
+						<label for="playButtons">Choose press buttons:</label><br>
+						<output id="upKeySelectedValue">up key:</output>
+						<button onclick=handleKeyEvent()>choose up button</button>
+					</div>
+					<div>
+						<label for="balls">Choose number of balls:</label> <br>
+						<input type="range" min="50" max="90" value="70" id="rangeOfBalls" step="1" oninput="outputUpdate(value)">
+						<output for="balls" id="balls">70</output>
+					</div>
+					<div>
+						<label for="colors">Choose balls colors:</label><br>
+						<label for="favcolor5">5 points:</label>
+						<input type="color" id="favcolor5" name="favcolor5" value="#ff0000">
+						<label for="favcolor15">15 points:</label>
+						<input type="color" id="favcolor15" name="favcolor15" value="#ffff00">
+						<label for="favcolor25">25 points:</label>
+						<input type="color" id="favcolor25" name="favcolor25" value="#0000ff">
+					</div>
+					<div>
+						<label for="time">Choose time for the game:</label><br>
+						<span>Check it</span>
+					</div>
+					<div>
+						<label for="monster">Choose number of monsters:</label><br>
+						<select class="monsters" name="monsters" >
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+						</select>
+					</div>
+					<button id="random">Random</button>
+					<button id="save_settings">Save</button>
+				</div>
+				<div class="page" id="app">
+					<div id="score">
+						<label for="lblScore">SCORE:</label>
+						<input id="lblScore" type="text" />
+					</div>
+					<div id="time">
+						<label for="lblTime">TIME:</label>
+						<input id="lblTime" type="text" />
+					</div>
+					<div id="game">
+						<canvas id="canvas" height="600" width="600"></canvas>
+					</div>
+				</div>
 			</Content>
 		</div>
 		<Footer class="Footer">
