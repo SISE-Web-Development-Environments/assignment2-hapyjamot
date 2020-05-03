@@ -21,5 +21,8 @@ function handleKeyEvent(){
 }
 
 $(document).ready(function() {
-    $("#save_settings").click(function(){showInContentByID("app")});
+    $("#save_settings").click(function(){
+        setBallColors("favcolor5","favcolor15","favcolor25");
+        showInContentByID("app"); 
+    });
 })
