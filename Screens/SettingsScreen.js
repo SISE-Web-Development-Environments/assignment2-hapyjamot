@@ -1,5 +1,7 @@
 var chosen = null;
-
+var chosenKeys = {
+    keyUp: 'ArrowUp'
+}
 $(document).ready(function() {
     $("#save_settings").click(function(){
         settingToggle("show");
@@ -11,25 +13,42 @@ $(document).ready(function() {
     handleKeyEvent("linkLeft","keyLeft","chosenLeft");
     handleKeyEvent("linkRight","keyRight","chosenRight");
 })
+// function validateKey
+
+// function save
+
 
 function handleKeyEvent(button, modal, saveField){
     $("#".concat(button)).click(function() {
-        $("#".concat(modal)).show(function() {
-            $("#".concat(modal)).focus();
-        });
-    });
-    $("#".concat(modal)).keydown(function(e) {
+        $("#".concat(modal)).modal({
+            escapeClose: false,
+            // showClose: false,
+            clickClose: false
+        })
+        $("#".concat(modal)).keydown(function(e) {
         assignKeyBind(e,saveField);
     });
+        var confirmId = '#confirmKeyUp';
+        const t = $(confirmId);
+        $(confirmId).click(function(e){
+            e.preventDefault();
+            console.log('checking if valid')
+            // chosenKeys[]
+        })
+
+    });
 }
 
-function assignKeyBind(e, id){
-    if(e.code === 'Escape'){
-        finishKeyListening();
-    }
+function assignKeyBind(e, idSave) {
     chosen = e.code;
-    $("#".concat(id)).text("you chose: ".concat(chosen));
+
+    $("#".concat(idSave)).text(chosen);
 }
 
-function outputUpdate(val) {  
+function outputNumber(val) {
+    document.querySelector('#balls').value = val;
+}
+
+function outputTime(val) {
+    document.querySelector('#time').value = val;
 }

@@ -81,8 +81,7 @@
 							</div>
 						</form>
 					</div>
-					<!-- Modal HTML embedded directly into document -->
-					<div id="login" class="page" name="login_div_name">
+					<div class="page" id="login" name="login_div_name">
 						<button class="login_element" id="login_to_welcome">Back to Welcome</button>
 						<H1>Login</H1>
 						<label class="login_element"> Username:</label>
@@ -95,6 +94,80 @@
 						</div><br>
 						<button class="login_element" id="send_button">Login</button>
 					</div>
+					<div class="page" id="definitions">
+						<p id="after_login_label" hidden>Welcome, </p>
+						<H1>Settings</H1>
+						<div class="keys">
+							<label for="playButtons">Choose game buttons:</label><br><br>
+							<div class="keyContainer">
+								<a href="#keyUp" id="linkUp">Up</a>
+								<span id="chosenUpConfirmed">ArrowUp</span>
+							</div>
+							<div class="keyContainer">
+								<a href="#keyDown" id="linkDown">Down</a>
+								<span id="chosenDownConfirmed">ArrowDown</span>
+							</div>
+							<div class="keyContainer">
+								<a href="#keyLeft" id="linkLeft">Left</a>
+								<span id="chosenLeftConfirmed">ArrowLeft</span>
+							</div>
+							<div class="keyContainer">
+								<a href="#keyRight" id="linkRight">Right</a>
+								<span id="chosenRightConfirmed">ArrowRight</span>
+							</div>
+						</div><br>
+						<div class="ranges">
+							<label for="balls">Choose number of balls:</label> <br>
+							<input type="range" min="50" max="90" value="70" id="rangeOfBalls" step="1" oninput="outputNumber(value)">
+							<output for="balls" id="balls">70</output>
+							<br>
+							<label for="time">Choose time (in seconds):</label><br>
+							<input type="range" min="60" max="300" value="180" id="rangeOfBalls" step="1" oninput="outputTime(value)">
+							<output for="time" id="time">180</output>
+						</div><br>
+						<div class="monsters">
+							<label for="monster">Choose number of monsters:</label><br>
+							<select class="monsters" name="monsters" >
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+							</select>
+						</div><br>
+						<div class="colors">
+							<label for="colors">Choose balls colors:</label><br>
+							<label for="favcolor5">5 points:</label>
+							<input type="color" id="favcolor5" name="favcolor5" value="#ff0000"><br><br>
+							<label for="favcolor15">15 points:</label>
+							<input type="color" id="favcolor15" name="favcolor15" value="#ffff00"><br><br>
+							<label for="favcolor25">25 points:</label>
+							<input type="color" id="favcolor25" name="favcolor25" value="#0000ff"><br><br>
+						</div><br>
+						<button id="random">Random</button><br>
+						<button id="save_settings">Save</button>
+					</div>
+					<div class="page" id="app">
+						<button id="switch"> Switch Account</button>
+						<button id="newGame"> New Game</button>
+						<!-- custom added label-->
+						<div id="lives">
+							<label for="lblLives">LIVES:</label>
+							<input id="lblLives" type="text" />
+						</div>
+						<div id="score">
+							<label for="lblScore">SCORE:</label>
+							<input id="lblScore" type="text" />
+						</div>
+						<div id="time">
+							<label for="lblTime">TIME:</label>
+							<input id="lblTime" type="text" />
+						</div>
+						<div id="game">
+							<canvas id="canvas" height="600" width="600"></canvas>
+						</div>
+					</div>
+				</div>
+				<div id="modal_container">
 					<div id="about" class="modal">
 						<p>Sapir Shamay --- Haim Reyes</p>
 						<p>We used the following jQuery plugins:</p>
@@ -108,83 +181,28 @@
 							<li>second</li>
 						</ul>	
 					</div>
-				  </div>
-				  <div id="keyUp" class="modal" tabindex="0">
-					<p>Please press a key</p>
-					<p id="chosenUp"></p>
-				  </div>
-				  <div id="keyDown" class="modal" tabindex="0">
-					<p>Please press a key</p>
-					<p id="chosenDown"></p>
-				  </div>
-				  <div id="keyLeft" class="modal" tabindex="0">
-					<p>Please press a key</p>
-					<p id="chosenLeft"></p>
-				  </div>
-				  <div id="keyRight" class="modal" tabindex="0">
-					<p>Please press a key</p>
-					<p id="chosenRight"></p>
-				  </div>
-				  <div class="page" id="definitions">
-					<p id="after_login_label" hidden>Welcome, </p>
-					<H1>Settings</H1>
-					<div class="keys">
-						<label for="playButtons">Choose game buttons:</label><br><br>
-						<a href="#keyUp" rel="modal:open" id="linkUp">Up</a>
-						<a href="#keyDown" rel="modal:open" id="linkDown">Down</a>
-						<a href="#keyLeft" rel="modal:open" id="linkLeft">Left</a>
-						<a href="#keyRight" rel="modal:open" id="linkRight">Right</a>
-					</div><br>
-					<div>
-						<label for="balls">Choose number of balls:</label> <br>
-						<input type="range" min="50" max="90" value="70" id="rangeOfBalls" step="1" oninput="outputUpdate(value)">
-						<output for="balls" id="balls">70</output>
-					</div><br>
-					<div>
-						<label for="colors">Choose balls colors:</label><br>
-						<label for="favcolor5">5 points:</label>
-						<input type="color" id="favcolor5" name="favcolor5" value="#ff0000">
-						<label for="favcolor15">15 points:</label>
-						<input type="color" id="favcolor15" name="favcolor15" value="#ffff00">
-						<label for="favcolor25">25 points:</label>
-						<input type="color" id="favcolor25" name="favcolor25" value="#0000ff">
-					</div><br>
-					<div>
-						<label for="time">Choose time for the game:</label><br>
-						<span>Check it</span>
-					</div><br>
-					<div>
-						<label for="monster">Choose number of monsters:</label><br>
-						<select class="monsters" name="monsters" >
-							<option>1</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-						</select>
-					</div><br>
-					<button id="random">Random</button>
-					<button id="save_settings">Save</button>
-				</div>
-				<div class="page" id="app">
-					<button id="switch"> Switch Account</button>
-					<button id="newGame"> New Game</button>
-					<!-- custom added label-->
-					<div id="lives">
-						<label for="lblLives">LIVES:</label>
-						<input id="lblLives" type="text" />
+					<div id="keyUp" class="modal" tabindex="0">
+						<p>Please press a key</p>
+						<p id="chosenUp"></p>
+						<button href="#" rel="modal:close" id="confirmKeyUp">confirm</button>
 					</div>
-					<div id="score">
-						<label for="lblScore">SCORE:</label>
-						<input id="lblScore" type="text" />
+					<div id="keyDown" class="modal" tabindex="0">
+						<p>Please press a key</p>
+						<p id="chosenDown"></p>
+						<button href="#" rel="modal:close" id="confirmKeyDown">confirm</button>
 					</div>
-					<div id="time">
-						<label for="lblTime">TIME:</label>
-						<input id="lblTime" type="text" />
+					<div id="keyLeft" class="modal" tabindex="0">
+						<p>Please press a key</p>
+						<p id="chosenLeft"></p>
+						<button href="#" rel="modal:close" id="confirmKeyLeft">confirm</button>
 					</div>
-					<div id="game">
-						<canvas id="canvas" height="600" width="600"></canvas>
+					<div id="keyRight" class="modal" tabindex="0">
+						<p>Please press a key</p>
+						<p id="chosenRight"></p>
+						<button href="#" rel="modal:close" id="confirmKeyRight">confirm</button>
 					</div>
 				</div>
+				
 			</Content>
 		</div>
 		<Footer class="Footer">
