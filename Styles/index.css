@@ -69,12 +69,12 @@ background-color: #0099cc;
 }
 
 a {
-  color: white;
+  color: blue;
   text-decoration: blink;
 }
 
 .page {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .Footer {
@@ -98,7 +98,11 @@ Content H1 {
   padding: 10px;
 }
 
-.keyContainer {
+/* .keyContainer {
   display: flex;
   justify-content: space-evenly;
+} */
+
+.error {
+  color: red;
 }

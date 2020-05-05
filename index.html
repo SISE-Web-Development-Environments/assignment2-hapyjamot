@@ -89,7 +89,7 @@
 						<label class="login_element"> Password:</label>
 						<input class="login_element" type="password" placeholder="Password" id="login_password_id"><br>
 						<div id="message">
-							<p id="login_error_message" hidden>Wrong user details, please try again or</p>
+							<p class="error" id="login_error_message" hidden>Wrong user details, please try again or</p>
 							<button class="login_element" id="login_to_register" hidden>Register</button>
 						</div><br>
 						<button class="login_element" id="send_button">Login</button>
@@ -101,7 +101,7 @@
 							<label for="playButtons">Choose game buttons:</label><br><br>
 							<div class="keyContainer">
 								<a href="#keyUp" id="linkUp">Up</a>
-								<span id="chosenUpConfirmed">ArrowUp</span>
+								<span id="chosenUpConfirmed"></span>
 							</div>
 							<div class="keyContainer">
 								<a href="#keyDown" id="linkDown">Down</a>
@@ -181,25 +181,30 @@
 							<li>second</li>
 						</ul>	
 					</div>
-					<div id="keyUp" class="modal" tabindex="0">
+					<div id="keyUp" class="modal" tabindex="0" autofocus>
 						<p>Please press a key</p>
 						<p id="chosenUp"></p>
-						<button href="#" rel="modal:close" id="confirmKeyUp">confirm</button>
+						<a href="#" id="confirmKeyUp">confirm</a> 
+						<!-- rel="modal:close" -->
+						<span class="error" id="errorUp"></span>
 					</div>
 					<div id="keyDown" class="modal" tabindex="0">
 						<p>Please press a key</p>
 						<p id="chosenDown"></p>
-						<button href="#" rel="modal:close" id="confirmKeyDown">confirm</button>
+						<a href="#" id="confirmKeyDown">confirm</a> 
+						<!-- rel="modal:close" -->
 					</div>
 					<div id="keyLeft" class="modal" tabindex="0">
 						<p>Please press a key</p>
 						<p id="chosenLeft"></p>
-						<button href="#" rel="modal:close" id="confirmKeyLeft">confirm</button>
+						<a href="#" id="confirmKeyLeft">confirm</a> 
+						<!-- rel="modal:close" -->
 					</div>
 					<div id="keyRight" class="modal" tabindex="0">
 						<p>Please press a key</p>
 						<p id="chosenRight"></p>
-						<button href="#" rel="modal:close" id="confirmKeyRight">confirm</button>
+						<a href="#" id="confirmKeyRight">confirm</a> 
+						<!-- rel="modal:close" -->
 					</div>
 				</div>
 				
