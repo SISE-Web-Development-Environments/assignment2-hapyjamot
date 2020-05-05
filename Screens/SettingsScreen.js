@@ -82,3 +82,9 @@ function outputNumber(val) {
 function outputTime(val) {
     document.querySelector('#time').value = val;
 }
+$(document).ready(function() {
+    $("#save_settings").click(function(){
+        setBallColors("favcolor5","favcolor15","favcolor25");
+        showInContentByID("app"); 
+    });
+})

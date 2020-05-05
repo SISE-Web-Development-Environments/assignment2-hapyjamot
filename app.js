@@ -6,6 +6,20 @@ var pac_color;
 var start_time;
 var time_elapsed;
 var interval;
+//magic numbers
+const pill=3;
+const ball5=5;
+const ball15=15;
+const ball25=25;
+//ball counters
+var ball5Counter;
+var ball15Counter;
+var ball25Counter;
+//color holders
+var color5;
+var color15;
+var color25;
+
 //for the pacman lives
 var pacman_remain;
 $(document).ready(function() {
@@ -38,12 +52,23 @@ function Start() {
 	score = 0;
 	pac_color = "yellow";
 	var cnt = 100;
-	var food_remain = 50;
 	pacman_remain = 1;
 	start_time = new Date();
-	for (var i = 0; i < 10; i++) {
+	//use the value from the settings screen
+	var food_remain = document.getElementById("rangeOfBalls").value;
+	//set counters
+	ball5Counter=0;
+	ball15Counter=0;
+	ball25Counter=0;
+	//set an empty board
+	for(var i=0;i<10;i++){
 		board[i] = new Array();
+		for(var j=0;j<10;j++)
+			board[i][j]=0;
+	}
+	for (var i = 0; i < 10; i++) {
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
+		var original_food_remain = document.getElementById("rangeOfBalls").value;
 		for (var j = 0; j < 10; j++) {
 			if (
 				(i == 3 && j == 3) ||
@@ -57,7 +82,21 @@ function Start() {
 				var randomNum = Math.random();
 				if (randomNum <= (1.0 * food_remain) / cnt) {
 					food_remain--;
-					board[i][j] = 1;
+					var number;
+					if(ball25Counter/original_food_remain<0.1){
+						number=ball25;
+						ball25Counter++;
+					}
+					else if(ball15Counter/original_food_remain<0.3){
+						number=ball15;
+						ball15Counter++
+					}
+					else if(ball5Counter/original_food_remain<0.6){
+						number=ball5;
+						ball5Counter++;
+					}
+					var emptyCell = findRandomEmptyCell(board);
+					board[emptyCell[0]][emptyCell[1]] = number;
 				} else if (randomNum < (1.0 * (pacman_remain + food_remain)) / cnt) {
 					shape.i = i;
 					shape.j = j;
@@ -68,15 +107,15 @@ function Start() {
 				}
 				cnt--;
 			}
-		}
+		}	
 	}
 	//set a random pill in an empty cell
 	var pillCell = findRandomEmptyCell(board);
-	board[pillCell[0]][pillCell[1]] = 5;
+	board[pillCell[0]][pillCell[1]] = pill;
 
 	while (food_remain > 0) {
 		var emptyCell = findRandomEmptyCell(board);
-		board[emptyCell[0]][emptyCell[1]] = 1;
+		board[emptyCell[0]][emptyCell[1]] = ball5;
 		food_remain--;
 	}
 	keysDown = {};
@@ -95,8 +134,10 @@ function Start() {
 		false
 	);
 	interval = setInterval(UpdatePosition, 250);
+	//dont forget the first 5 lives
+	pacman_remain=5;
 }
-
+//finds a random empty cell on the board
 function findRandomEmptyCell(board) {
 	var i = Math.floor(Math.random() * 9 + 1);
 	var j = Math.floor(Math.random() * 9 + 1);
@@ -154,10 +195,29 @@ function Draw() {
 				context.fill();
 			}
 			/// extra custom item will look like a red circle
-			else if (board[i][j] == 5) {
+			else if (board[i][j] == pill) {
 				context.beginPath();
 				context.arc(center.x, center.y, 20, 0, 2 * Math.PI);//circle
 				context.fillStyle = "red"; //color
+				context.fill();
+			}
+			/// the different color balls
+			else if (board[i][j] == ball5) {
+				context.beginPath();
+				context.arc(center.x, center.y, 5, 0, 2 * Math.PI);//circle
+				context.fillStyle = color5; //color
+				context.fill();
+			}	
+			else if (board[i][j] == ball15) {
+				context.beginPath();
+				context.arc(center.x, center.y, 15, 0, 2 * Math.PI);//circle
+				context.fillStyle = color15; //color
+				context.fill();
+			}	
+			else if (board[i][j] == ball25) {
+				context.beginPath();
+				context.arc(center.x, center.y, 25, 0, 2 * Math.PI);//circle
+				context.fillStyle = color25; //color
 				context.fill();
 			}
 		}
@@ -188,23 +248,39 @@ function UpdatePosition() {
 		}
 	}
 	//increment the lives counter
-	if(board[shape.i][shape.j] == 5){
+	if(board[shape.i][shape.j] == pill){
 		pacman_remain++;
 		lblLives.value = pacman_remain;
 	}
-	if (board[shape.i][shape.j] == 1) {
-		score++;
+	//check for the different type of balls 
+	else if(board[shape.i][shape.j] == ball5){
+		score+=5;
+	}else if(board[shape.i][shape.j] == ball15){
+		score+=15;
+	}else if(board[shape.i][shape.j] == ball25){
+		score+=25;
 	}
 	board[shape.i][shape.j] = 2;
 	var currentTime = new Date();
 	time_elapsed = (currentTime - start_time) / 1000;
-	if (score >= 20 && time_elapsed <= 10) {
+	if (score >= 100 && time_elapsed <= 10) {
 		pac_color = "green";
 	}
-	if (score == 50) {
+	if (score >= 250) {
 		window.clearInterval(interval);
 		window.alert("Game completed");
 	} else {
 		Draw();
 	}
 }
+// default id's "favcolor5","favcolor15","favcolor25"
+function setBallColors(){
+	setBallColors("favcolor5","favcolor15","favcolor25");
+}
+// variable id's
+function setBallColors(color5ID,color15ID,color25ID){
+	color5 = document.getElementById(color5ID).value;
+	color15 = document.getElementById(color15ID).value;
+	color25 = document.getElementById(color25ID).value;
+}
+
