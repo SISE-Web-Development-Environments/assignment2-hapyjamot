@@ -1,5 +1,6 @@
 var chosen = null;
 var noConfirm = false;
+var numberOfMonsters =1;
 var chosenKeys = {
     keyUp: 'ArrowUp',
     keyDown: 'ArrowDown',
@@ -9,7 +10,9 @@ var chosenKeys = {
 $(document).ready(function() {
     $("#save_settings").click(function(){
         settingToggle("show");
-        showInContentByID("app");
+        Play();
+        setBallColors("favcolor5","favcolor15","favcolor25");
+        showInContentByID("app"); 
     });
     $("#chosenUpConfirmed").text(chosenKeys.keyUp)
     $("#chosenDownConfirmed").text(chosenKeys.keyDown)
@@ -20,6 +23,9 @@ $(document).ready(function() {
     handleKeyEvent("linkDown","keyDown","chosenDown");
     handleKeyEvent("linkLeft","keyLeft","chosenLeft");
     handleKeyEvent("linkRight","keyRight","chosenRight");
+    $("select.monsters").change(function(){
+        numberOfMonsters = $(this).children("option:selected").val();
+    });
 })
 
 function handleKeyEvent(button, modal, saveField, confirmId){
@@ -82,9 +88,5 @@ function outputNumber(val) {
 function outputTime(val) {
     document.querySelector('#time').value = val;
 }
-$(document).ready(function() {
-    $("#save_settings").click(function(){
-        setBallColors("favcolor5","favcolor15","favcolor25");
-        showInContentByID("app"); 
-    });
-})
+
+
