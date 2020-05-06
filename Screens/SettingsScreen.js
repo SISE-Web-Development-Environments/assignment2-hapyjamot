@@ -14,11 +14,7 @@ $(document).ready(function() {
         setBallColors("favcolor5","favcolor15","favcolor25");
         showInContentByID("app"); 
     });
-    $("#chosenUpConfirmed").text(chosenKeys.keyUp)
-    $("#chosenDownConfirmed").text(chosenKeys.keyDown)
-    $("#chosenLeftConfirmed").text(chosenKeys.keyLeft)
-    $("#chosenRightConfirmed").text(chosenKeys.keyRight)
-
+    updateKeys();
     handleKeyEvent("linkUp","keyUp","chosenUp","confirmKeyUp");
     handleKeyEvent("linkDown","keyDown","chosenDown");
     handleKeyEvent("linkLeft","keyLeft","chosenLeft");
@@ -31,14 +27,9 @@ $(document).ready(function() {
 function handleKeyEvent(button, modal, saveField, confirmId){
     $("#".concat(button)).click(function(e) {
         e.preventDefault()
-        const jModal = $(this).modal({
+        $(this).modal({
             escapeClose: false,
-            // showClose: false,
             clickClose: false,
-            beforeClose: function(e){
-                confirm(chosen, modal, confirmId);
-            },
-            focus: this,
         });
         $("#".concat(modal)).trigger('focus');
         $("#".concat(modal)).keydown(function(e) {
@@ -46,17 +37,8 @@ function handleKeyEvent(button, modal, saveField, confirmId){
             assignKeyBind(e,saveField);
         });
     });
-    // $(document).on($.modal.CLOSE, function(e){
-    //     confirm(chosen, modal, confirmId);
-    //     // if (noConfirm) {
-    //     //     e.preventDefault();
-    // });
-    // $("#".concat(modal)).on('close', function(){
-    //     confirm(chosen, modal, confirmId);
-    // })
     $("#".concat(confirmId)).click(function(e){
         confirm(chosen, modal, confirmId);
-        // $("#".concat(modal)).modal().toggle();
     })
 
 }
@@ -79,6 +61,7 @@ function confirm(key, modal, id) {
             // $("#".concat(modal)).css("display", "none");
         }
     }
+    updateKeys();
 }
 
 function outputNumber(val) {
@@ -89,4 +72,9 @@ function outputTime(val) {
     document.querySelector('#time').value = val;
 }
 
-
+function updateKeys() {
+    $("#chosenUpConfirmed").text(chosenKeys.keyUp)
+    $("#chosenDownConfirmed").text(chosenKeys.keyDown)
+    $("#chosenLeftConfirmed").text(chosenKeys.keyLeft)
+    $("#chosenRightConfirmed").text(chosenKeys.keyRight)
+}
