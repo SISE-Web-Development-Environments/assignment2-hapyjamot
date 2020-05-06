@@ -1,12 +1,21 @@
-var chosen = null;
-var noConfirm = false;
-var numberOfMonsters =1;
+var keyCode = null;
+var keyName = null;
+var numberOfMonsters = 1;
+
 var chosenKeys = {
     keyUp: 'ArrowUp',
     keyDown: 'ArrowDown',
     keyLeft: 'ArrowLeft',
     keyRight: 'ArrowRight',
 }
+
+var chosenKeysNumbers = {
+    keyUp: 38,
+    keyDown: 40,
+    keyLeft: 37,
+    keyRight: 39,   
+}
+
 $(document).ready(function() {
     $("#save_settings").click(function(){
         settingToggle("show");
@@ -15,16 +24,16 @@ $(document).ready(function() {
         showInContentByID("app"); 
     });
     updateKeys();
-    handleKeyEvent("linkUp","keyUp","chosenUp","confirmKeyUp");
-    handleKeyEvent("linkDown","keyDown","chosenDown");
-    handleKeyEvent("linkLeft","keyLeft","chosenLeft");
-    handleKeyEvent("linkRight","keyRight","chosenRight");
+    handleKeyEvent("linkUp","keyUp","chosenUp","confirmKeyUp","errorUp");
+    handleKeyEvent("linkDown","keyDown","chosenDown","confirmKeyDown","errorDown");
+    handleKeyEvent("linkLeft","keyLeft","chosenLeft","confirmKeyLeft","errorLeft");
+    handleKeyEvent("linkRight","keyRight","chosenRight","confirmKeyRight","errorRight");
     $("select.monsters").change(function(){
         numberOfMonsters = $(this).children("option:selected").val();
     });
 })
 
-function handleKeyEvent(button, modal, saveField, confirmId){
+function handleKeyEvent(button, modal, saveField, confirmId, errorId){
     $("#".concat(button)).click(function(e) {
         e.preventDefault()
         $(this).modal({
@@ -33,32 +42,62 @@ function handleKeyEvent(button, modal, saveField, confirmId){
         });
         $("#".concat(modal)).trigger('focus');
         $("#".concat(modal)).keydown(function(e) {
-            $("#errorUp").text("");
+            $("#".concat(errorId)).text("");
             assignKeyBind(e,saveField);
         });
     });
     $("#".concat(confirmId)).click(function(e){
-        confirm(chosen, modal, confirmId);
+        confirm(confirmId);
     })
 
 }
 
 function assignKeyBind(e, idSave) {
-    chosen = e.code;
-    $("#".concat(idSave)).text(chosen);
+    keyCode = e.keyCode;
+    keyName = e.code;
+    $("#".concat(idSave)).text(keyName);
 }
 
-function confirm(key, modal, id) {
+function confirm(id) {
     var error_message = "Duplication exists, Please choose another key"
     if (id === "confirmKeyUp") {
-        if (key === chosenKeys.keyDown || key === chosenKeys.keyLeft || key === chosenKeys.keyRight) {
+        if (keyCode === chosenKeysNumbers.keyDown || keyCode === chosenKeysNumbers.keyLeft || keyCode === chosenKeysNumbers.keyRight) {
             $("#errorUp").text(error_message);
-            noConfirm = true;
         }
         else {
-            chosenKeys.keyUp = key;
+            chosenKeysNumbers.keyUp = keyCode;
+            chosenKeys.keyUp = keyName;
             $.modal.close();
-            // $("#".concat(modal)).css("display", "none");
+        }
+    }
+    if (id === "confirmKeyDown") {
+        if (keyCode === chosenKeysNumbers.keyUp || keyCode === chosenKeysNumbers.keyLeft || keyCode === chosenKeysNumbers.keyRight) {
+            $("#errorDown").text(error_message);
+        }
+        else {
+            chosenKeysNumbers.keyDown = keyCode;
+            chosenKeys.keyDown = keyName;
+            $.modal.close();
+        }
+    }
+    if (id === "confirmKeyLeft") {
+        if (keyCode === chosenKeysNumbers.keyUp || keyCode === chosenKeysNumbers.keyDown || keyCode === chosenKeysNumbers.keyRight) {
+            $("#errorLeft").text(error_message);
+        }
+        else {
+            chosenKeysNumbers.keyLeft = keyCode;
+            chosenKeys.keyLeft = keyName;
+            $.modal.close();
+        }
+    }
+    if (id === "confirmKeyRight") {
+        if (keyCode === chosenKeysNumbers.keyUp || keyCode === chosenKeysNumbers.keyDown || keyCode === chosenKeysNumbers.keyLeft) {
+            $("#errorRight").text(error_message);
+        }
+        else {
+            chosenKeysNumbers.keyRight= keyCode;
+            chosenKeys.keyRight = keyName;
+            $.modal.close();
         }
     }
     updateKeys();
