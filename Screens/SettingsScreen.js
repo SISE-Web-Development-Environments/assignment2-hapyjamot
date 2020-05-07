@@ -151,7 +151,7 @@ function updateSettings(random) {
         keyRight: DefaultSettings.defaultChosenKeysNumbers.keyRight,
     };
     updateKeys();
-
+    let monsters2;
     if (random) {
         balls = generateRandomNumber(50,90) 
         time = generateRandomNumber(60,360); 
@@ -163,7 +163,7 @@ function updateSettings(random) {
     else {
         balls = DefaultSettings.balls;
         time = DefaultSettings.time; 
-        monsters = DefaultSettings.monsters;
+        monsters2 = DefaultSettings.monsters;
         colorFive = DefaultSettings.color5;
         colorFift = DefaultSettings.color15;
         colorTwenty = DefaultSettings.color25; 
@@ -172,8 +172,8 @@ function updateSettings(random) {
     $('#rangeOfTime').prop('value',''.concat(time));
     outputNumber(balls);
     outputTime(time);
-    $('#select_monsters').prop('selectedIndex',monsters);
-    numberOfMonsters = monsters+1;
+    $('#select_monsters').prop('selectedIndex',monsters2);
+    numberOfMonsters = monsters2+1;
     $('#favcolor5').prop('value',colorFive);
     $('#favcolor15').prop('value',colorFift);
     $('#favcolor25').prop('value',colorTwenty);
