@@ -135,7 +135,7 @@ function outputTime(val) {
     document.querySelector('#time').value = val;
 }
 function generateRandomNumber(start, end){
-    return Math.round(Math.random(end - start)) + start;
+    return Math.round(Math.random() * (end - start)) + start;
 }
 function updateSettings(random) {
     chosenKeys = {
@@ -155,7 +155,7 @@ function updateSettings(random) {
     if (random) {
         balls = generateRandomNumber(50,90) 
         time = generateRandomNumber(60,360); 
-        monsters = generateRandomNumber(0,3);
+        monsters2 = generateRandomNumber(0,3);
         colorFive = getRandomColor();
         colorFift = getRandomColor();
         colorTwenty = getRandomColor(); 

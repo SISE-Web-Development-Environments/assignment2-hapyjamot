@@ -25,7 +25,7 @@
 			<span class="col-3">Sapir Shamay 305649444 Haim reyes 319510475</span>
 		</Header>
 		  
-		<div class="row">
+		<div class="row content">
 			<Menu class="col-2 menu">
 			  <ul>
 				<li id="menu_welcome">Welcome</li>
@@ -168,24 +168,26 @@
 						<button id="save_settings">Save</button>
 					</div>
 					<div class="page" id="app">
-						<output id="player"> Player: </output><br>
-						<button id="switch"> Switch Account</button>
-						<button id="newGame"> New Game</button>
-						<!-- custom added label-->
-						<div id="lives">
-							<label for="lblLives">LIVES:</label>
-							<input id="lblLives" type="text" />
+						<div class="gameDisplay">
+							<output id="player"> Player: </output><br>
+							<button id="switch"> Switch Account</button>
+							<button id="newGame"> New Game</button>
+							<!-- custom added label-->
+							<div id="lives">
+								<label for="lblLives">LIVES:</label>
+								<input id="lblLives" type="text" />
+							</div>
+							<div id="score">
+								<label for="lblScore">SCORE:</label>
+								<input id="lblScore" type="text" />
+							</div>
+							<div id="time">
+								<label for="lblTime">TIME:</label>
+								<input id="lblTime" type="text" />
+							</div>
 						</div>
-						<div id="score">
-							<label for="lblScore">SCORE:</label>
-							<input id="lblScore" type="text" />
-						</div>
-						<div id="time">
-							<label for="lblTime">TIME:</label>
-							<input id="lblTime" type="text" />
-						</div>
-						<div id="game">
-							<canvas id="canvas" height="600" width="600"></canvas>
+						<div id="game" class="game">
+							<canvas id="canvas"  height="600" width="600"></canvas>
 						</div>
 					</div>
 				</div>
@@ -247,11 +249,5 @@
 			</Footer>
 	</body>
 	<style>
-	body{
-   		min-width:1366px;    
-   		width: auto;
-		min-height:768px;       
-		height: auto;
-	}
 	</style>
 </html>
