@@ -19,6 +19,8 @@ function authenticate(userName,password){
             UserLabel.hidden=false;
             document.getElementById("login_username_id").value="";
             document.getElementById("login_password_id").value="";
+            updateSettings(false);
+            document.getElementById("player").append(userName);
             showInContentByID("definitions");
         }
         else{

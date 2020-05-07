@@ -1,92 +1,196 @@
-var chosen = null;
-var noConfirm = false;
-var numberOfMonsters =1;
-var chosenKeys = {
-    keyUp: 'ArrowUp',
-    keyDown: 'ArrowDown',
-    keyLeft: 'ArrowLeft',
-    keyRight: 'ArrowRight',
-}
-$(document).ready(function() {
-    $("#save_settings").click(function(){
-        settingToggle("show");
-        Play();
-        setBallColors("favcolor5","favcolor15","favcolor25");
-        showInContentByID("app"); 
-    });
-    $("#chosenUpConfirmed").text(chosenKeys.keyUp)
-    $("#chosenDownConfirmed").text(chosenKeys.keyDown)
-    $("#chosenLeftConfirmed").text(chosenKeys.keyLeft)
-    $("#chosenRightConfirmed").text(chosenKeys.keyRight)
+var keyCode = null;
+var keyName = null;
+var chosenKeys = null;
+var chosenKeysNumbers = null;
+var numberOfMonsters = null;
+var ballsSettings = null;
+var timeSettings = null;
+var colorFive = null;
+var colorFift = null;
+var colorTwenty = null;
 
-    handleKeyEvent("linkUp","keyUp","chosenUp","confirmKeyUp");
-    handleKeyEvent("linkDown","keyDown","chosenDown");
-    handleKeyEvent("linkLeft","keyLeft","chosenLeft");
-    handleKeyEvent("linkRight","keyRight","chosenRight");
+const DefaultSettings = {
+    defaultChosenKeys: {
+        keyUp: 'ArrowUp',
+        keyDown: 'ArrowDown',
+        keyLeft: 'ArrowLeft',
+        keyRight: 'ArrowRight',
+    },
+    defaultChosenKeysNumbers: {
+        keyUp: 38,
+        keyDown: 40,
+        keyLeft: 37,
+        keyRight: 39,  
+    },
+    balls: 70,
+    time: 180,
+    monsters: 0,
+    color5: "#ff0000",
+    color15: "#ffff00",
+    color25: "#0000ff",
+}
+
+$(document).ready(function() {
+
+    handleKeyEvent("linkUp","keyUp","chosenUp","confirmKeyUp","errorUp");
+    handleKeyEvent("linkDown","keyDown","chosenDown","confirmKeyDown","errorDown");
+    handleKeyEvent("linkLeft","keyLeft","chosenLeft","confirmKeyLeft","errorLeft");
+    handleKeyEvent("linkRight","keyRight","chosenRight","confirmKeyRight","errorRight");
     $("select.monsters").change(function(){
         numberOfMonsters = $(this).children("option:selected").val();
     });
+    $("#save_settings").click(function(){
+        save();
+    });
+    $("#random").click(function(){
+        updateSettings(true);
+        save();
+    });
 })
 
-function handleKeyEvent(button, modal, saveField, confirmId){
+function save(){
+    setBallColors("favcolor5","favcolor15","favcolor25");
+    settingToggle("show");
+    Play();
+    showInContentByID("app"); 
+}
+
+function handleKeyEvent(button, modal, saveField, confirmId, errorId){
     $("#".concat(button)).click(function(e) {
         e.preventDefault()
-        const jModal = $(this).modal({
+        $(this).modal({
             escapeClose: false,
-            // showClose: false,
             clickClose: false,
-            beforeClose: function(e){
-                confirm(chosen, modal, confirmId);
-            },
-            focus: this,
         });
         $("#".concat(modal)).trigger('focus');
         $("#".concat(modal)).keydown(function(e) {
-            $("#errorUp").text("");
+            $("#".concat(errorId)).text("");
             assignKeyBind(e,saveField);
         });
     });
-    // $(document).on($.modal.CLOSE, function(e){
-    //     confirm(chosen, modal, confirmId);
-    //     // if (noConfirm) {
-    //     //     e.preventDefault();
-    // });
-    // $("#".concat(modal)).on('close', function(){
-    //     confirm(chosen, modal, confirmId);
-    // })
     $("#".concat(confirmId)).click(function(e){
-        confirm(chosen, modal, confirmId);
-        // $("#".concat(modal)).modal().toggle();
+        confirm(confirmId);
     })
 
 }
 
 function assignKeyBind(e, idSave) {
-    chosen = e.code;
-    $("#".concat(idSave)).text(chosen);
+    keyCode = e.keyCode;
+    keyName = e.code;
+    $("#".concat(idSave)).text(keyName);
 }
 
-function confirm(key, modal, id) {
+function confirm(id) {
     var error_message = "Duplication exists, Please choose another key"
     if (id === "confirmKeyUp") {
-        if (key === chosenKeys.keyDown || key === chosenKeys.keyLeft || key === chosenKeys.keyRight) {
+        if (keyCode === chosenKeysNumbers.keyDown || keyCode === chosenKeysNumbers.keyLeft || keyCode === chosenKeysNumbers.keyRight) {
             $("#errorUp").text(error_message);
-            noConfirm = true;
         }
         else {
-            chosenKeys.keyUp = key;
+            chosenKeysNumbers.keyUp = keyCode;
+            chosenKeys.keyUp = keyName;
             $.modal.close();
-            // $("#".concat(modal)).css("display", "none");
         }
     }
+    if (id === "confirmKeyDown") {
+        if (keyCode === chosenKeysNumbers.keyUp || keyCode === chosenKeysNumbers.keyLeft || keyCode === chosenKeysNumbers.keyRight) {
+            $("#errorDown").text(error_message);
+        }
+        else {
+            chosenKeysNumbers.keyDown = keyCode;
+            chosenKeys.keyDown = keyName;
+            $.modal.close();
+        }
+    }
+    if (id === "confirmKeyLeft") {
+        if (keyCode === chosenKeysNumbers.keyUp || keyCode === chosenKeysNumbers.keyDown || keyCode === chosenKeysNumbers.keyRight) {
+            $("#errorLeft").text(error_message);
+        }
+        else {
+            chosenKeysNumbers.keyLeft = keyCode;
+            chosenKeys.keyLeft = keyName;
+            $.modal.close();
+        }
+    }
+    if (id === "confirmKeyRight") {
+        if (keyCode === chosenKeysNumbers.keyUp || keyCode === chosenKeysNumbers.keyDown || keyCode === chosenKeysNumbers.keyLeft) {
+            $("#errorRight").text(error_message);
+        }
+        else {
+            chosenKeysNumbers.keyRight= keyCode;
+            chosenKeys.keyRight = keyName;
+            $.modal.close();
+        }
+    }
+    updateKeys();
 }
 
 function outputNumber(val) {
+    ballsSettings = val;
     document.querySelector('#balls').value = val;
 }
 
 function outputTime(val) {
+    timeSettings = val;
     document.querySelector('#time').value = val;
+}
+
+function updateSettings(random) {
+    chosenKeys = {
+        keyUp: DefaultSettings.defaultChosenKeys.keyUp,
+        keyDown: DefaultSettings.defaultChosenKeys.keyDown,
+        keyLeft: DefaultSettings.defaultChosenKeys.keyLeft,
+        keyRight: DefaultSettings.defaultChosenKeys.keyRight,
+    };
+    chosenKeysNumbers = {
+        keyUp: DefaultSettings.defaultChosenKeysNumbers.keyUp,
+        keyDown: DefaultSettings.defaultChosenKeysNumbers.keyDown,
+        keyLeft: DefaultSettings.defaultChosenKeysNumbers.keyLeft,
+        keyRight: DefaultSettings.defaultChosenKeysNumbers.keyRight,
+    };
+    updateKeys();
+    let monsters2;
+    if (random) {
+        balls = Math.floor(Math.random() * 91); 
+        time = Math.floor(Math.random() * 361); 
+        monsters2 = Math.floor(Math.random() * 4);
+        colorFive = getRandomColor();
+        colorFift = getRandomColor();
+        colorTwenty = getRandomColor(); 
+    }
+    else {
+        balls = DefaultSettings.balls;
+        time = DefaultSettings.time; 
+        monsters2 = DefaultSettings.monsters;
+        colorFive = DefaultSettings.color5;
+        colorFift = DefaultSettings.color15;
+        colorTwenty = DefaultSettings.color25; 
+    }
+    $('#rangeOfBalls').prop('value',''.concat(balls));
+    $('#rangeOfTime').prop('value',''.concat(time));
+    outputNumber(balls);
+    outputTime(time);
+    $('#select_monsters').prop('selectedIndex',monsters2);
+    numberOfMonsters = monsters2+1;
+    $('#favcolor5').prop('value',colorFive);
+    $('#favcolor15').prop('value',colorFift);
+    $('#favcolor25').prop('value',colorTwenty);
+}
+
+function updateKeys() {
+    $("#chosenUpConfirmed").text(chosenKeys.keyUp)
+    $("#chosenDownConfirmed").text(chosenKeys.keyDown)
+    $("#chosenLeftConfirmed").text(chosenKeys.keyLeft)
+    $("#chosenRightConfirmed").text(chosenKeys.keyRight)
+}
+
+function getRandomColor() {
+    let lettersToChoose = '0123456789ABCDEF';
+    let randomColor = '#';
+    for (var i = 0; i < 6; i++) {
+        randomColor += lettersToChoose[Math.floor(Math.random() * 16)];
+    }
+    return randomColor;
 }
 
 

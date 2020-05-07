@@ -50,7 +50,6 @@ $(document).ready(function() {
 
 function stopGame() {
 	time_elapsed = 0;
-	settingToggle("hide");
 	window.clearInterval(interval);
 }
 
@@ -395,7 +394,7 @@ function UpdatePosition() {
 	if (score >= 100 && time_elapsed <= 10) {
 		pac_color = "green";
 	}
-	if(time_elapsed>document.getElementById("time").value){
+	if(time_elapsed>document.getElementById("rangeOfTime").value){
 		hult=true;
 		window.clearInterval(interval);
 		if(score<=100){
@@ -410,10 +409,10 @@ function UpdatePosition() {
 }
 // default id's "favcolor5","favcolor15","favcolor25"
 function setBallColors(){
-	setBallColors("favcolor5","favcolor15","favcolor25");
+	ballColors("favcolor5","favcolor15","favcolor25");
 }
 // variable id's
-function setBallColors(color5ID,color15ID,color25ID){
+function ballColors(color5ID,color15ID,color25ID){
 	color5 = document.getElementById(color5ID).value;
 	color15 = document.getElementById(color15ID).value;
 	color25 = document.getElementById(color25ID).value;
