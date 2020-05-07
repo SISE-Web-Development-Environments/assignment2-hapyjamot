@@ -1,29 +1,37 @@
 var keyCode = null;
 var keyName = null;
-var numberOfMonsters = 1;
+var chosenKeys = null;
+var chosenKeysNumbers = null;
+var numberOfMonsters = null;
+var ballsSettings = null;
+var timeSettings = null;
+var colorFive = null;
+var colorFift = null;
+var colorTwenty = null;
 
-var chosenKeys = {
-    keyUp: 'ArrowUp',
-    keyDown: 'ArrowDown',
-    keyLeft: 'ArrowLeft',
-    keyRight: 'ArrowRight',
-}
-
-var chosenKeysNumbers = {
-    keyUp: 38,
-    keyDown: 40,
-    keyLeft: 37,
-    keyRight: 39,   
+const DefaultSettings = {
+    defaultChosenKeys: {
+        keyUp: 'ArrowUp',
+        keyDown: 'ArrowDown',
+        keyLeft: 'ArrowLeft',
+        keyRight: 'ArrowRight',
+    },
+    defaultChosenKeysNumbers: {
+        keyUp: 38,
+        keyDown: 40,
+        keyLeft: 37,
+        keyRight: 39,  
+    },
+    balls: 70,
+    time: 180,
+    monsters: 0,
+    color5: "#ff0000",
+    color15: "#ffff00",
+    color25: "#0000ff",
 }
 
 $(document).ready(function() {
-    $("#save_settings").click(function(){
-        settingToggle("show");
-        Play();
-        setBallColors("favcolor5","favcolor15","favcolor25");
-        showInContentByID("app"); 
-    });
-    updateKeys();
+
     handleKeyEvent("linkUp","keyUp","chosenUp","confirmKeyUp","errorUp");
     handleKeyEvent("linkDown","keyDown","chosenDown","confirmKeyDown","errorDown");
     handleKeyEvent("linkLeft","keyLeft","chosenLeft","confirmKeyLeft","errorLeft");
@@ -31,7 +39,21 @@ $(document).ready(function() {
     $("select.monsters").change(function(){
         numberOfMonsters = $(this).children("option:selected").val();
     });
+    $("#save_settings").click(function(){
+        save();
+    });
+    $("#random").click(function(){
+        updateSettings(true);
+        save();
+    });
 })
+
+function save(){
+    setBallColors("favcolor5","favcolor15","favcolor25");
+    settingToggle("show");
+    Play();
+    showInContentByID("app"); 
+}
 
 function handleKeyEvent(button, modal, saveField, confirmId, errorId){
     $("#".concat(button)).click(function(e) {
@@ -104,11 +126,55 @@ function confirm(id) {
 }
 
 function outputNumber(val) {
+    ballsSettings = val;
     document.querySelector('#balls').value = val;
 }
 
 function outputTime(val) {
+    timeSettings = val;
     document.querySelector('#time').value = val;
+}
+
+function updateSettings(random) {
+    chosenKeys = {
+        keyUp: DefaultSettings.defaultChosenKeys.keyUp,
+        keyDown: DefaultSettings.defaultChosenKeys.keyDown,
+        keyLeft: DefaultSettings.defaultChosenKeys.keyLeft,
+        keyRight: DefaultSettings.defaultChosenKeys.keyRight,
+    };
+    chosenKeysNumbers = {
+        keyUp: DefaultSettings.defaultChosenKeysNumbers.keyUp,
+        keyDown: DefaultSettings.defaultChosenKeysNumbers.keyDown,
+        keyLeft: DefaultSettings.defaultChosenKeysNumbers.keyLeft,
+        keyRight: DefaultSettings.defaultChosenKeysNumbers.keyRight,
+    };
+    updateKeys();
+
+    if (random) {
+        balls = Math.floor(Math.random() * 91); 
+        time = Math.floor(Math.random() * 361); 
+        monsters = Math.floor(Math.random() * 4);
+        colorFive = getRandomColor();
+        colorFift = getRandomColor();
+        colorTwenty = getRandomColor(); 
+    }
+    else {
+        balls = DefaultSettings.balls;
+        time = DefaultSettings.time; 
+        monsters = DefaultSettings.monsters;
+        colorFive = DefaultSettings.color5;
+        colorFift = DefaultSettings.color15;
+        colorTwenty = DefaultSettings.color25; 
+    }
+    $('#rangeOfBalls').prop('value',''.concat(balls));
+    $('#rangeOfTime').prop('value',''.concat(time));
+    outputNumber(balls);
+    outputTime(time);
+    $('#select_monsters').prop('selectedIndex',monsters);
+    numberOfMonsters = monsters+1;
+    $('#favcolor5').prop('value',colorFive);
+    $('#favcolor15').prop('value',colorFift);
+    $('#favcolor25').prop('value',colorTwenty);
 }
 
 function updateKeys() {
@@ -117,3 +183,14 @@ function updateKeys() {
     $("#chosenLeftConfirmed").text(chosenKeys.keyLeft)
     $("#chosenRightConfirmed").text(chosenKeys.keyRight)
 }
+
+function getRandomColor() {
+    let lettersToChoose = '0123456789ABCDEF';
+    let randomColor = '#';
+    for (var i = 0; i < 6; i++) {
+        randomColor += lettersToChoose[Math.floor(Math.random() * 16)];
+    }
+    return randomColor;
+}
+
+

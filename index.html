@@ -18,7 +18,11 @@
 
 	<body>
 		<Header class="header">
-			<h1>PACMAN</h1>
+			<object class="col-3" data="logo.html"> 
+				Your browser doesn’t support the object tag. 
+			</object><br>
+			<h1 class="col-3">PACMAN</h1>
+			<span class="col-3">Sapir Shamay 305649444 Haim reyes</span>
 		</Header>
 		  
 		<div class="row">
@@ -31,12 +35,29 @@
 			  </ul>
 			  <div id="game_settings">
 				<H3>Game Settings:</H3>
-				<output>Player:</output><br>
-				<output>Game keys:</output><br>
-				<output>n. of balls:</output><br>
-				<output>balls colors:</output><br>
-				<output>Game time:</output><br>
-				<output>n. of monsters:</output>
+				<div id="gameKeys">Game keys:
+					<p id="gameKeyUp"></p>
+					<p id="gameKeyDown"></p>
+					<p id="gameKeyLeft"></p>
+					<p id="gameKeyRight"></p>
+				</div><br>
+				<div id="gameBalls">n. of balls:
+					<span id="gameBalls2"></span>
+				</div><br>
+				<div id="ballsColors">balls colors:
+					<br><label for="favcolor5">5 points:</label>
+					<input type="color" id="5point" name="5point" value="#ff0000"><br>
+					<label for="favcolor15">15 points:</label>
+					<input type="color" id="15point" name="15point" value="#ffff00"><br>
+					<label for="favcolor25">25 points:</label>
+					<input type="color" id="25point" name="25point" value="#0000ff"><br>
+				</div><br>
+				<div id="gameTime">Game time:
+					<span id="gameTime2"></span>
+				</div><br>
+				<div id="gameMonsters">n. of monsters:
+					<span id="gameMonsters2"></span>
+				</div>
 			  </div>
 			</Menu>
 			<Content class="col-9">	
@@ -105,15 +126,15 @@
 							</div>
 							<div class="keyContainer">
 								<a href="#keyDown" id="linkDown">Down</a>
-								<span id="chosenDownConfirmed">ArrowDown</span>
+								<span id="chosenDownConfirmed"></span>
 							</div>
 							<div class="keyContainer">
 								<a href="#keyLeft" id="linkLeft">Left</a>
-								<span id="chosenLeftConfirmed">ArrowLeft</span>
+								<span id="chosenLeftConfirmed"></span>
 							</div>
 							<div class="keyContainer">
 								<a href="#keyRight" id="linkRight">Right</a>
-								<span id="chosenRightConfirmed">ArrowRight</span>
+								<span id="chosenRightConfirmed"></span>
 							</div>
 						</div><br>
 						<div class="ranges">
@@ -122,12 +143,12 @@
 							<output for="balls" id="balls">70</output>
 							<br>
 							<label for="time">Choose time (in seconds):</label><br>
-							<input type="range" min="60" max="300" value="180" id="rangeOfBalls" step="1" oninput="outputTime(value)">
+							<input type="range" min="60" max="300" value="180" id="rangeOfTime" step="1" oninput="outputTime(value)">
 							<output for="time" id="time">180</output>
 						</div><br>
 						<div class="monsters">
 							<label for="monster">Choose number of monsters:</label><br>
-							<select class="monsters" name="monsters" >
+							<select id="select_monsters" class="monsters" name="monsters" >
 								<option>1</option>
 								<option>2</option>
 								<option>3</option>
@@ -147,6 +168,7 @@
 						<button id="save_settings">Save</button>
 					</div>
 					<div class="page" id="app">
+						<output id="player"> Player: </output><br>
 						<button id="switch"> Switch Account</button>
 						<button id="newGame"> New Game</button>
 						<!-- custom added label-->
@@ -210,11 +232,18 @@
 			</Content>
 		</div>
 		<Footer class="Footer">
-			<h1> The Footer </h1>
-			<audio controls autoplay>
+			<audio controls autoplay hidden>
 				<source src="Sounds\music.mp3" type="audio/mpeg">
 			  Your browser does not support the audio element.
 			  </audio>
-		</Footer>
+			  <div class="game_link">
+				<span>Link to the game:</span>
+				<a href="https://sise-web-development-environments.github.io/assignment2-hapyjamot/" target="_blank">https://sise-web-development-environments.github.io/assignment2-hapyjamot</a>
+			  </div>
+			  <div class="creators_details">
+				<p>Creators Emails:</p>
+				<span>sapirnag@post.bgu.ac.il ; reyes@post.bgu.ac.il</span>
+			  </div>		
+			</Footer>
 	</body>
 </html>
