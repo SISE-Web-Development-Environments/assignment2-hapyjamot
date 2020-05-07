@@ -197,16 +197,20 @@ function findRandomEmptyCell(board) {
 }
 
 function GetKeyPressed() {
-	if (keysDown[38]) {
+	if (keysDown[chosenKeysNumbers.keyUp]||keysDown[38]) {
+		//move up
 		return 1;
 	}
-	if (keysDown[40]) {
+	if (keysDown[chosenKeysNumbers.keyDown]||keysDown[40]) {
+		//move down
 		return 2;
 	}
-	if (keysDown[37]) {
+	if (keysDown[chosenKeysNumbers.keyLeft]||keysDown[37]) {
+		//move left
 		return 3;
 	}
-	if (keysDown[39]) {
+	if (keysDown[chosenKeysNumbers.keyRight]||keysDown[39]) {
+		//move right
 		return 4;
 	}
 }
@@ -380,6 +384,7 @@ function UpdatePosition() {
 		board[shape.i][shape.j]=PACMAN;
 		if(pacman_remain==0&&hult==false){
 			hult=true;
+			window.clearInterval(interval);
 			alert("Loser!");
 		}
 	}else if(sprite_board[shape.i][shape.j] == MOVING_POINT){
@@ -395,6 +400,15 @@ function UpdatePosition() {
 		pac_color = "green";
 	}
 	if(time_elapsed>document.getElementById("rangeOfTime").value){
+		hult=true;
+		window.clearInterval(interval);
+		if(score<=100){
+			window.alert("You are better Then "+score+" points!!!");
+		}else{
+			window.alert("Winner!");
+		}
+	}else if(!checkForPoints())
+	{
 		hult=true;
 		window.clearInterval(interval);
 		if(score<=100){
@@ -550,4 +564,20 @@ function movePoint(){
 		rnd = rndNum()%4;
 	}
 	sprite_board[moving_point.i][moving_point.j]=MOVING_POINT;
+}
+
+function checkForPoints(){
+	for(let i=0;i<10;i++){
+		for(let j=0;j<10;j++){
+			if(
+				board[i][j]==PILL||
+				board[i][j]==BALL_5||
+				board[i][j]==BALL_15||
+				board[i][j]==BALL_25||
+				sprite_board[i][j]==MOVING_POINT){
+					return true;
+				}
+		}
+	}
+	return false;
 }
