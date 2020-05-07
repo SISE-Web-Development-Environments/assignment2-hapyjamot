@@ -27,8 +27,11 @@ var color5;
 var color15;
 var color25;
 //
-var rotation_angle = 0;
-
+var initial_angle = 0.15 * Math.PI;
+var eyeOffsetX = 5;
+var eyeOffsetY = -15;
+//
+var hult = true;
 //for the pacman lives
 var pacman_remain;
 $(document).ready(function() {
@@ -66,13 +69,16 @@ function Start() {
 	if(monsters.length>0){
 		monsters[0].i=0;
 		monsters[0].j=0;
-	}	if(monsters.length>1){
+	}	
+	if(monsters.length>1){
 		monsters[1].i=9;
 		monsters[1].j=0;
-	}	if(monsters.length>2){
+	}
+	if(monsters.length>2){
 		monsters[2].i=9;
 		monsters[2].j=9;
-	}	if(monsters.length>3){
+	}	
+	if(monsters.length>3){
 		monsters[3].i=0;
 		monsters[3].j=9;
 	}
@@ -102,14 +108,14 @@ function Start() {
 		for (var j = 0; j < 10; j++) {
 			//set walls in both boards
 			if (
-				(i == 2 && j >= 2 && j<=4) ||
-				(i == 2 && j >= 6 && j<=7) ||
-				(i == 7 && j >= 2 && j<=3) ||
-				(i == 7 && j >= 5 && j<=6) ||
-				(i == 5 && j == 2) ||
-				(i == 6 && j == 2) ||
-				(i == 5 && j == 6) ||
-				(i == 6 && j == 6)
+				(i == 2 && j >= 2 && j <= 3) ||
+				(i == 2 && j >= 6 && j <= 7) ||
+				(i == 7 && j >= 2 && j <= 3) ||
+				(i == 7 && j >= 6 && j <= 7) ||
+				(i == 3 && (j == 2 || j == 7)) ||
+				(i == 4 && j == 2) ||
+				(i == 5 && j == 7) ||
+				(i == 6 && (j == 2 || j == 7)) 
 			) {
 				board[i][j] = WALL;
 				sprite_board[i][j] = WALL;
@@ -137,7 +143,8 @@ function Start() {
 					shape.j = j;
 					pacman_remain--;
 					board[i][j] = PACMAN;
-					sprite_board[i][j] = PACMAN;
+					sprite_board[i][j] = PACMAN
+
 				} else {
 					board[i][j] = 0;
 				}
@@ -147,7 +154,7 @@ function Start() {
 	}
 	//set a random pill in an empty cell
 	var pillCell = findRandomEmptyCell(board);
-	sprite_board[pillCell[0]][pillCell[1]] = PILL;
+	board[pillCell[0]][pillCell[1]] = PILL;
 	//set the moving point position
 	var movingPointCell = findRandomEmptyCell(board);
 	moving_point.i=movingPointCell[0];
@@ -177,14 +184,15 @@ function Start() {
 	interval = setInterval(UpdatePosition, 250);
 	//dont forget the first 5 lives
 	pacman_remain=5;
+	hult=false;
 }
 //finds a random empty cell on the board
 function findRandomEmptyCell(board) {
-	var i = Math.floor(Math.random() * 9 + 1);
-	var j = Math.floor(Math.random() * 9 + 1);
+	var i = Math.floor(Math.random() * 10);
+	var j = Math.floor(Math.random() * 10);
 	while (board[i][j] != 0) {
-		i = Math.floor(Math.random() * 9 + 1);
-		j = Math.floor(Math.random() * 9 + 1);
+		i = Math.floor(Math.random() * 10);
+		j = Math.floor(Math.random() * 10);
 	}
 	return [i, j];
 }
@@ -216,12 +224,12 @@ function Draw() {
 			center.y = j * 60 + 30;
 			if (board[i][j] == PACMAN) {	
 				context.beginPath();
-				context.arc(center.x, center.y, 30, 0.15 * Math.PI, 1.85 * Math.PI); // half circle
+				context.arc(center.x, center.y, 30, initial_angle, initial_angle + 1.65 * Math.PI); // half circle
 				context.lineTo(center.x, center.y);
 				context.fillStyle = pac_color; //color
 				context.fill();
 				context.beginPath();
-				context.arc(center.x + 5, center.y - 15, 5, 0, 2 * Math.PI); // circle
+				context.arc(center.x + eyeOffsetX, center.y + eyeOffsetY, 5, 0, 2 * Math.PI); // circle
 				context.fillStyle = "black"; //color
 				context.fill();
 			} else if (board[i][j] == 1) {
@@ -240,6 +248,10 @@ function Draw() {
 				context.beginPath();
 				context.arc(center.x, center.y, 20, 0, 2 * Math.PI);//circle
 				context.fillStyle = "red"; //color
+				context.fill();
+				context.beginPath();
+				context.arc(center.x, center.y, 7, 0, 2 * Math.PI);//circle
+				context.fillStyle = "white"; //color
 				context.fill();
 			}
 			/// the different color balls
@@ -300,34 +312,48 @@ function Draw() {
 
 function UpdatePosition() {
 	board[shape.i][shape.j] = 0;
-	for(var i=0;i<monsters.length;i++){
-		sprite_board[monsters[i].i][monsters[i].j] = 0;
-		moveMonster(i);
-		sprite_board[monsters[i].i][monsters[i].j] = MONSTER;
+	if(!hult){
+		for(var i=0;i<monsters.length;i++){
+			sprite_board[monsters[i].i][monsters[i].j] = 0;
+			moveMonster(i);
+			sprite_board[monsters[i].i][monsters[i].j] = MONSTER;
+		}
+		movePoint();	
 	}
-	movePoint();	
 	var x = GetKeyPressed();
 	if (x == 1) {
 		if (shape.j > 0 && board[shape.i][shape.j - 1] != WALL) {
 			//move up
+			initial_angle = 1.65 * Math.PI;
+			eyeOffsetX = -15;
+			eyeOffsetY = -5;
 			shape.j--;
 		}
 	}
 	if (x == 2) {
 		if (shape.j < 9 && board[shape.i][shape.j + 1] != WALL) {
 			//move down
+			initial_angle = 0.75 * Math.PI;
+			eyeOffsetX = -15;
+			eyeOffsetY = 5;
 			shape.j++;
 		}
 	}
 	if (x == 3) {
 		if (shape.i > 0 && board[shape.i - 1][shape.j] != WALL) {
 			//move left
+			initial_angle = 1.15 * Math.PI;
+			eyeOffsetX = -5;
+			eyeOffsetY = -15;
 			shape.i--;
 		}
 	}
 	if (x == 4) {
 		if (shape.i < 9 && board[shape.i + 1][shape.j] != WALL) {
 			//move right
+			initial_angle = 0.15 * Math.PI;
+			eyeOffsetX = 5;
+			eyeOffsetY = -15;
 			shape.i++;
 		}
 	}
@@ -347,6 +373,16 @@ function UpdatePosition() {
 	//check for the different types of sprites 
 	if(sprite_board[shape.i][shape.j] == MONSTER){
 		pacman_remain--;
+		score-=10;
+		board[shape.i][shape.j]=0;
+		var newPosition = findRandomEmptyCell(board);
+		shape.i = newPosition[0];
+		shape.j = newPosition[1];
+		board[shape.i][shape.j]=PACMAN;
+		if(pacman_remain==0&&hult==false){
+			hult=true;
+			alert("Loser!");
+		}
 	}else if(sprite_board[shape.i][shape.j] == MOVING_POINT){
 		sprite_board[shape.i][shape.j]=0;
 		moving_point.valid=false;
@@ -359,10 +395,16 @@ function UpdatePosition() {
 	if (score >= 100 && time_elapsed <= 10) {
 		pac_color = "green";
 	}
-	if (score >= 250) {
+	if(time_elapsed>document.getElementById("time").value){
+		hult=true;
 		window.clearInterval(interval);
-		window.alert("Game completed");
-	} else {
+		if(score<=100){
+			window.alert("You are better Then "+score+" points!!!");
+		}else{
+			window.alert("Winner!");
+		}
+	}
+	else {
 		Draw();
 	}
 }
@@ -376,16 +418,6 @@ function setBallColors(color5ID,color15ID,color25ID){
 	color15 = document.getElementById(color15ID).value;
 	color25 = document.getElementById(color25ID).value;
 }
-//TO DO:
-//create monsters
-//	draw them
-//	make random move function
-//	make smart move function , they will be used randomly to make the movement psudo-smart/random like the original game
-//	lose a life when the player comes in contact 
-//create moving 50 point token
-//	use the random move function
-//	mabye use a smart move function
-//
 function moveMonster(number){
 	var rnd = rndNum();
 	//smartMoveMonster(number);
