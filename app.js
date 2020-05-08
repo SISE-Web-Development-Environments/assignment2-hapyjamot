@@ -295,10 +295,15 @@ function Draw() {
 			}
 			//check sprite_board
 			if (sprite_board[i][j] == MONSTER) {
+				// var img = new Image();
+				// img.onload = function() {
+    			// 	context.drawImage(img, center.x-10, center.y-10, 40, 40);
+				// }			
+				// img.src = "./Styles/images/Pacman_ghost.svg";
 				context.beginPath();
 				context.arc(center.x, center.y, 30, Math.PI, 0*Math.PI); // half circle
 				context.lineTo(center.x, center.y);
-				context.fillStyle = "pink"; //color
+				context.fillStyle = "green"; //color
 				context.fill();
 				context.beginPath();
 				context.rect(center.x-30, center.y, 60, 30);
