@@ -34,9 +34,11 @@ var eyeOffsetY = -15;
 var hult = true;
 //for the pacman lives
 var pacman_remain;
+//music player
+var musicPlayer;
 $(document).ready(function() {
 	//Play();
-
+	musicPlayer = document.getElementById("music");
 	$("#switch").click(function(){
 		stopGame();
 		settingToggle("hide");
@@ -184,6 +186,7 @@ function Start() {
 	//dont forget the first 5 lives
 	pacman_remain=5;
 	hult=false;
+	musicPlayer.play();
 }
 //finds a random empty cell on the board
 function findRandomEmptyCell(board) {
@@ -360,6 +363,7 @@ function UpdatePosition() {
 			shape.i++;
 		}
 	}
+	
 	//increment the lives counter
 	if(board[shape.i][shape.j] == PILL){
 		pacman_remain++;
@@ -384,6 +388,7 @@ function UpdatePosition() {
 		board[shape.i][shape.j]=PACMAN;
 		if(pacman_remain==0&&hult==false){
 			hult=true;
+			musicPlayer.pause();
 			window.clearInterval(interval);
 			alert("Loser!");
 		}
@@ -401,6 +406,7 @@ function UpdatePosition() {
 	}
 	if(time_elapsed>document.getElementById("rangeOfTime").value){
 		hult=true;
+		musicPlayer.pause();
 		window.clearInterval(interval);
 		if(score<=100){
 			window.alert("You are better Then "+score+" points!!!");
@@ -410,6 +416,7 @@ function UpdatePosition() {
 	}else if(!checkForPoints())
 	{
 		hult=true;
+		musicPlayer.pause();
 		window.clearInterval(interval);
 		if(score<=100){
 			window.alert("You are better Then "+score+" points!!!");
