@@ -60,7 +60,7 @@
 				</div>
 			  </div>
 			</Menu>
-			<Content class="col-9">	
+			<Content class="col-10">	
 			  	<div id="content_container">
 					<div class="page" id="welcome">
 						<H1>Welcome to PACMAN</H1>
@@ -168,6 +168,9 @@
 						<button id="save_settings">Save</button>
 					</div>
 					<div class="page" id="app">
+						<div id="game" class="game">
+							<canvas id="canvas"  height="600" width="600"></canvas>
+						</div>
 						<div class="gameDisplay">
 							<output id="player"> Player: </output><br>
 							<button id="switch"> Switch Account</button>
@@ -186,9 +189,7 @@
 								<input id="lblTime" type="text" />
 							</div>
 						</div>
-						<div id="game" class="game">
-							<canvas id="canvas"  height="600" width="600"></canvas>
-						</div>
+
 					</div>
 				</div>
 				<div id="modal_container">

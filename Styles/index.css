@@ -13,8 +13,8 @@ float: left;
 padding: 15px;
 }
 .content{
-  height: calc(100% - 17em);
-
+  height: calc(100% - 13em);
+  background-image: url("./images/JiTeQn.jpg");
 }
 
 .col-1 {width: 8.33%;}
@@ -37,15 +37,13 @@ html, body {
 }
 
 .header {
-background-color: #9933cc;
-color: #ffffff;
+color: #33b5e5;
 text-align: center;
 display: flex;
 height: 11em;
 }
 
 .menu {
-    background-color: burlywood;
     height: 100%;
     margin: 0;
 
@@ -86,11 +84,10 @@ a {
 }
 
 .Footer {
-background-color: #9933cc;
-color: #ffffff;
-padding: 7px;
+padding: 5xpx;
 text-align: center;
-height: 6em;
+height: 2em;
+/* background-image: url("./images/footer.png"); */
 }
 
 #welcome button {
@@ -131,4 +128,8 @@ Content H1 {
 .creators_details {
   /* height: 50vh;
   width: 50vh; */
+}
+
+.game {
+  background-color: black;
 }

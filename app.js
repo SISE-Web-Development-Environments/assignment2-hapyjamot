@@ -34,6 +34,8 @@ var eyeOffsetY = -15;
 var hult = true;
 //for the pacman lives
 var pacman_remain;
+var screenRows = 10;
+var screenCols = 10;
 $(document).ready(function() {
 	//Play();
 
@@ -70,16 +72,16 @@ function Start() {
 		monsters[0].j=0;
 	}	
 	if(monsters.length>1){
-		monsters[1].i=9;
+		monsters[1].i=screenRows - 1;
 		monsters[1].j=0;
 	}
 	if(monsters.length>2){
-		monsters[2].i=9;
-		monsters[2].j=9;
+		monsters[2].i=screenRows -1;
+		monsters[2].j=screenCols - 1;
 	}	
 	if(monsters.length>3){
 		monsters[3].i=0;
-		monsters[3].j=9;
+		monsters[3].j=screenCols - 1;
 	}
 	score = 0;
 	pac_color = "yellow";
@@ -93,18 +95,18 @@ function Start() {
 	ball15Counter=0;
 	ball25Counter=0;
 	//set empty boards
-	for(var i=0;i<10;i++){
+	for(var i=0;i<screenRows;i++){
 		board[i] = new Array();
 		sprite_board[i] = new Array();
-		for(var j=0;j<10;j++){
+		for(var j=0;j<screenCols;j++){
 			board[i][j]=0;
 			sprite_board[i][j]=0;
 		}
 	}
-	for (var i = 0; i < 10; i++) {
+	for (var i = 0; i < screenRows; i++) {
 		//put obstacles in (i=3,j=3) and (i=3,j=4) and (i=3,j=5), (i=6,j=1) and (i=6,j=2)
 		var original_food_remain = document.getElementById("rangeOfBalls").value;
-		for (var j = 0; j < 10; j++) {
+		for (var j = 0; j < screenCols; j++) {
 			//set walls in both boards
 			if (
 				(i == 2 && j >= 2 && j <= 3) ||
@@ -187,11 +189,11 @@ function Start() {
 }
 //finds a random empty cell on the board
 function findRandomEmptyCell(board) {
-	var i = Math.floor(Math.random() * 10);
-	var j = Math.floor(Math.random() * 10);
+	var i = Math.floor(Math.random() * screenRows);
+	var j = Math.floor(Math.random() * screenCols);
 	while (board[i][j] != 0) {
-		i = Math.floor(Math.random() * 10);
-		j = Math.floor(Math.random() * 10);
+		i = Math.floor(Math.random() * screenRows);
+		j = Math.floor(Math.random() * screenCols);
 	}
 	return [i, j];
 }
@@ -220,8 +222,8 @@ function Draw() {
 	lblScore.value = score;
 	lblTime.value = time_elapsed;
 	lblLives.value = pacman_remain;
-	for (var i = 0; i < 10; i++) {
-		for (var j = 0; j < 10; j++) {
+	for (var i = 0; i < screenRows; i++) {
+		for (var j = 0; j < screenCols; j++) {
 			var center = new Object();
 			center.x = i * 60 + 30;
 			center.y = j * 60 + 30;
@@ -242,7 +244,7 @@ function Draw() {
 				context.fill();
 			} else if (board[i][j] == WALL) {
 				context.beginPath();
-				context.rect(center.x - 30, center.y - 30, 60, 60);
+				context.rect(center.x - 30, center.y - 30, 60, 20);
 				context.fillStyle = "grey"; //color
 				context.fill();
 			}
@@ -260,20 +262,35 @@ function Draw() {
 			/// the different color balls
 			else if (board[i][j] == BALL_5) {
 				context.beginPath();
-				context.arc(center.x, center.y, 5, 0, 2 * Math.PI);//circle
+				context.arc(center.x, center.y, 7, 0, 2 * Math.PI);//circle
 				context.fillStyle = color5; //color
+				context.fill();
+				context.beginPath();
+				context.font = "15px Georgia";
+				context.fillStyle = "black";
+				context.fillText("5", center.x-4, center.y+3);
 				context.fill();
 			}	
 			else if (board[i][j] == BALL_15) {
 				context.beginPath();
-				context.arc(center.x, center.y, 15, 0, 2 * Math.PI);//circle
+				context.arc(center.x, center.y, 12, 0, 2 * Math.PI);//circle
 				context.fillStyle = color15; //color
+				context.fill();
+				context.beginPath();
+				context.font = "20px Georgia";
+				context.fillStyle = "black";
+				context.fillText("15", center.x-screenRows - 1, center.y+4);
 				context.fill();
 			}	
 			else if (board[i][j] == BALL_25) {
 				context.beginPath();
-				context.arc(center.x, center.y, 25, 0, 2 * Math.PI);//circle
+				context.arc(center.x, center.y, 15, 0, 2 * Math.PI);//circle
 				context.fillStyle = color25; //color
+				context.fill();
+				context.beginPath();
+				context.font = "25px Georgia";
+				context.fillStyle = "black";
+				context.fillText("25", center.x-13, center.y+6);
 				context.fill();
 			}
 			//check sprite_board
@@ -334,7 +351,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 2) {
-		if (shape.j < 9 && board[shape.i][shape.j + 1] != WALL) {
+		if (shape.j < screenCols - 1 && board[shape.i][shape.j + 1] != WALL) {
 			//move down
 			initial_angle = 0.75 * Math.PI;
 			eyeOffsetX = -15;
@@ -352,7 +369,7 @@ function UpdatePosition() {
 		}
 	}
 	if (x == 4) {
-		if (shape.i < 9 && board[shape.i + 1][shape.j] != WALL) {
+		if (shape.i < (screenRows - 1) && board[shape.i + 1][shape.j] != WALL) {
 			//move right
 			initial_angle = 0.15 * Math.PI;
 			eyeOffsetX = 5;
@@ -446,8 +463,8 @@ function smartMoveMonster(number){
 	var y = monsters[number].j;
 	//check for barriars
 	var canMoveUp = y!=0&&board[x][y-1]!=WALL&&sprite_board[x][y-1]!=MOVING_POINT;
-	var canMoveDown = y!=9&&board[x][y+1]!=WALL&&sprite_board[x][y+1]!=MOVING_POINT;
-	var canMoveRight = x!=9&&board[x+1][y]!=WALL&&sprite_board[x+1][y]!=MOVING_POINT;
+	var canMoveDown = y!= (screenCols - 1) &&board[x][y+1]!=WALL&&sprite_board[x][y+1]!=MOVING_POINT;
+	var canMoveRight = x!= ( screenRows - 1) &&board[x+1][y]!=WALL&&sprite_board[x+1][y]!=MOVING_POINT;
 	var canMoveLeft = x!=0&&board[x-1][y]!=WALL&&sprite_board[x-1][y]!=MOVING_POINT;
 	//check for the player
 	var shouldMoveUp = y>shape.j;
@@ -494,8 +511,8 @@ function randomMoveMonster(number){
 	var x = monsters[number].i;
 	var y = monsters[number].j;
 	var canMoveUp = y!=0&&board[x][y-1]!=WALL&&sprite_board[x][y-1]!=MOVING_POINT;
-	var canMoveDown = y!=9&&board[x][y+1]!=WALL&&sprite_board[x][y+1]!=MOVING_POINT;
-	var canMoveRight = x!=9&&board[x+1][y]!=WALL&&sprite_board[x+1][y]!=MOVING_POINT;
+	var canMoveDown = y!= (screenCols - 1) &&board[x][y+1]!=WALL&&sprite_board[x][y+1]!=MOVING_POINT;
+	var canMoveRight = x!=(screenRows - 1) &&board[x+1][y]!=WALL&&sprite_board[x+1][y]!=MOVING_POINT;
 	var canMoveLeft = x!=0&&board[x-1][y]!=WALL&&sprite_board[x-1][y]!=MOVING_POINT;
 	var rnd = rndNum()%4;
 	var didntMove = true;
@@ -535,8 +552,8 @@ function movePoint(){
 	var y = moving_point.j;
 	sprite_board[x][y]=0;
 	var canMoveUp = y!=0&&board[x][y-1]!=WALL&&sprite_board[x][y-1]!=MONSTER;
-	var canMoveDown = y!=9&&board[x][y+1]!=WALL&&sprite_board[x][y+1]!=MONSTER;
-	var canMoveRight = x!=9&&board[x+1][y]!=WALL&&sprite_board[x+1][y]!=MONSTER;
+	var canMoveDown = y!= (screenCols - 1)&&board[x][y+1]!=WALL&&sprite_board[x][y+1]!=MONSTER;
+	var canMoveRight = x!= (screenRows - 1) &&board[x+1][y]!=WALL&&sprite_board[x+1][y]!=MONSTER;
 	var canMoveLeft = x!=0&&board[x-1][y]!=WALL&&sprite_board[x-1][y]!=MONSTER;
 	var didntMove = true;
 	while(didntMove){
@@ -567,8 +584,8 @@ function movePoint(){
 }
 
 function checkForPoints(){
-	for(let i=0;i<10;i++){
-		for(let j=0;j<10;j++){
+	for(let i=0;i<screenRows;i++){
+		for(let j=0;j<screenCols;j++){
 			if(
 				board[i][j]==PILL||
 				board[i][j]==BALL_5||
