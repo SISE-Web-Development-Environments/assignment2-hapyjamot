@@ -12,6 +12,10 @@ display: table;
 float: left;
 padding: 15px;
 }
+.content{
+  height: calc(100% - 17em);
+
+}
 
 .col-1 {width: 8.33%;}
 .col-2 {width: 16.66%;}
@@ -26,22 +30,25 @@ padding: 15px;
 .col-11 {width: 91.66%;}
 .col-12 {width: 100%;}
 
-html {
-font-family: "Lucida Sans", sans-serif;
+html, body {
+  font-family: "Lucida Sans", sans-serif;
+  height: 100%;
+  margin: 0;
 }
 
 .header {
 background-color: #9933cc;
 color: #ffffff;
-padding: 10px;
 text-align: center;
 display: flex;
+height: 11em;
 }
 
 .menu {
-    margin: 0;
     background-color: burlywood;
-    height: 80vh;
+    height: 100%;
+    margin: 0;
+
 }
 
 .menu ul {
@@ -83,6 +90,7 @@ background-color: #9933cc;
 color: #ffffff;
 padding: 7px;
 text-align: center;
+height: 6em;
 }
 
 #welcome button {
@@ -111,7 +119,15 @@ Content H1 {
 /* .game_link {
   padding-bottom: 20px;
 } */
+.game {
+  flex-grow: 0;
+    display:inline-block;
+}
 
+.gameDisplay{
+  flex-grow: 1000;
+  display:inline-block;
+}
 .creators_details {
   /* height: 50vh;
   width: 50vh; */

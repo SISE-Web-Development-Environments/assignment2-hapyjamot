@@ -134,7 +134,9 @@ function outputTime(val) {
     timeSettings = val;
     document.querySelector('#time').value = val;
 }
-
+function generateRandomNumber(start, end){
+    return Math.round(Math.random() * (end - start)) + start;
+}
 function updateSettings(random) {
     chosenKeys = {
         keyUp: DefaultSettings.defaultChosenKeys.keyUp,
@@ -151,9 +153,9 @@ function updateSettings(random) {
     updateKeys();
     let monsters2;
     if (random) {
-        balls = Math.floor(Math.random() * 91); 
-        time = Math.floor(Math.random() * 361); 
-        monsters2 = Math.floor(Math.random() * 4);
+        balls = generateRandomNumber(50,90) 
+        time = generateRandomNumber(60,360); 
+        monsters2 = generateRandomNumber(0,3);
         colorFive = getRandomColor();
         colorFift = getRandomColor();
         colorTwenty = getRandomColor(); 
