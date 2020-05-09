@@ -1,303 +1,436 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
 
-<head>
-	<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Styles/modal.css" />
+    <link rel="stylesheet" href="./Styles/index.css" />
+    <!-- set our script files -->
+    <script type="text/javascript" src="./Screens/LoginScreen.js"></script>
+    <script
+      type="text/javascript"
+      src="./Screens/RegistrationScreen.js"
+    ></script>
+    <script type="text/javascript" src="./Screens/ContentScreen.js"></script>
+    <script type="text/javascript" src="./Screens/SettingsScreen.js"></script>
+    <script type="text/javascript" src="./Screens/WelcomeScreen.js"></script>
+    <script type="text/javascript" src="./app.js"></script>
+  </head>
 
-	<link rel="stylesheet" href="./Styles/modal.css" />
-	<link rel="stylesheet" href="./Styles/index.css" />
-	<!-- set our script files -->
-	<script type="text/javascript" src="./Screens/LoginScreen.js"></script>
-	<script type="text/javascript" src="./Screens/RegistrationScreen.js"></script>
-	<script type="text/javascript" src="./Screens/ContentScreen.js"></script>
-	<script type="text/javascript" src="./Screens/SettingsScreen.js"></script>
-	<script type="text/javascript" src="./Screens/WelcomeScreen.js"></script>
-	<script type="text/javascript" src="./app.js"></script>
-</head>
+  <body class="body">
+    <div class="container">
+      <header class="row justify-content-xl-center align-items-center">
+        <div class="col-2">
+          <div class="alert alert-warning">
+            <div class="row justify-content-md-center">
+              <span>Sapir Shamay</span>
+            </div>
+            <div class="row justify-content-md-center">
+              <span>Haim Reyes</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-8">
+          <span class="header centify">pa133m9n</span>
+        </div>
+        <div class="col-2"></div>
+      </header>
+      <div class="row content">
+        <menu class="col-2 menu">
+          <ul>
+            <button
+              class="btn btn-outline-warning menu_button"
+              id="menu_welcome"
+            >
+              Welcome
+            </button>
+            <button
+              class="btn btn-outline-warning menu_button"
+              id="menu_register"
+            >
+              Register
+            </button>
+            <button class="btn btn-outline-warning menu_button" id="menu_login">
+              Login
+            </button>
+            <button class="btn btn-outline-warning menu_button">
+              <a href="#about" rel="modal:open" class="aboutLink">About</a>
+            </button>
+          </ul>
+          <div id="game_settings">
+            <h3>Game Settings:</h3>
+            <div id="gameKeys">
+              Game keys:
+              <p id="gameKeyUp"></p>
+              <p id="gameKeyDown"></p>
+              <p id="gameKeyLeft"></p>
+              <p id="gameKeyRight"></p>
+            </div>
+            <br />
+            <div id="gameBalls">
+              n. of balls:
+              <span id="gameBalls2"></span>
+            </div>
+            <br />
+            <div id="ballsColors">
+              balls colors: <br /><label for="favcolor5">5 points:</label>
+              <input
+                type="color"
+                id="5point"
+                name="5point"
+                value="#ff0000"
+              /><br />
+              <label for="favcolor15">15 points:</label>
+              <input
+                type="color"
+                id="15point"
+                name="15point"
+                value="#ffff00"
+              /><br />
+              <label for="favcolor25">25 points:</label>
+              <input
+                type="color"
+                id="25point"
+                name="25point"
+                value="#0000ff"
+              /><br />
+            </div>
+            <br />
+            <div id="gameTime">
+              Game time:
+              <span id="gameTime2"></span>
+            </div>
+            <br />
+            <div id="gameMonsters">
+              n. of monsters:
+              <span id="gameMonsters2"></span>
+            </div>
+          </div>
+        </menu>
+        <content class="col-10">
+          <div
+            id="content_container"
+            class="row justify-content-xl-center align-items-center"
+          >
+            <div id="welcome" class="page card text-center card-terminal">
+              <div class="card-header title">
+                Our Rules
+              </div>
+              <div class="card-body terminal-like">
+                <div class="console-container">
+                  <span id="text"></span>
+                  <div class="console-underscore" id="console">&#95;</div>
+                </div>
+                <div class="card-footer text-muted">
+                  <button
+                    id="welcome_to_registration"
+                    class="btn btn-outline-success terminal-button"
+                  >
+                    Register
+                  </button>
+                  <button
+                    id="welcome_to_login"
+                    class="btn btn-outline-success terminal-button"
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </div>
 
-<body class="body">
-	<div class="container">
-		<header class="row justify-content-xl-center align-items-center">
-			<div class="col-2">
-				<div class="alert alert-warning">
-				<div class="row justify-content-md-center">
-					<span>Sapir Shamay</span>
-				</div>
-				<div class="row justify-content-md-center">
-					<span>Haim Reyes</span>
-				</div>
-			</div>
-			</div>
-			<div class="col-8">
-				<span class="header centify">pa133m9n</span>
-			</div>
-			<div class="col-2"></div>
-		</header>
+            <div class="page" id="registration">
+              <button id="register_to_welcome">Back to Welcome</button>
+              <h1>Registration</h1>
+              <form id="registrationForm">
+                <div>
+                  <label for="username">Username:</label>
+                  <input id="username" name="username" type="text" />
+                </div>
+                <div>
+                  <label for="password">Password:</label>
+                  <input id="password" name="password" type="password" />
+                </div>
+                <div>
+                  <label for="fullName">Full Name:</label>
+                  <input id="fullName" name="fullName" type="text" />
+                </div>
+                <div>
+                  <label for="email">Email:</label>
+                  <input id="email" name="email" type="email" />
+                </div>
+                <div>
+                  <label for="dateOfBirth">Date Of Birth:</label>
+                  <select class="days" name="days"></select>
+                  <select class="months" name="months"></select>
+                  <select class="years" name="years"></select>
+                </div>
+                <div>
+                  <button id="registerBtn" type="submit">Register</button>
+                </div>
+              </form>
+            </div>
+            <div
+              class="page card text-center card-terminal"
+              id="login"
+              name="login_div_name"
+            >
+              <div class="card-header">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-1">
+                      <i class="fa fa-home stay-home" id="login_to_welcome"></i>
+                    </div>
+                    <div class="col-10 title">
+                      Login
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body terminal-like">
+                <div class="container terminal-container">
+                  <div class="row justify-content-xl-center">
+                    <input
+                      type="text"
+                      class="input-group-text log"
+                      placeholder="Username"
+                      id="login_username_id"
+                    />
+                  </div>
+                  <div class="row justify-content-xl-center">
+                    <input
+                      type="password"
+                      class="input-group-text log"
+                      placeholder="Password"
+                      id="login_password_id"
+                    />
+                  </div>
+                  <div
+                    class="alert alert-danger"
+                    id="login_error_message"
+                    hidden
+                  >
+                    Wrong user details, please try again or
+                    <button
+                      class="btn btn-outline-danger"
+                      id="login_to_register"
+                      hidden
+                    >
+                      Register
+                    </button>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <button
+                    class="btn btn-outline-success terminal-button hide"
+                    id="send_button"
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="page" id="definitions">
+              <p id="after_login_label" hidden>Welcome,</p>
+              <h1>Settings</h1>
+              <div class="keys">
+                <label for="playButtons">Choose game buttons:</label
+                ><br /><br />
+                <div class="keyContainer">
+                  <a href="#keyUp" id="linkUp">Up</a>
+                  <span id="chosenUpConfirmed"></span>
+                </div>
+                <div class="keyContainer">
+                  <a href="#keyDown" id="linkDown">Down</a>
+                  <span id="chosenDownConfirmed"></span>
+                </div>
+                <div class="keyContainer">
+                  <a href="#keyLeft" id="linkLeft">Left</a>
+                  <span id="chosenLeftConfirmed"></span>
+                </div>
+                <div class="keyContainer">
+                  <a href="#keyRight" id="linkRight">Right</a>
+                  <span id="chosenRightConfirmed"></span>
+                </div>
+              </div>
+              <br />
+              <div class="ranges">
+                <label for="balls">Choose number of balls:</label> <br />
+                <input
+                  type="range"
+                  min="50"
+                  max="90"
+                  value="70"
+                  id="rangeOfBalls"
+                  step="1"
+                  oninput="outputNumber(value)"
+                />
+                <output for="balls" id="balls">70</output>
+                <br />
+                <label for="time">Choose time (in seconds):</label><br />
+                <input
+                  type="range"
+                  min="60"
+                  max="300"
+                  value="180"
+                  id="rangeOfTime"
+                  step="1"
+                  oninput="outputTime(value)"
+                />
+                <output for="time" id="time">180</output>
+              </div>
+              <br />
+              <div class="monsters">
+                <label for="monster">Choose number of monsters:</label><br />
+                <select id="select_monsters" class="monsters" name="monsters">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                </select>
+              </div>
+              <br />
+              <div class="colors">
+                <label for="colors">Choose balls colors:</label><br />
+                <label for="favcolor5">5 points:</label>
+                <input
+                  type="color"
+                  id="favcolor5"
+                  name="favcolor5"
+                  value="#ff0000"
+                /><br /><br />
+                <label for="favcolor15">15 points:</label>
+                <input
+                  type="color"
+                  id="favcolor15"
+                  name="favcolor15"
+                  value="#ffff00"
+                /><br /><br />
+                <label for="favcolor25">25 points:</label>
+                <input
+                  type="color"
+                  id="favcolor25"
+                  name="favcolor25"
+                  value="#0000ff"
+                /><br /><br />
+              </div>
+              <br />
+              <button id="random">Random</button><br />
+              <button id="save_settings">Save</button>
+            </div>
+            <div class="page" id="app">
+              <div id="game" class="game">
+                <canvas id="canvas" height="600" width="600"></canvas>
+              </div>
+              <div class="gameDisplay">
+                <output id="player"> Player: </output><br />
+                <button id="switch">Switch Account</button>
+                <button id="newGame">New Game</button>
+                <!-- custom added label-->
+                <div id="lives">
+                  <label for="lblLives">LIVES:</label>
+                  <input id="lblLives" type="text" />
+                </div>
+                <div id="score">
+                  <label for="lblScore">SCORE:</label>
+                  <input id="lblScore" type="text" />
+                </div>
+                <div id="time">
+                  <label for="lblTime">TIME:</label>
+                  <input id="lblTime" type="text" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="modal_container">
+            <div id="about" class="modal">
+              <p>Sapir Shamay --- Haim Reyes</p>
+              <p>We used the following jQuery plugins:</p>
+              <ul>
+                <li>jQuery Validation</li>
+                <li>jQuery Modal</li>
+              </ul>
+              <p>The difficulties we faced:</p>
+              <ul>
+                <li>first</li>
+                <li>second</li>
+              </ul>
+            </div>
+            <div id="keyUp" class="modal" tabindex="0" autofocus>
+              <p>Please press a key</p>
+              <p id="chosenUp"></p>
+              <a href="#" id="confirmKeyUp">confirm</a>
+              <span class="error" id="errorUp"></span>
+            </div>
+            <div id="keyDown" class="modal" tabindex="0">
+              <p>Please press a key</p>
+              <p id="chosenDown"></p>
+              <a href="#" id="confirmKeyDown">confirm</a>
+              <span class="error" id="errorDown"></span>
+            </div>
+            <div id="keyLeft" class="modal" tabindex="0">
+              <p>Please press a key</p>
+              <p id="chosenLeft"></p>
+              <a href="#" id="confirmKeyLeft">confirm</a>
+              <span class="error" id="errorLeft"></span>
+            </div>
+            <div id="keyRight" class="modal" tabindex="0">
+              <p>Please press a key</p>
+              <p id="chosenRight"></p>
+              <a href="#" id="confirmKeyRight">confirm</a>
+              <span class="error" id="errorRight"></span>
+            </div>
+          </div>
+        </content>
+      </div>
+      <div class="row justify-content-md-center">
+        <footer class="container">
+          <audio id="music" controls autoplay loop hidden>
+            <source src="Sounds\music.mp3" type="audio/mpeg" />
+            Your browser does not support the audio element.
+          </audio>
 
-		<div class="row content">
-			<menu class="col-2 menu">
-				<ul>
-					<button class="btn btn-outline-warning menu_button" id="menu_welcome">Welcome</button>
-					<button class="btn btn-outline-warning menu_button" id="menu_register">Register</button>
-					<button class="btn btn-outline-warning menu_button" id="menu_login">Login</button>
-					<button class="btn btn-outline-warning menu_button"><a href="#about" rel="modal:open" class="aboutLink">About</a></button>
-				</ul>
-				<div id="game_settings">
-					<h3>Game Settings:</h3>
-					<div id="gameKeys">
-						Game keys:
-						<p id="gameKeyUp"></p>
-						<p id="gameKeyDown"></p>
-						<p id="gameKeyLeft"></p>
-						<p id="gameKeyRight"></p>
-					</div>
-					<br />
-					<div id="gameBalls">
-						n. of balls:
-						<span id="gameBalls2"></span>
-					</div>
-					<br />
-					<div id="ballsColors">
-						balls colors: <br /><label for="favcolor5">5 points:</label>
-						<input type="color" id="5point" name="5point" value="#ff0000" /><br />
-						<label for="favcolor15">15 points:</label>
-						<input type="color" id="15point" name="15point" value="#ffff00" /><br />
-						<label for="favcolor25">25 points:</label>
-						<input type="color" id="25point" name="25point" value="#0000ff" /><br />
-					</div>
-					<br />
-					<div id="gameTime">
-						Game time:
-						<span id="gameTime2"></span>
-					</div>
-					<br />
-					<div id="gameMonsters">
-						n. of monsters:
-						<span id="gameMonsters2"></span>
-					</div>
-				</div>
-			</menu>
-			<content class="col-10">
-				<div id="content_container" class="row justify-content-xl-center align-items-center">
-					<div id="welcome" class="page card text-center card-terminal">
-						<div class="card-header">
-							How to Play
-						</div>
-						<div class="card-body terminal-like">
-							<div class='console-container'><span id='text'></span><div class='console-underscore' id='console'>&#95;</div></div>
-						<div class="card-footer text-muted">
-							<button id="welcome_to_registration" class="btn btn-outline-success terminal-button">Register</button>
-							<button id="welcome_to_login" class="btn btn-outline-success terminal-button">Login</button>
-						</div>
-						</div>
-					  </div>
-
-
-					
-					<div class="page" id="registration">
-						<button id="register_to_welcome">Back to Welcome</button>
-						<h1>Registration</h1>
-						<form id="registrationForm">
-							<div>
-								<label for="username">Username:</label>
-								<input id="username" name="username" type="text" />
-							</div>
-							<div>
-								<label for="password">Password:</label>
-								<input id="password" name="password" type="password" />
-							</div>
-							<div>
-								<label for="fullName">Full Name:</label>
-								<input id="fullName" name="fullName" type="text" />
-							</div>
-							<div>
-								<label for="email">Email:</label>
-								<input id="email" name="email" type="email" />
-							</div>
-							<div>
-								<label for="dateOfBirth">Date Of Birth:</label>
-								<select class="days" name="days"></select>
-								<select class="months" name="months"></select>
-								<select class="years" name="years"></select>
-							</div>
-							<div>
-								<button id="registerBtn" type="submit">Register</button>
-							</div>
-						</form>
-					</div>
-					<div class="page" id="login" name="login_div_name">
-						<button class="login_element" id="login_to_welcome">
-							Back to Welcome
-						</button>
-						<h1>Login</h1>
-						<label class="login_element"> Username:</label>
-						<input class="login_element" type="text" placeholder="Username" id="login_username_id" /><br />
-						<label class="login_element"> Password:</label>
-						<input class="login_element" type="password" placeholder="Password"
-							id="login_password_id" /><br />
-						<div id="message">
-							<p class="error" id="login_error_message" hidden>
-								Wrong user details, please try again or
-							</p>
-							<button class="login_element" id="login_to_register" hidden>
-								Register
-							</button>
-						</div>
-						<br />
-						<button class="login_element" id="send_button">Login</button>
-					</div>
-					<div class="page" id="definitions">
-						<p id="after_login_label" hidden>Welcome,</p>
-						<h1>Settings</h1>
-						<div class="keys">
-							<label for="playButtons">Choose game buttons:</label><br /><br />
-							<div class="keyContainer">
-								<a href="#keyUp" id="linkUp">Up</a>
-								<span id="chosenUpConfirmed"></span>
-							</div>
-							<div class="keyContainer">
-								<a href="#keyDown" id="linkDown">Down</a>
-								<span id="chosenDownConfirmed"></span>
-							</div>
-							<div class="keyContainer">
-								<a href="#keyLeft" id="linkLeft">Left</a>
-								<span id="chosenLeftConfirmed"></span>
-							</div>
-							<div class="keyContainer">
-								<a href="#keyRight" id="linkRight">Right</a>
-								<span id="chosenRightConfirmed"></span>
-							</div>
-						</div>
-						<br />
-						<div class="ranges">
-							<label for="balls">Choose number of balls:</label> <br />
-							<input type="range" min="50" max="90" value="70" id="rangeOfBalls" step="1"
-								oninput="outputNumber(value)" />
-							<output for="balls" id="balls">70</output>
-							<br />
-							<label for="time">Choose time (in seconds):</label><br />
-							<input type="range" min="60" max="300" value="180" id="rangeOfTime" step="1"
-								oninput="outputTime(value)" />
-							<output for="time" id="time">180</output>
-						</div>
-						<br />
-						<div class="monsters">
-							<label for="monster">Choose number of monsters:</label><br />
-							<select id="select_monsters" class="monsters" name="monsters">
-								<option>1</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-							</select>
-						</div>
-						<br />
-						<div class="colors">
-							<label for="colors">Choose balls colors:</label><br />
-							<label for="favcolor5">5 points:</label>
-							<input type="color" id="favcolor5" name="favcolor5" value="#ff0000" /><br /><br />
-							<label for="favcolor15">15 points:</label>
-							<input type="color" id="favcolor15" name="favcolor15" value="#ffff00" /><br /><br />
-							<label for="favcolor25">25 points:</label>
-							<input type="color" id="favcolor25" name="favcolor25" value="#0000ff" /><br /><br />
-						</div>
-						<br />
-						<button id="random">Random</button><br />
-						<button id="save_settings">Save</button>
-					</div>
-					<div class="page" id="app">
-						<div id="game" class="game">
-							<canvas id="canvas" height="600" width="600"></canvas>
-						</div>
-						<div class="gameDisplay">
-							<output id="player"> Player: </output><br />
-							<button id="switch">Switch Account</button>
-							<button id="newGame">New Game</button>
-							<!-- custom added label-->
-							<div id="lives">
-								<label for="lblLives">LIVES:</label>
-								<input id="lblLives" type="text" />
-							</div>
-							<div id="score">
-								<label for="lblScore">SCORE:</label>
-								<input id="lblScore" type="text" />
-							</div>
-							<div id="time">
-								<label for="lblTime">TIME:</label>
-								<input id="lblTime" type="text" />
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id="modal_container">
-					<div id="about" class="modal">
-						<p>Sapir Shamay --- Haim Reyes</p>
-						<p>We used the following jQuery plugins:</p>
-						<ul>
-							<li>jQuery Validation</li>
-							<li>jQuery Modal</li>
-						</ul>
-						<p>The difficulties we faced:</p>
-						<ul>
-							<li>first</li>
-							<li>second</li>
-						</ul>
-					</div>
-					<div id="keyUp" class="modal" tabindex="0" autofocus>
-						<p>Please press a key</p>
-						<p id="chosenUp"></p>
-						<a href="#" id="confirmKeyUp">confirm</a>
-						<span class="error" id="errorUp"></span>
-					</div>
-					<div id="keyDown" class="modal" tabindex="0">
-						<p>Please press a key</p>
-						<p id="chosenDown"></p>
-						<a href="#" id="confirmKeyDown">confirm</a>
-						<span class="error" id="errorDown"></span>
-					</div>
-					<div id="keyLeft" class="modal" tabindex="0">
-						<p>Please press a key</p>
-						<p id="chosenLeft"></p>
-						<a href="#" id="confirmKeyLeft">confirm</a>
-						<span class="error" id="errorLeft"></span>
-					</div>
-					<div id="keyRight" class="modal" tabindex="0">
-						<p>Please press a key</p>
-						<p id="chosenRight"></p>
-						<a href="#" id="confirmKeyRight">confirm</a>
-						<span class="error" id="errorRight"></span>
-					</div>
-				</div>
-			</content>
-		</div>
-		<div class="row justify-content-md-center">
-			<footer class="container">
-				<audio id="music" controls autoplay loop hidden>
-					<source src="Sounds\music.mp3" type="audio/mpeg" />
-					Your browser does not support the audio element.
-				</audio>
-	
-				<div class="game_link row justify-content-md-center ">
-					<div class="alert alert-black footer">
-					<a href="https://sise-web-development-environments.github.io/assignment2-hapyjamot/"
-						target="_blank">lets play!</a> 
-						Sapir:&nbsp;<a href="mailto:sapirnag@post.bgu.ac.il"><i class="fa fa-paper-plane nice-fa"></i></a>
-						<a href="https://github.com/ShamaySapir" target="_blank"><i class="fa fa-github nice-fa"></i></a>
-						Haim:&nbsp;<a href="mailto:reyes@post.bgu.ac.il"><i class="fa fa-paper-plane nice-fa"></i></a>
-						<a href="https://github.com/HaimReyes" target="_blank"><i class="fa fa-github nice-fa"></i></a>
-				</div>
-					</div>
-				
-			</footer>
-		</div>
-	</div>
-	
-	</div>
-</body>
+          <div class="game_link row justify-content-md-center">
+            <div class="alert alert-black footer">
+              <a
+                href="https://sise-web-development-environments.github.io/assignment2-hapyjamot/"
+                target="_blank"
+                >lets play!</a
+              >
+              Sapir:&nbsp;<a href="mailto:sapirnag@post.bgu.ac.il"
+                ><i class="fa fa-paper-plane nice-fa"></i
+              ></a>
+              <a href="https://github.com/ShamaySapir" target="_blank"
+                ><i class="fa fa-github nice-fa"></i
+              ></a>
+              Haim:&nbsp;<a href="mailto:reyes@post.bgu.ac.il"
+                ><i class="fa fa-paper-plane nice-fa"></i
+              ></a>
+              <a href="https://github.com/HaimReyes" target="_blank"
+                ><i class="fa fa-github nice-fa"></i
+              ></a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
 </html>
