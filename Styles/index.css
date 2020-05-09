@@ -25,7 +25,7 @@
 .header {
   font-family: "pacmanFont";
   font-size: 100px;
-  color: #e5bb2a;
+  color: #ffc107;
 }
 
 .body {
@@ -209,7 +209,16 @@ Content H1 {
 .menu_button a {
   color: #ffc107;
 }
-
+.menu_button a:hover {
+  text-decoration: unset;
+}
+.btn-outline-warning:hover {
+  color: #ffc107;
+  background-color: #1f8f03;
+}
+/* .btn-outline-warning.a:hover {
+  color: black;
+} */
 .alert-black {
   background-color: #000000;
   margin-left: 10.8em;
@@ -302,4 +311,9 @@ Content H1 {
 .game-buttons {
   margin-left: 2em;
   margin-bottom: 0em;
+}
+
+aboutLink.a:hover {
+  color: black;
+  background-color: black;
 }
