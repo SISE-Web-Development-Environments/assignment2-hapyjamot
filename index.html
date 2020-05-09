@@ -1,344 +1,297 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
-    />
-    <link rel="stylesheet" href="./Styles/modal.css" />
-    <link rel="stylesheet" href="./Styles/index.css" />
-    <!-- set our script files -->
-    <script type="text/javascript" src="./Screens/LoginScreen.js"></script>
-    <script
-      type="text/javascript"
-      src="./Screens/RegistrationScreen.js"
-    ></script>
-    <script type="text/javascript" src="./Screens/ContentScreen.js"></script>
-    <script type="text/javascript" src="./Screens/SettingsScreen.js"></script>
-    <script type="text/javascript" src="./app.js"></script>
-  </head>
 
-  <body class="body">
-    <header class="header">
-      <!-- <object class="col-3" data="logo.html"> 
-				Your browser doesn’t support the object tag. 
-			</object><br> -->
-      <div class="crop">
-        <img src="./Styles/images/logo.png" />
-      </div>
-      <span class="col-3">Sapir Shamay 305649444 Haim reyes 319510475</span>
-    </header>
+<head>
+	<script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <div class="row content">
-      <menu class="col-2 menu">
-        <ul>
-          <li id="menu_welcome">Welcome</li>
-          <li id="menu_register">Register</li>
-          <li id="menu_login">Login</li>
-          <li><a href="#about" rel="modal:open" class="aboutLink">About</a></li>
-        </ul>
-        <div id="game_settings">
-          <h3>Game Settings:</h3>
-          <div id="gameKeys">
-            Game keys:
-            <button id="gameKeyUp"></button>
-            <button id="gameKeyDown"></button>
-            <button id="gameKeyLeft"></button>
-            <button id="gameKeyRight"></button>
-          </div>
-          <br />
-          <div id="gameBalls">
-            n. of balls:
-            <span id="gameBalls2"></span>
-          </div>
-          <br />
-          <div id="ballsColors">
-            balls colors: <br /><label for="favcolor5">5 points:</label>
-            <input
-              type="color"
-              id="5point"
-              name="5point"
-              value="#ff0000"
-            /><br />
-            <label for="favcolor15">15 points:</label>
-            <input
-              type="color"
-              id="15point"
-              name="15point"
-              value="#ffff00"
-            /><br />
-            <label for="favcolor25">25 points:</label>
-            <input
-              type="color"
-              id="25point"
-              name="25point"
-              value="#0000ff"
-            /><br />
-          </div>
-          <br />
-          <div id="gameTime">
-            Game time:
-            <span id="gameTime2"></span>
-          </div>
-          <br />
-          <div id="gameMonsters">
-            n. of monsters:
-            <span id="gameMonsters2"></span>
-          </div>
-        </div>
-      </menu>
-      <content class="col-10">
-        <div id="content_container">
-          <div class="page" id="welcome">
-			<p>
-				<h1>
-					How to Play:
-				</h1>
-				Sign-in/register and then select your preferd settings to start playing.<br>
-				All you need to do is to collect as many points as fast as possible.<br>
-				The different balls have different scores, some worth more then others.<br>
-				Dont get touched by the monsters and dont run out of time.<br>
-				<h1>GoodLuck!</h1>
-			</p>
-            <button id="welcome_to_registration">Register</button>
-            <button id="welcome_to_login">Login</button>
-          </div>
-          <div class="page" id="registration">
-            <button id="register_to_welcome">Back to Welcome</button>
-            <h1>Registration</h1>
-            <form id="registrationForm">
-              <div>
-                <label for="username">Username:</label>
-                <input id="username" name="username" type="text" />
-              </div>
-              <div>
-                <label for="password">Password:</label>
-                <input id="password" name="password" type="password" />
-              </div>
-              <div>
-                <label for="fullName">Full Name:</label>
-                <input id="fullName" name="fullName" type="text" />
-              </div>
-              <div>
-                <label for="email">Email:</label>
-                <input id="email" name="email" type="email" />
-              </div>
-              <div>
-                <label for="dateOfBirth">Date Of Birth:</label>
-                <select class="days" name="days"></select>
-                <select class="months" name="months"></select>
-                <select class="years" name="years"></select>
-              </div>
-              <div>
-                <button id="registerBtn" type="submit">Register</button>
-              </div>
-            </form>
-          </div>
-          <div class="page" id="login" name="login_div_name">
-            <button class="login_element" id="login_to_welcome">
-              Back to Welcome
-            </button>
-            <h1>Login</h1>
-            <label class="login_element"> Username:</label>
-            <input
-              class="login_element"
-              type="text"
-              placeholder="Username"
-              id="login_username_id"
-            /><br />
-            <label class="login_element"> Password:</label>
-            <input
-              class="login_element"
-              type="password"
-              placeholder="Password"
-              id="login_password_id"
-            /><br />
-            <div id="message">
-              <p class="error" id="login_error_message" hidden>
-                Wrong user details, please try again or
-              </p>
-              <button class="login_element" id="login_to_register" hidden>
-                Register
-              </button>
-            </div>
-            <br />
-            <button class="login_element" id="send_button">Login</button>
-          </div>
-          <div class="page" id="definitions">
-            <p id="after_login_label" hidden>Welcome,</p>
-            <h1>Settings</h1>
-            <div class="keys">
-              <label for="playButtons">Choose game buttons:</label><br /><br />
-              <div class="keyContainer">
-                <a href="#keyUp" id="linkUp">Up</a>
-                <span id="chosenUpConfirmed"></span>
-              </div>
-              <div class="keyContainer">
-                <a href="#keyDown" id="linkDown">Down</a>
-                <span id="chosenDownConfirmed"></span>
-              </div>
-              <div class="keyContainer">
-                <a href="#keyLeft" id="linkLeft">Left</a>
-                <span id="chosenLeftConfirmed"></span>
-              </div>
-              <div class="keyContainer">
-                <a href="#keyRight" id="linkRight">Right</a>
-                <span id="chosenRightConfirmed"></span>
-              </div>
-            </div>
-            <br />
-            <div class="ranges">
-              <label for="balls">Choose number of balls:</label> <br />
-              <input
-                type="range"
-                min="50"
-                max="90"
-                value="70"
-                id="rangeOfBalls"
-                step="1"
-                oninput="outputNumber(value)"
-              />
-              <output for="balls" id="balls">70</output>
-              <br />
-              <label for="time">Choose time (in seconds):</label><br />
-              <input
-                type="range"
-                min="60"
-                max="300"
-                value="180"
-                id="rangeOfTime"
-                step="1"
-                oninput="outputTime(value)"
-              />
-              <output for="time" id="time">180</output>
-            </div>
-            <br />
-            <div class="monsters">
-              <label for="monster">Choose number of monsters:</label><br />
-              <select id="select_monsters" class="monsters" name="monsters">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-            </div>
-            <br />
-            <div class="colors">
-              <label for="colors">Choose balls colors:</label><br />
-              <label for="favcolor5">5 points:</label>
-              <input
-                type="color"
-                id="favcolor5"
-                name="favcolor5"
-                value="#ff0000"
-              /><br /><br />
-              <label for="favcolor15">15 points:</label>
-              <input
-                type="color"
-                id="favcolor15"
-                name="favcolor15"
-                value="#ffff00"
-              /><br /><br />
-              <label for="favcolor25">25 points:</label>
-              <input
-                type="color"
-                id="favcolor25"
-                name="favcolor25"
-                value="#0000ff"
-              /><br /><br />
-            </div>
-            <br />
-            <button id="random">Random</button><br />
-            <button id="save_settings">Save</button>
-          </div>
-          <div class="page" id="app">
-            <div id="game" class="game">
-              <canvas id="canvas" height="600" width="600"></canvas>
-            </div>
-            <div class="gameDisplay">
-              <output id="player"> Player: </output><br />
-              <button id="switch">Switch Account</button>
-              <button id="newGame">New Game</button>
-              <!-- custom added label-->
-              <div id="lives">
-                <label for="lblLives">LIVES:</label>
-                <input id="lblLives" type="text" />
-              </div>
-              <div id="score">
-                <label for="lblScore">SCORE:</label>
-                <input id="lblScore" type="text" />
-              </div>
-              <div id="time">
-                <label for="lblTime">TIME:</label>
-                <input id="lblTime" type="text" />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div id="modal_container">
-          <div id="about" class="modal">
-            <p>Sapir Shamay --- Haim Reyes</p>
-            <p>We used the following jQuery plugins:</p>
-            <ul>
-              <li>jQuery Validation</li>
-              <li>jQuery Modal</li>
-            </ul>
-            <p>The difficulties we faced:</p>
-            <ul>
-              <li>first</li>
-              <li>second</li>
-            </ul>
-          </div>
-          <div id="keyUp" class="modal" tabindex="0" autofocus>
-            <p>Please press a key</p>
-            <p id="chosenUp"></p>
-            <a href="#" id="confirmKeyUp">confirm</a>
-            <span class="error" id="errorUp"></span>
-          </div>
-          <div id="keyDown" class="modal" tabindex="0">
-            <p>Please press a key</p>
-            <p id="chosenDown"></p>
-            <a href="#" id="confirmKeyDown">confirm</a>
-            <span class="error" id="errorDown"></span>
-          </div>
-          <div id="keyLeft" class="modal" tabindex="0">
-            <p>Please press a key</p>
-            <p id="chosenLeft"></p>
-            <a href="#" id="confirmKeyLeft">confirm</a>
-            <span class="error" id="errorLeft"></span>
-          </div>
-          <div id="keyRight" class="modal" tabindex="0">
-            <p>Please press a key</p>
-            <p id="chosenRight"></p>
-            <a href="#" id="confirmKeyRight">confirm</a>
-            <span class="error" id="errorRight"></span>
-          </div>
-        </div>
-      </content>
-    </div>
-    <footer class="Footer">
-      <audio id="music" controls autoplay loop hidden>
-        <source src="Sounds\music.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
-      <div class="game_link">
-        <span>Link to the game:</span>
-        <a
-          href="https://sise-web-development-environments.github.io/assignment2-hapyjamot/"
-          target="_blank"
-          >https://sise-web-development-environments.github.io/assignment2-hapyjamot</a
-        >
-      </div>
-      <div class="creators_details">
-		<span>sapirnag@post.bgu.ac.il ; reyes@post.bgu.ac.il</span>
-		<p>Creators github Accounts:</p>
-		<span>https://github.com/ShamaySapir ; https://github.com/HaimReyes</span>	</p>
-      </div>
-    </footer>
-  </body>
-  <style></style>
+
+	<link rel="stylesheet" href="./Styles/modal.css" />
+	<link rel="stylesheet" href="./Styles/index.css" />
+	<!-- set our script files -->
+	<script type="text/javascript" src="./Screens/LoginScreen.js"></script>
+	<script type="text/javascript" src="./Screens/RegistrationScreen.js"></script>
+	<script type="text/javascript" src="./Screens/ContentScreen.js"></script>
+	<script type="text/javascript" src="./Screens/SettingsScreen.js"></script>
+	<script type="text/javascript" src="./app.js"></script>
+</head>
+
+<body class="body">
+	<div class="container no-margin">
+		<header class="row justify-content-md-center align-items-center">
+			<div class="col">
+				<div class="row justify-content-md-center">
+					<span>Sapir Shamay 305649444</span>
+				</div>
+				<div class="row justify-content-md-center">
+					<span>Haim reyes 319510475</span>
+				</div>
+			</div>
+			<div class="col-auto">
+				<span class="header">pa133m9n</span>
+			</div>
+		</header>
+
+		<div class="row">
+			<menu class="col-2 menu">
+				<ul>
+					<li id="menu_welcome">Welcome</li>
+					<li id="menu_register">Register</li>
+					<li id="menu_login">Login</li>
+					<li><a href="#about" rel="modal:open" class="aboutLink">About</a></li>
+				</ul>
+				<div id="game_settings">
+					<h3>Game Settings:</h3>
+					<div id="gameKeys">
+						Game keys:
+						<button id="gameKeyUp"></button>
+						<button id="gameKeyDown"></button>
+						<button id="gameKeyLeft"></button>
+						<button id="gameKeyRight"></button>
+					</div>
+					<br />
+					<div id="gameBalls">
+						n. of balls:
+						<span id="gameBalls2"></span>
+					</div>
+					<br />
+					<div id="ballsColors">
+						balls colors: <br /><label for="favcolor5">5 points:</label>
+						<input type="color" id="5point" name="5point" value="#ff0000" /><br />
+						<label for="favcolor15">15 points:</label>
+						<input type="color" id="15point" name="15point" value="#ffff00" /><br />
+						<label for="favcolor25">25 points:</label>
+						<input type="color" id="25point" name="25point" value="#0000ff" /><br />
+					</div>
+					<br />
+					<div id="gameTime">
+						Game time:
+						<span id="gameTime2"></span>
+					</div>
+					<br />
+					<div id="gameMonsters">
+						n. of monsters:
+						<span id="gameMonsters2"></span>
+					</div>
+				</div>
+			</menu>
+			<content class="col-10">
+				<div id="content_container">
+					<div class="page" id="welcome">
+						<p>
+							<h1>
+								How to Play:
+							</h1>
+							Sign-in/register and then select your preferd settings to start playing.<br>
+							All you need to do is to collect as many points as fast as possible.<br>
+							The different balls have different scores, some worth more then others.<br>
+							Dont get touched by the monsters and dont run out of time.<br>
+							<h1>GoodLuck!</h1>
+						</p>
+						<button id="welcome_to_registration">Register</button>
+						<button id="welcome_to_login">Login</button>
+					</div>
+					<div class="page" id="registration">
+						<button id="register_to_welcome">Back to Welcome</button>
+						<h1>Registration</h1>
+						<form id="registrationForm">
+							<div>
+								<label for="username">Username:</label>
+								<input id="username" name="username" type="text" />
+							</div>
+							<div>
+								<label for="password">Password:</label>
+								<input id="password" name="password" type="password" />
+							</div>
+							<div>
+								<label for="fullName">Full Name:</label>
+								<input id="fullName" name="fullName" type="text" />
+							</div>
+							<div>
+								<label for="email">Email:</label>
+								<input id="email" name="email" type="email" />
+							</div>
+							<div>
+								<label for="dateOfBirth">Date Of Birth:</label>
+								<select class="days" name="days"></select>
+								<select class="months" name="months"></select>
+								<select class="years" name="years"></select>
+							</div>
+							<div>
+								<button id="registerBtn" type="submit">Register</button>
+							</div>
+						</form>
+					</div>
+					<div class="page" id="login" name="login_div_name">
+						<button class="login_element" id="login_to_welcome">
+							Back to Welcome
+						</button>
+						<h1>Login</h1>
+						<label class="login_element"> Username:</label>
+						<input class="login_element" type="text" placeholder="Username" id="login_username_id" /><br />
+						<label class="login_element"> Password:</label>
+						<input class="login_element" type="password" placeholder="Password"
+							id="login_password_id" /><br />
+						<div id="message">
+							<p class="error" id="login_error_message" hidden>
+								Wrong user details, please try again or
+							</p>
+							<button class="login_element" id="login_to_register" hidden>
+								Register
+							</button>
+						</div>
+						<br />
+						<button class="login_element" id="send_button">Login</button>
+					</div>
+					<div class="page" id="definitions">
+						<p id="after_login_label" hidden>Welcome,</p>
+						<h1>Settings</h1>
+						<div class="keys">
+							<label for="playButtons">Choose game buttons:</label><br /><br />
+							<div class="keyContainer">
+								<a href="#keyUp" id="linkUp">Up</a>
+								<span id="chosenUpConfirmed"></span>
+							</div>
+							<div class="keyContainer">
+								<a href="#keyDown" id="linkDown">Down</a>
+								<span id="chosenDownConfirmed"></span>
+							</div>
+							<div class="keyContainer">
+								<a href="#keyLeft" id="linkLeft">Left</a>
+								<span id="chosenLeftConfirmed"></span>
+							</div>
+							<div class="keyContainer">
+								<a href="#keyRight" id="linkRight">Right</a>
+								<span id="chosenRightConfirmed"></span>
+							</div>
+						</div>
+						<br />
+						<div class="ranges">
+							<label for="balls">Choose number of balls:</label> <br />
+							<input type="range" min="50" max="90" value="70" id="rangeOfBalls" step="1"
+								oninput="outputNumber(value)" />
+							<output for="balls" id="balls">70</output>
+							<br />
+							<label for="time">Choose time (in seconds):</label><br />
+							<input type="range" min="60" max="300" value="180" id="rangeOfTime" step="1"
+								oninput="outputTime(value)" />
+							<output for="time" id="time">180</output>
+						</div>
+						<br />
+						<div class="monsters">
+							<label for="monster">Choose number of monsters:</label><br />
+							<select id="select_monsters" class="monsters" name="monsters">
+								<option>1</option>
+								<option>2</option>
+								<option>3</option>
+								<option>4</option>
+							</select>
+						</div>
+						<br />
+						<div class="colors">
+							<label for="colors">Choose balls colors:</label><br />
+							<label for="favcolor5">5 points:</label>
+							<input type="color" id="favcolor5" name="favcolor5" value="#ff0000" /><br /><br />
+							<label for="favcolor15">15 points:</label>
+							<input type="color" id="favcolor15" name="favcolor15" value="#ffff00" /><br /><br />
+							<label for="favcolor25">25 points:</label>
+							<input type="color" id="favcolor25" name="favcolor25" value="#0000ff" /><br /><br />
+						</div>
+						<br />
+						<button id="random">Random</button><br />
+						<button id="save_settings">Save</button>
+					</div>
+					<div class="page" id="app">
+						<div id="game" class="game">
+							<canvas id="canvas" height="600" width="600"></canvas>
+						</div>
+						<div class="gameDisplay">
+							<output id="player"> Player: </output><br />
+							<button id="switch">Switch Account</button>
+							<button id="newGame">New Game</button>
+							<!-- custom added label-->
+							<div id="lives">
+								<label for="lblLives">LIVES:</label>
+								<input id="lblLives" type="text" />
+							</div>
+							<div id="score">
+								<label for="lblScore">SCORE:</label>
+								<input id="lblScore" type="text" />
+							</div>
+							<div id="time">
+								<label for="lblTime">TIME:</label>
+								<input id="lblTime" type="text" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="modal_container">
+					<div id="about" class="modal">
+						<p>Sapir Shamay --- Haim Reyes</p>
+						<p>We used the following jQuery plugins:</p>
+						<ul>
+							<li>jQuery Validation</li>
+							<li>jQuery Modal</li>
+						</ul>
+						<p>The difficulties we faced:</p>
+						<ul>
+							<li>first</li>
+							<li>second</li>
+						</ul>
+					</div>
+					<div id="keyUp" class="modal" tabindex="0" autofocus>
+						<p>Please press a key</p>
+						<p id="chosenUp"></p>
+						<a href="#" id="confirmKeyUp">confirm</a>
+						<span class="error" id="errorUp"></span>
+					</div>
+					<div id="keyDown" class="modal" tabindex="0">
+						<p>Please press a key</p>
+						<p id="chosenDown"></p>
+						<a href="#" id="confirmKeyDown">confirm</a>
+						<span class="error" id="errorDown"></span>
+					</div>
+					<div id="keyLeft" class="modal" tabindex="0">
+						<p>Please press a key</p>
+						<p id="chosenLeft"></p>
+						<a href="#" id="confirmKeyLeft">confirm</a>
+						<span class="error" id="errorLeft"></span>
+					</div>
+					<div id="keyRight" class="modal" tabindex="0">
+						<p>Please press a key</p>
+						<p id="chosenRight"></p>
+						<a href="#" id="confirmKeyRight">confirm</a>
+						<span class="error" id="errorRight"></span>
+					</div>
+				</div>
+			</content>
+		</div>
+	</div>
+	<div class="row justify-content-md-center">
+		<footer class="container">
+			<audio id="music" controls autoplay loop hidden>
+				<source src="Sounds\music.mp3" type="audio/mpeg" />
+				Your browser does not support the audio element.
+			</audio>
+
+			<div class="game_link row justify-content-md-center">
+				<span>Link to the game:</span>
+				<a href="https://sise-web-development-environments.github.io/assignment2-hapyjamot/"
+					target="_blank">https://sise-web-development-environments.github.io/assignment2-hapyjamot</a>
+			</div>
+			<div class="creators_details row justify-content-md-center">
+				<span>sapirnag@post.bgu.ac.il ; reyes@post.bgu.ac.il</span>
+				<p>Creators github Accounts:</p>
+				<span>https://github.com/ShamaySapir ; https://github.com/HaimReyes</span> </p>
+			</div>
+		</footer>
+	</div>
+	</div>
+</body>
+
 </html>
