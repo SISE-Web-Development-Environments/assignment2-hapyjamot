@@ -2,19 +2,19 @@
 
 Game in: https://sise-web-development-environments.github.io/assignment2-hapyjamot/
 
-### Haim Reyes 319510475
+#### Haim Reyes 319510475
 
-### Sapir Shamay 305649444
+#### Sapir Shamay 305649444
+
+- sometimes it may look like a ghost "disapears" but it is actually behind another ghost.
 
 ### :rocket: New Feature
 
-- sometimes it may look like a ghost "disapears" but it is actually behind another ghost.
-- the added features are:
-  - A static pill that worth an extra life (a red pill with a white center)
-    the pill will be placed in a random cell
-  - A moving pill the worth 50 points (a white pill with a red center)
-    the moving pill moves in random directions and will block monsters
-    (fortunatly for the player)
+- A static pill that worth an extra life (a red pill with a white center)
+  the pill will be placed in a random cell
+- A moving pill the worth 50 points (a white pill with a red center)
+  the moving pill moves in random directions and will block monsters
+  (fortunatly for the player)
 - music:
   - "All Star (from Shrek) [8 Bit Cover Tribute to Smash Mouth] - 8 Bit Universe"
     https://www.youtube.com/watch?v=QuaTAcT-nWQ
