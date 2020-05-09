@@ -11,16 +11,17 @@ $(document).ready(function () {
         this.optional(element) || (/\d/.test(value) && /[a-z]/i.test(value))
       );
     },
-    "Your password should contain at least one number and one character"
+    "Your password should contain at least one number and one character."
   );
   $.validator.addMethod(
     "existUsername",
     function (value, element) {
       return this.optional(element) || !localStorage.getItem(value);
     },
-    "Please choose a different username"
+    "Please choose a different username."
   );
   $("#registrationForm").validate({
+    errorClass: "alert alert-danger fatty-fatty-bum-bum",
     rules: {
       username: {
         required: true,
@@ -56,18 +57,21 @@ $(document).ready(function () {
     },
     messages: {
       username: {
-        required: "Please enter a username",
+        required: "Please enter a username.",
       },
       password: {
-        required: "Please provide a password",
-        minlength: "Your password must be at least 6 characters long",
+        required: "Please provide a password.",
+        minlength: "Your password must be at least 6 characters long.",
       },
       fullName: {
-        required: "Please enter your full name",
+        required: "Please enter your full name.",
       },
       email: {
-        required: "Please provide your email",
+        required: "Please provide your email.",
       },
+    },
+    highlight: function (element, errorClass) {
+      $(element).removeClass(errorClass);
     },
     submitHandler: function () {
       saveToLocalStorage();

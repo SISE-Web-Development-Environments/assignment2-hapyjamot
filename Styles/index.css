@@ -206,7 +206,7 @@ Content H1 {
 .footer {
   font-family: "pacmanFont";
   font-size: 20px;
-  color: #5a2773;
+  color: #7cfc00;
 }
 .centify {
   margin-left: 1.8em;
@@ -217,6 +217,10 @@ Content H1 {
 }
 .card-terminal {
   width: 34em;
+}
+
+.card-terminal-r {
+  width: 40em;
 }
 .console-underscore {
   display: inline-block;
@@ -249,6 +253,10 @@ Content H1 {
   height: 8em;
 }
 
+.terminal-container-r {
+  height: 28em;
+}
+
 .title {
   font-size: 25px;
 }
@@ -259,4 +267,13 @@ Content H1 {
 
 .hide {
   margin-top: -20px;
+}
+.fatty-fatty-bum-bum {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-left: 1em;
+}
+
+.down {
+  margin-top: 2em;
 }

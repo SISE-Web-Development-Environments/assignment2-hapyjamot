@@ -157,42 +157,91 @@
               </div>
             </div>
 
-            <div class="page" id="registration">
-              <button id="register_to_welcome">Back to Welcome</button>
-              <h1>Registration</h1>
-              <form id="registrationForm">
-                <div>
-                  <label for="username">Username:</label>
-                  <input id="username" name="username" type="text" />
-                </div>
-                <div>
-                  <label for="password">Password:</label>
-                  <input id="password" name="password" type="password" />
-                </div>
-                <div>
-                  <label for="fullName">Full Name:</label>
-                  <input id="fullName" name="fullName" type="text" />
-                </div>
-                <div>
-                  <label for="email">Email:</label>
-                  <input id="email" name="email" type="email" />
-                </div>
-                <div>
-                  <label for="dateOfBirth">Date Of Birth:</label>
-                  <select class="days" name="days"></select>
-                  <select class="months" name="months"></select>
-                  <select class="years" name="years"></select>
-                </div>
-                <div>
-                  <button id="registerBtn" type="submit">Register</button>
-                </div>
-              </form>
-            </div>
             <div
-              class="page card text-center card-terminal"
-              id="login"
-              name="login_div_name"
+              class="page card text-center card-terminal-r"
+              id="registration"
             >
+              <div class="card-header">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-1">
+                      <i
+                        class="fa fa-home stay-home"
+                        id="register_to_welcome"
+                      ></i>
+                    </div>
+                    <div class="col-10 title">
+                      Registration
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-body terminal-like">
+                <div class="container terminal-container-r">
+                  <div class="row justify-content-xl-center">
+                    <form id="registrationForm">
+                      <div class="flex-nowrap input-group">
+                        <input
+                          type="text"
+                          class="input-group-text log"
+                          placeholder="Username"
+                          id="username"
+                          name="username"
+                        />
+                      </div>
+                      <div class="flex-nowrap input-group">
+                        <input
+                          type="password"
+                          class="input-group-text log"
+                          placeholder="Password"
+                          id="password"
+                          name="password"
+                        />
+                      </div>
+                      <div class="flex-nowrap input-group">
+                        <input
+                          type="text"
+                          class="input-group-text log"
+                          placeholder="FullName"
+                          id="fullName"
+                          name="fullName"
+                        />
+                      </div>
+                      <div class="flex-nowrap input-group">
+                        <input
+                          type="email"
+                          class="input-group-text log"
+                          placeholder="Email"
+                          id="email"
+                          name="email"
+                        />
+                      </div>
+                      <!-- <div class="flex-nowrap input-group"> -->
+                      <label for="dateOfBirth">Date Of Birth</label>
+
+                      <div>
+                        <select class="days" name="days"></select>
+                        <br />
+                        <select class="months" name="months"></select>
+                        <br />
+                        <select class="years" name="years"></select>
+                      </div>
+                      <!-- </div> -->
+                      <div>
+                        <button
+                          class="btn btn-outline-success terminal-button down"
+                          id="registerBtn"
+                          type="submit"
+                        >
+                          Register
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="page card text-center card-terminal" id="login">
               <div class="card-header">
                 <div class="container">
                   <div class="row">
