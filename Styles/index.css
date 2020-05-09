@@ -12,9 +12,12 @@
   float: left;
   padding: 15px;
 }
+
+.body {
+  background-image: url("./images/PacmanHeader.jpg");
+}
 .content {
   height: calc(100% - 13em);
-  background-image: url("./images/JiTeQn.jpg");
 }
 
 .col-1 {
@@ -68,6 +71,18 @@ body {
   height: 11em;
 }
 
+.crop {
+  width: 600px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.crop img {
+  width: 700px;
+  height: 300px;
+  margin: -10px -150px 0 -10px;
+}
+
 .menu {
   height: 100%;
   margin: 0;
@@ -99,12 +114,8 @@ body {
 }
 
 a {
-  color: blue;
+  color: white;
   text-decoration: blink;
-}
-
-.page {
-  /* text-align: center; */
 }
 
 .Footer {
@@ -156,4 +167,8 @@ Content H1 {
 
 .game {
   background-color: black;
+}
+
+#game_settings {
+  background-color: white;
 }
