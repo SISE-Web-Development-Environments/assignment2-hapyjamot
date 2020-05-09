@@ -2,6 +2,12 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: "pacmanFont";
+  src: url('../fonts/PAC-FONT.TTF') format("truetype");
+}
+
+/* 
 .row::after {
   content: "";
   clear: both;
@@ -11,11 +17,21 @@
 [class*="col-"] {
   float: left;
   padding: 15px;
+} */
+.no-margin {
+  margin: 0
+}
+
+.header {
+  font-family: 'pacmanFont';
+  font-size: 100px;
+  color: #e5bb2a;
 }
 
 .body {
   background-image: url("./images/PacmanHeader.jpg");
 }
+
 .content {
   height: calc(100% - 13em);
 }
@@ -23,36 +39,47 @@
 .col-1 {
   width: 8.33%;
 }
+
 .col-2 {
   width: 16.66%;
 }
+
 .col-3 {
   width: 25%;
 }
+
 .col-4 {
   width: 33.33%;
 }
+
 .col-5 {
   width: 41.66%;
 }
+
 .col-6 {
   width: 50%;
 }
+
 .col-7 {
   width: 58.33%;
 }
+
 .col-8 {
   width: 66.66%;
 }
+
 .col-9 {
   width: 75%;
 }
+
 .col-10 {
   width: 83.33%;
 }
+
 .col-11 {
   width: 91.66%;
 }
+
 .col-12 {
   width: 100%;
 }
@@ -64,12 +91,6 @@ body {
   margin: 0;
 }
 
-.header {
-  color: #33b5e5;
-  text-align: center;
-  display: flex;
-  height: 11em;
-}
 
 .crop {
   width: 600px;
@@ -118,14 +139,14 @@ a {
   text-decoration: blink;
 }
 
-.Footer {
+/* .Footer {
   padding: 5xpx;
   text-align: center;
   height: 2em;
   /* background-image: url("./images/footer.png"); */
-}
+/* } */
 
-#welcome button {
+*/ #welcome button {
   padding: 8px;
   margin-left: 1em;
   margin-top: 1em;
@@ -139,18 +160,11 @@ Content H1 {
   padding: 10px;
 }
 
-/* .keyContainer {
-  display: flex;
-  justify-content: space-evenly;
-} */
 
 .error {
   color: red;
 }
 
-/* .game_link {
-  padding-bottom: 20px;
-} */
 .game {
   flex-grow: 0;
   display: inline-block;
@@ -160,6 +174,7 @@ Content H1 {
   flex-grow: 1000;
   display: inline-block;
 }
+
 .creators_details {
   /* height: 50vh;
   width: 50vh; */
