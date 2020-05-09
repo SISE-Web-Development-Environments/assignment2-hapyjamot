@@ -174,7 +174,8 @@ Content H1 {
 
 .gameDisplay {
   margin-bottom: -10px;
-  margin-top: -20px;
+  margin-top: -10px;
+  padding: 2px;
 }
 
 .creators_details {
