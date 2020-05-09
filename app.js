@@ -38,6 +38,8 @@ var eyeOffsetY = -15;
 var hult = true;
 //for the pacman lives
 var pacman_remain;
+// wall color
+var wallColor = "#ffc107";
 //music player
 var musicPlayer;
 var screenRows = 10;
@@ -235,11 +237,11 @@ function Draw() {
   );
   lblLives.value = pacman_remain;
   context.beginPath();
-  context.rect(0,0,620,620);
-  context.fillStyle = "blue"; //color
+  context.rect(0,0,610,610);
+  context.fillStyle = wallColor; //color
   context.fill();
   context.beginPath();
-  context.rect(10,10,600,600);
+  context.rect(10,10,590,590);
   context.fillStyle = "black"; //color
   context.fill();
   for (var i = 0; i < screenRows; i++) {
@@ -277,7 +279,7 @@ function Draw() {
       } else if (board[i][j] == WALL) {
         context.beginPath();
         context.rect(center.x - 30, center.y - 30, 60, 60);
-		context.fillStyle = "blue"; //color
+		context.fillStyle = wallColor; //color
 		context.fill();
       }
       /// extra custom item will look like a red circle

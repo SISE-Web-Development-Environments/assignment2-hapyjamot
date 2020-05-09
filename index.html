@@ -4,11 +4,7 @@
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
-    />
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -21,7 +17,11 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+    />
     <link rel="stylesheet" href="./Styles/modal.css" />
     <link rel="stylesheet" href="./Styles/index.css" />
     <!-- set our script files -->
@@ -56,7 +56,7 @@
       </header>
       <div class="row content">
         <menu class="col-2 menu">
-          <ul>
+          <ul class="row justify-content-md-center">
             <button
               class="btn btn-outline-warning menu_button"
               id="menu_welcome"
@@ -77,21 +77,31 @@
             </button>
           </ul>
           <div id="game_settings">
-            <h3>Game Settings:</h3>
-            <div id="gameKeys">
-              Game keys:
-              <p id="gameKeyUp"></p>
-              <p id="gameKeyDown"></p>
-              <p id="gameKeyLeft"></p>
-              <p id="gameKeyRight"></p>
+            <div class="alert alert-warning">
+              <div id="gameKeys">
+                Game keys:
+                <p id="gameKeyUp"></p>
+                <p id="gameKeyDown"></p>
+                <p id="gameKeyLeft"></p>
+                <p id="gameKeyRight"></p>
+              </div>
             </div>
-            <br />
-            <div id="gameBalls">
-              n. of balls:
-              <span id="gameBalls2"></span>
+            <div class="alert alert-warning">
+              <div id="gameBalls">
+                n. of balls:
+                <span id="gameBalls2"></span>
+              </div>
+              <div id="gameTime">
+                Game time:
+                <span id="gameTime2"></span>
+              </div>
+              <div id="gameMonsters">
+                n. of ghosts:
+                <span id="gameMonsters2"></span>
+              </div>
             </div>
-            <br />
-            <div id="ballsColors">
+
+            <div id="ballsColors" class="alert alert-warning">
               balls colors: <br /><label for="favcolor5">5 points:</label>
               <input
                 type="color"
@@ -113,16 +123,6 @@
                 name="25point"
                 value="#0000ff"
               /><br />
-            </div>
-            <br />
-            <div id="gameTime">
-              Game time:
-              <span id="gameTime2"></span>
-            </div>
-            <br />
-            <div id="gameMonsters">
-              n. of monsters:
-              <span id="gameMonsters2"></span>
             </div>
           </div>
         </menu>
@@ -297,120 +297,174 @@
                 </div>
               </div>
             </div>
-            <div class="page" id="definitions">
-              <p id="after_login_label" hidden>Welcome,</p>
-              <h1>Settings</h1>
-              <div class="keys">
-                <label for="playButtons">Choose game buttons:</label
-                ><br /><br />
-                <div class="keyContainer">
-                  <a href="#keyUp" id="linkUp">Up</a>
-                  <span id="chosenUpConfirmed"></span>
-                </div>
-                <div class="keyContainer">
-                  <a href="#keyDown" id="linkDown">Down</a>
-                  <span id="chosenDownConfirmed"></span>
-                </div>
-                <div class="keyContainer">
-                  <a href="#keyLeft" id="linkLeft">Left</a>
-                  <span id="chosenLeftConfirmed"></span>
-                </div>
-                <div class="keyContainer">
-                  <a href="#keyRight" id="linkRight">Right</a>
-                  <span id="chosenRightConfirmed"></span>
+            <div class="page card text-center card-terminal" id="definitions">
+              <div class="card-header">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-11 title">
+                      Settings
+                    </div>
+                  </div>
                 </div>
               </div>
-              <br />
-              <div class="ranges">
-                <label for="balls">Choose number of balls:</label> <br />
-                <input
-                  type="range"
-                  min="50"
-                  max="90"
-                  value="70"
-                  id="rangeOfBalls"
-                  step="1"
-                  oninput="outputNumber(value)"
-                />
-                <output for="balls" id="balls">70</output>
-                <br />
-                <label for="time">Choose time (in seconds):</label><br />
-                <input
-                  type="range"
-                  min="60"
-                  max="300"
-                  value="180"
-                  id="rangeOfTime"
-                  step="1"
-                  oninput="outputTime(value)"
-                />
-                <output for="time" id="time">180</output>
+              <div class="card-body terminal-like">
+                <div class="container terminal-container-r">
+                  <div id="after_login_label" hidden>Welcome,</div>
+                  <br />
+                  <div class="row justify-content-xl-center">
+                    <div class="keys">
+                      <p for="playButtons">Choose game buttons:</p>
+                      <div class="keyContainer">
+                        <button class="btn btn-outline-warning game-buttons">
+                          <a href="#keyUp" id="linkUp">Up</a>
+                        </button>
+                        <span id="chosenUpConfirmed"></span>
+                      </div>
+
+                      <div class="keyContainer">
+                        <button class="btn btn-outline-warning game-buttons">
+                          <a href="#keyDown" id="linkDown">Down</a>
+                        </button>
+
+                        <span id="chosenDownConfirmed"></span>
+                      </div>
+                      <div class="keyContainer">
+                        <button class="btn btn-outline-warning game-buttons">
+                          <a href="#keyLeft" id="linkLeft">Left</a>
+                        </button>
+                        <span id="chosenLeftConfirmed"></span>
+                      </div>
+                      <div class="keyContainer">
+                        <button class="btn btn-outline-warning game-buttons">
+                          <a href="#keyRight" id="linkRight">Right</a>
+                        </button>
+                        <span id="chosenRightConfirmed"></span>
+                      </div>
+                    </div>
+                    <br />
+                    <div class="ranges">
+                      <label for="balls">Choose number of balls:</label>
+                      <input
+                        type="range"
+                        min="50"
+                        max="90"
+                        value="70"
+                        id="rangeOfBalls"
+                        step="1"
+                        oninput="outputNumber(value)"
+                      />
+                      <output for="balls" id="balls">70</output>
+                      <br />
+                      <label for="time">Choose time (in seconds):</label>
+                      <input
+                        type="range"
+                        min="60"
+                        max="300"
+                        value="180"
+                        id="rangeOfTime"
+                        step="1"
+                        oninput="outputTime(value)"
+                      />
+                      <output for="time" id="time">180</output>
+                    </div>
+                    <br />
+                    <div class="monsters">
+                      <label for="monster">Choose number of monsters:</label>
+                      <select
+                        id="select_monsters"
+                        class="monsters"
+                        name="monsters"
+                      >
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                      </select>
+                    </div>
+                    <br />
+                    <div class="colors">
+                      <label for="colors">Choose balls colors:</label><br />
+                      <label for="favcolor5">5 points:</label>
+                      <input
+                        type="color"
+                        id="favcolor5"
+                        name="favcolor5"
+                        value="#ff0000"
+                      />
+                      <label for="favcolor15">15 points:</label>
+                      <input
+                        type="color"
+                        id="favcolor15"
+                        name="favcolor15"
+                        value="#ffff00"
+                      />
+                      <label for="favcolor25">25 points:</label>
+                      <input
+                        type="color"
+                        id="favcolor25"
+                        name="favcolor25"
+                        value="#0000ff"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <button
+                    id="random"
+                    class="btn btn-outline-success terminal-button"
+                  >
+                    Random
+                  </button>
+                  <button
+                    id="save_settings"
+                    class="btn btn-outline-success terminal-button"
+                  >
+                    Save
+                  </button>
+                </div>
               </div>
-              <br />
-              <div class="monsters">
-                <label for="monster">Choose number of monsters:</label><br />
-                <select id="select_monsters" class="monsters" name="monsters">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                </select>
-              </div>
-              <br />
-              <div class="colors">
-                <label for="colors">Choose balls colors:</label><br />
-                <label for="favcolor5">5 points:</label>
-                <input
-                  type="color"
-                  id="favcolor5"
-                  name="favcolor5"
-                  value="#ff0000"
-                /><br /><br />
-                <label for="favcolor15">15 points:</label>
-                <input
-                  type="color"
-                  id="favcolor15"
-                  name="favcolor15"
-                  value="#ffff00"
-                /><br /><br />
-                <label for="favcolor25">25 points:</label>
-                <input
-                  type="color"
-                  id="favcolor25"
-                  name="favcolor25"
-                  value="#0000ff"
-                /><br /><br />
-              </div>
-              <br />
-              <button id="random">Random</button><br />
-              <button id="save_settings">Save</button>
             </div>
             <div class="page" id="app">
-              <div id="game" class="game">
-                <canvas id="canvas" height="610" width="610"></canvas>
-              </div>
-              <div class="gameDisplay">
-                <output id="player"> Player: </output><br />
-                <button id="switch">Switch Account</button>
-                <button id="newGame">New Game</button>
+              <div class="gameDisplay alert alert-success">
+                <span id="player"> Player: </span><br />
+
                 <!-- custom added label-->
-                <div id="lives">
+                <span id="lives">
                   <label for="lblLives">LIVES:</label>
                   <input id="lblLives" type="text" />
-                </div>
-                <div id="score">
+                </span>
+                <span id="score">
                   <label for="lblScore">SCORE:</label>
                   <input id="lblScore" type="text" />
-                </div>
-                <div id="time">
+                </span>
+                <span id="time">
                   <label for="lblTime">TIME:</label>
                   <input id="lblTime" type="text" />
+                </span>
+              </div>
+              <div class="row justify-content-xl-center play">
+                <div id="game" class="game">
+                  <canvas id="canvas" height="610" width="610"></canvas>
                 </div>
+              </div>
+              <div class="row justify-content-xl-center play">
+                <button
+                  id="switch"
+                  class="btn btn-outline-warning game-buttons"
+                >
+                  Switch Account
+                </button>
+                <button
+                  id="newGame"
+                  class="btn btn-outline-warning game-buttons"
+                >
+                  New Game
+                </button>
               </div>
             </div>
           </div>
           <div id="modal_container">
-            <div id="about" class="modal">
+            <div id="about" class="modal about-modal">
               <p>Sapir Shamay --- Haim Reyes</p>
               <p>We used the following jQuery plugins:</p>
               <ul>
@@ -423,25 +477,26 @@
                 <li>second</li>
               </ul>
             </div>
-            <div id="keyUp" class="modal" tabindex="0" autofocus>
+
+            <div id="keyUp" class="modal custom-modal" tabindex="0" autofocus>
               <p>Please press a key</p>
               <p id="chosenUp"></p>
               <a href="#" id="confirmKeyUp">confirm</a>
               <span class="error" id="errorUp"></span>
             </div>
-            <div id="keyDown" class="modal" tabindex="0">
+            <div id="keyDown" class="modal custom-modal" tabindex="0">
               <p>Please press a key</p>
               <p id="chosenDown"></p>
               <a href="#" id="confirmKeyDown">confirm</a>
               <span class="error" id="errorDown"></span>
             </div>
-            <div id="keyLeft" class="modal" tabindex="0">
+            <div id="keyLeft" class="modal custom-modal" tabindex="0">
               <p>Please press a key</p>
               <p id="chosenLeft"></p>
               <a href="#" id="confirmKeyLeft">confirm</a>
               <span class="error" id="errorLeft"></span>
             </div>
-            <div id="keyRight" class="modal" tabindex="0">
+            <div id="keyRight" class="modal custom-modal" tabindex="0">
               <p>Please press a key</p>
               <p id="chosenRight"></p>
               <a href="#" id="confirmKeyRight">confirm</a>
