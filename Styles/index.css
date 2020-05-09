@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "pacmanFont";
-  src: url('../fonts/PAC-FONT.TTF') format("truetype");
+  src: url("../fonts/PAC-FONT.TTF") format("truetype");
 }
 
 /* 
@@ -19,21 +19,23 @@
   padding: 15px;
 } */
 .no-margin {
-  margin: 0
+  margin: 0;
 }
 
 .header {
-  font-family: 'pacmanFont';
+  font-family: "pacmanFont";
   font-size: 100px;
   color: #e5bb2a;
 }
 
 .body {
   background-image: url("./images/PacmanHeader.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .content {
-  height: calc(100% - 13em);
+  height: 78vh;
 }
 
 .col-1 {
@@ -90,7 +92,6 @@ body {
   height: 100%;
   margin: 0;
 }
-
 
 .crop {
   width: 600px;
@@ -160,7 +161,6 @@ Content H1 {
   padding: 10px;
 }
 
-
 .error {
   color: red;
 }
@@ -186,4 +186,13 @@ Content H1 {
 
 #game_settings {
   background-color: white;
+}
+
+.menu_button {
+  width: 7em;
+  margin-bottom: 1em;
+}
+
+.menu_button a {
+  color: #ffc107;
 }
