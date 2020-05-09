@@ -18,6 +18,7 @@ const PILL = 3;
 const BALL_5 = 5;
 const BALL_15 = 15;
 const BALL_25 = 25;
+const blockSize = 60;
 //ball counters
 var ball5Counter;
 var ball15Counter;
@@ -26,6 +27,9 @@ var ball25Counter;
 var color5;
 var color15;
 var color25;
+//movement directions
+var directionXpacman=0;
+var directionYpacman=0;
 //
 var initial_angle = 0.15 * Math.PI;
 var eyeOffsetX = 5;
@@ -72,18 +76,22 @@ function Start() {
 	if(monsters.length>0){
 		monsters[0].i=0;
 		monsters[0].j=0;
+		monsters[0].color = "pink";
 	}	
 	if(monsters.length>1){
 		monsters[1].i=screenRows - 1;
 		monsters[1].j=0;
+		monsters[1].color = "orange";
 	}
 	if(monsters.length>2){
 		monsters[2].i=screenRows -1;
 		monsters[2].j=screenCols - 1;
+		monsters[2].color = "red";
 	}	
 	if(monsters.length>3){
 		monsters[3].i=0;
 		monsters[3].j=screenCols - 1;
+		monsters[3].color = "green";
 	}
 	score = 0;
 	pac_color = "yellow";
@@ -223,13 +231,13 @@ function GetKeyPressed() {
 function Draw() {
 	canvas.width = canvas.width; //clean board
 	lblScore.value = score;
-	lblTime.value = time_elapsed;
+	lblTime.value = Math.floor(document.getElementById("rangeOfTime").value - time_elapsed);
 	lblLives.value = pacman_remain;
 	for (var i = 0; i < screenRows; i++) {
 		for (var j = 0; j < screenCols; j++) {
 			var center = new Object();
-			center.x = i * 60 + 30;
-			center.y = j * 60 + 30;
+			center.x = i * blockSize + blockSize*0.5;
+			center.y = j * blockSize + blockSize*0.5;
 			if (board[i][j] == PACMAN) {	
 				context.beginPath();
 				context.arc(center.x, center.y, 30, initial_angle, initial_angle + 1.65 * Math.PI); // half circle
@@ -298,19 +306,26 @@ function Draw() {
 			}
 			//check sprite_board
 			if (sprite_board[i][j] == MONSTER) {
-				// var img = new Image();
-				// img.onload = function() {
-    			// 	context.drawImage(img, center.x-10, center.y-10, 40, 40);
-				// }			
-				// img.src = "./Styles/images/Pacman_ghost.svg";
+				var monsterNumber = getMonsterInPosotion(i,j);
+				var monsterImage = new Image(1,1);
+				monsterImage.setAttribute('x',center.x-10);
+				monsterImage.setAttribute('y',center.y-10);
+				monsterImage.setAttribute('width',4);
+				monsterImage.setAttribute('height',4);
+				context.beginPath();
+				monsterImage.src = "./Styles/images/Pacman_ghost"+monsterNumber+".svg";
+				//monsterImage.onload = function() {
+				context.drawImage(monsterImage, center.x-10, center.y-10,1,1);
+				//}			
+				context.fill();
 				context.beginPath();
 				context.arc(center.x, center.y, 30, Math.PI, 0*Math.PI); // half circle
 				context.lineTo(center.x, center.y);
-				context.fillStyle = "green"; //color
+				context.fillStyle = monsters[monsterNumber].color; //color
 				context.fill();
 				context.beginPath();
 				context.rect(center.x-30, center.y, 60, 30);
-				context.fillStyle = "pink"; //color
+				context.fillStyle = monsters[monsterNumber].color; //color
 				context.fill();
 				context.beginPath();
 				context.arc(center.x + 10, center.y - 10, 7, 0, 2 * Math.PI); // circle
@@ -355,7 +370,9 @@ function UpdatePosition() {
 			initial_angle = 1.65 * Math.PI;
 			eyeOffsetX = -15;
 			eyeOffsetY = -5;
-			shape.j--;
+			//shape.j--;
+			directionYpacman = -1;
+			directionXpacman = 0;
 		}
 	}
 	if (x == 2) {
@@ -364,7 +381,9 @@ function UpdatePosition() {
 			initial_angle = 0.75 * Math.PI;
 			eyeOffsetX = -15;
 			eyeOffsetY = 5;
-			shape.j++;
+			//shape.j++;
+			directionYpacman = 1;
+			directionXpacman = 0;
 		}
 	}
 	if (x == 3) {
@@ -373,7 +392,9 @@ function UpdatePosition() {
 			initial_angle = 1.15 * Math.PI;
 			eyeOffsetX = -5;
 			eyeOffsetY = -15;
-			shape.i--;
+			//shape.i--;
+			directionXpacman = -1;
+			directionYpacman = 0;
 		}
 	}
 	if (x == 4) {
@@ -382,14 +403,58 @@ function UpdatePosition() {
 			initial_angle = 0.15 * Math.PI;
 			eyeOffsetX = 5;
 			eyeOffsetY = -15;
-			shape.i++;
+			//shape.i++;
+			directionXpacman = 1;
+			directionYpacman = 0;
 		}
 	}
-	
+	if(directionXpacman!=0){
+		switch(shape.i){
+			case 0:{
+					if(directionXpacman==-1)
+						directionXpacman=0;
+					break;
+					}
+			case 9:{
+				if(directionXpacman==1)
+					directionXpacman=0;
+				break;
+			}
+			default:{
+				if((board[shape.i-1][shape.j]==WALL&&directionXpacman==-1)||
+					(board[shape.i+1][shape.j]==WALL&&directionXpacman==1))
+					directionXpacman=0;
+				break;
+			}
+		}
+	}
+	if(directionYpacman!=0){
+		switch(shape.j){
+			case 0:{
+					if(directionYpacman==-1)
+						directionYpacman=0;
+					break;
+					}
+			case 9:{
+				if(directionYpacman==1)
+					directionYpacman=0;
+				break;
+			}
+			default:{
+				if((board[shape.i][shape.j-1]==WALL&&directionYpacman==-1)||
+					(board[shape.i][shape.j+1]==WALL&&directionYpacman==1))
+					directionYpacman=0;
+				break;
+			}
+		}
+	}	
+	//move pacman according to the last key pressed
+	shape.i+=directionXpacman;
+	shape.j+=directionYpacman;
+	//check the board
 	//increment the lives counter
 	if(board[shape.i][shape.j] == PILL){
 		pacman_remain++;
-		//lblLives.value = pacman_remain;
 	}
 	//check for the different types of balls 
 	else if(board[shape.i][shape.j] == BALL_5){
@@ -399,7 +464,7 @@ function UpdatePosition() {
 	}else if(board[shape.i][shape.j] == BALL_25){
 		score+=25;
 	}
-	//check for the different types of sprites 
+	//check for the different types of sprites on sprite_board
 	if(sprite_board[shape.i][shape.j] == MONSTER){
 		pacman_remain--;
 		score-=10;
@@ -446,9 +511,7 @@ function UpdatePosition() {
 			window.alert("Winner!");
 		}
 	}
-	else {
 		Draw();
-	}
 }
 // default id's "favcolor5","favcolor15","favcolor25"
 function setBallColors(){
@@ -609,4 +672,15 @@ function checkForPoints(){
 		}
 	}
 	return false;
+}
+function getMonsterInPosotion(i,j)
+{
+	if(monsters==null||monsters.length==0)
+		return -1; 
+	for(var k=0;k<monsters.length;k++)
+	{
+		if(monsters[k].i==i&&monsters[k].j==j)
+			return k;
+	}
+	return -1;
 }
