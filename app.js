@@ -228,16 +228,25 @@ function GetKeyPressed() {
 
 function Draw() {
   canvas.width = canvas.width; //clean board
+  context.scale(1,1);
   lblScore.value = score;
   lblTime.value = Math.floor(
     document.getElementById("rangeOfTime").value - time_elapsed
   );
   lblLives.value = pacman_remain;
+  context.beginPath();
+  context.rect(0,0,620,620);
+  context.fillStyle = "blue"; //color
+  context.fill();
+  context.beginPath();
+  context.rect(10,10,600,600);
+  context.fillStyle = "black"; //color
+  context.fill();
   for (var i = 0; i < screenRows; i++) {
     for (var j = 0; j < screenCols; j++) {
       var center = new Object();
-      center.x = i * 60 + 30;
-      center.y = j * 60 + 30;
+      center.x = 10 + i * 60 + 30;
+      center.y = 10 + j * 60 + 30;
       if (board[i][j] == PACMAN) {
         context.beginPath();
         context.arc(
@@ -267,9 +276,9 @@ function Draw() {
         context.fill();
       } else if (board[i][j] == WALL) {
         context.beginPath();
-        context.rect(center.x - 30, center.y - 30, 60, 20);
-        context.fillStyle = "grey"; //color
-        context.fill();
+        context.rect(center.x - 30, center.y - 30, 60, 60);
+		context.fillStyle = "blue"; //color
+		context.fill();
       }
       /// extra custom item will look like a red circle
       else if (board[i][j] == PILL) {
@@ -362,7 +371,7 @@ function Draw() {
         context.arc(center.x, center.y, 7, 0, 2 * Math.PI); // circle
         context.fillStyle = "red"; //color
         context.fill();
-      }
+	  }
     }
   }
 }
