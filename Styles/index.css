@@ -128,7 +128,9 @@ body {
 .menu li:hover {
   background-color: #0099cc;
 }
-
+.nice-fa {
+  font-size: 25px;
+}
 .keys a {
   padding: 5px;
   background-color: #33b5e5;
@@ -195,4 +197,13 @@ Content H1 {
 
 .menu_button a {
   color: #ffc107;
+}
+
+.alert-black {
+  background-color: #000000;
+}
+.footer {
+  font-family: "pacmanFont";
+  font-size: 20px;
+  color: #5a2773;
 }
