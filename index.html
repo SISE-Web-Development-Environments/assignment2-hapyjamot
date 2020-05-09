@@ -56,7 +56,7 @@
       </header>
       <div class="row content">
         <menu class="col-2 menu">
-          <ul>
+          <ul class="row justify-content-md-center">
             <button
               class="btn btn-outline-warning menu_button"
               id="menu_welcome"
@@ -315,20 +315,29 @@
                     <div class="keys">
                       <p for="playButtons">Choose game buttons:</p>
                       <div class="keyContainer">
-                        <a href="#keyUp" id="linkUp">Up</a>
+                        <button class="btn btn-outline-warning game-buttons">
+                          <a href="#keyUp" id="linkUp">Up</a>
+                        </button>
                         <span id="chosenUpConfirmed"></span>
                       </div>
 
                       <div class="keyContainer">
-                        <a href="#keyDown" id="linkDown">Down</a>
+                        <button class="btn btn-outline-warning game-buttons">
+                          <a href="#keyDown" id="linkDown">Down</a>
+                        </button>
+
                         <span id="chosenDownConfirmed"></span>
                       </div>
                       <div class="keyContainer">
-                        <a href="#keyLeft" id="linkLeft">Left</a>
+                        <button class="btn btn-outline-warning game-buttons">
+                          <a href="#keyLeft" id="linkLeft">Left</a>
+                        </button>
                         <span id="chosenLeftConfirmed"></span>
                       </div>
                       <div class="keyContainer">
-                        <a href="#keyRight" id="linkRight">Right</a>
+                        <button class="btn btn-outline-warning game-buttons">
+                          <a href="#keyRight" id="linkRight">Right</a>
+                        </button>
                         <span id="chosenRightConfirmed"></span>
                       </div>
                     </div>
