@@ -173,8 +173,8 @@ Content H1 {
 }
 
 .gameDisplay {
-  flex-grow: 1000;
-  display: inline-block;
+  margin-bottom: -10px;
+  margin-top: -20px;
 }
 
 .creators_details {
@@ -285,5 +285,10 @@ Content H1 {
 }
 
 .play {
-  margin: 30px;
+  margin-top: 10px;
+}
+
+.game-buttons {
+  margin-left: 2em;
+  margin-bottom: 0em;
 }
