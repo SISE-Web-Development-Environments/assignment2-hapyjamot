@@ -62,6 +62,7 @@ function stopGame() {
 }
 
 function Play() {
+  var canvas = document.getElementById("canvas");
   context = canvas.getContext("2d");
   Start();
 }
@@ -69,6 +70,8 @@ function Play() {
 function Start() {
   board = new Array();
   sprite_board = new Array();
+  const cherry = new Image();
+  cherry.src = "./Styles/images/cherry.png";
   //set the amount of monsters
   for(var i=0;i<numberOfMonsters;i++){
 	monsters[i] = new Object();
@@ -269,8 +272,9 @@ function Draw() {
         context.fillStyle = "grey"; //color
         context.fill();
       }
-      /// extra custom item will look like a red circle
+      // extra custom item will look like a red circle
       else if (board[i][j] == PILL) {
+        // context.drawImage(cherry, center.x + 10, center.y + 10, 30, 30);
         context.beginPath();
         context.arc(center.x, center.y, 20, 0, 2 * Math.PI); //circle
         context.fillStyle = "red"; //color
@@ -280,7 +284,7 @@ function Draw() {
         context.fillStyle = "white"; //color
         context.fill();
       }
-      /// the different color balls
+      // the different color balls
       else if (board[i][j] == BALL_5) {
         context.beginPath();
         context.arc(center.x, center.y, 7, 0, 2 * Math.PI); //circle

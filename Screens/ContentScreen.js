@@ -51,10 +51,10 @@ function settingToggle(value) {
 }
 
 function settingsShow() {
-  $("#gameKeyUp").text("Up:".concat(chosenKeys.keyUp));
-  $("#gameKeyDown").text("Down:".concat(chosenKeys.keyDown));
-  $("#gameKeyLeft").text("Left:".concat(chosenKeys.keyLeft));
-  $("#gameKeyRight").text("Right:".concat(chosenKeys.keyRight));
+  $("#gameKeyUp").text(chosenKeys.keyUp);
+  $("#gameKeyDown").text(chosenKeys.keyDown);
+  $("#gameKeyLeft").text(chosenKeys.keyLeft);
+  $("#gameKeyRight").text(chosenKeys.keyRight);
   $("#gameBalls2").text(ballsSettings);
   $("#5point").prop("value", color5);
   $("#15point").prop("value", color15);

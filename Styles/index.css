@@ -72,13 +72,13 @@ body {
 }
 
 .crop {
-  width: 600px;
+  width: 700px;
   height: 150px;
   overflow: hidden;
 }
 
 .crop img {
-  width: 700px;
+  width: 800px;
   height: 300px;
   margin: -10px -150px 0 -10px;
 }
