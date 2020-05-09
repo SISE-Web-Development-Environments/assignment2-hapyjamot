@@ -2,9 +2,9 @@
 
 Game in: https://sise-web-development-environments.github.io/assignment2-hapyjamot/
 
-## Haim Reyes 319510475
+### Haim Reyes 319510475
 
-## Sapir Shamay 305649444
+### Sapir Shamay 305649444
 
 ### :rocket: New Feature
 
