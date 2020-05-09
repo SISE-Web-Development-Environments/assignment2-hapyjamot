@@ -10,6 +10,7 @@ $(document).ready(function () {
     messageToggle(true);
   });
   $("#send_button").click(function () {
+    $("#player").text("Player: ");
     authenticate(
       document.getElementById("login_username_id").value,
       document.getElementById("login_password_id").value
