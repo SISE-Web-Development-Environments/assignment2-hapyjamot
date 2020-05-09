@@ -3,6 +3,9 @@
 Haim Reyes 319510475
 Sapir Shamay 305649444
 
+Haim Reyes 319510475
+Sapir Shamay 305649444
+
 ### :rocket: New Feature
 
 - 1.sometimes it may look like a ghost "disapears" but it is actually behind another ghost.
