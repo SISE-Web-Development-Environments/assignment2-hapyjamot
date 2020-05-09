@@ -15,6 +15,13 @@ $(document).ready(function () {
   //set content
   $(".page").hide();
   $("#welcome").show("fast", "swing");
+  consoleText(
+    [
+      "Sign-in/register and then select your preferred settings to start playing. All you need to do is to collect as many points as fast as possible. <br>The different balls have different scores, some worth more then others. Don't get touched by the ghosts and don't run out of time.<br>Good Luck!",
+    ],
+    "text",
+    ["#7cfc00"]
+  );
   //set welcome page
   $("#welcome_to_login").click(function () {
     showInContentByID("login");

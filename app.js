@@ -28,8 +28,8 @@ var color5;
 var color15;
 var color25;
 //movement directions
-var directionXpacman=0;
-var directionYpacman=0;
+var directionXpacman = 0;
+var directionYpacman = 0;
 //
 var initial_angle = 0.15 * Math.PI;
 var eyeOffsetX = 5;
@@ -70,30 +70,30 @@ function Start() {
   board = new Array();
   sprite_board = new Array();
   //set the amount of monsters
-  for(var i=0;i<numberOfMonsters;i++){
-	monsters[i] = new Object();
-}
-if(monsters.length>0){
-	monsters[0].i=0;
-	monsters[0].j=0;
-	monsters[0].color = "pink";
-}	
-if(monsters.length>1){
-	monsters[1].i=screenRows - 1;
-	monsters[1].j=0;
-	monsters[1].color = "orange";
-}
-if(monsters.length>2){
-	monsters[2].i=screenRows -1;
-	monsters[2].j=screenCols - 1;
-	monsters[2].color = "red";
-}	
-if(monsters.length>3){
-	monsters[3].i=0;
-	monsters[3].j=screenCols - 1;
-	monsters[3].color = "green";
-}
-	
+  for (var i = 0; i < numberOfMonsters; i++) {
+    monsters[i] = new Object();
+  }
+  if (monsters.length > 0) {
+    monsters[0].i = 0;
+    monsters[0].j = 0;
+    monsters[0].color = "pink";
+  }
+  if (monsters.length > 1) {
+    monsters[1].i = screenRows - 1;
+    monsters[1].j = 0;
+    monsters[1].color = "orange";
+  }
+  if (monsters.length > 2) {
+    monsters[2].i = screenRows - 1;
+    monsters[2].j = screenCols - 1;
+    monsters[2].color = "red";
+  }
+  if (monsters.length > 3) {
+    monsters[3].i = 0;
+    monsters[3].j = screenCols - 1;
+    monsters[3].color = "green";
+  }
+
   score = 0;
   pac_color = "yellow";
   var cnt = 100;
@@ -229,7 +229,9 @@ function GetKeyPressed() {
 function Draw() {
   canvas.width = canvas.width; //clean board
   lblScore.value = score;
-  lblTime.value = Math.floor(document.getElementById("rangeOfTime").value - time_elapsed);
+  lblTime.value = Math.floor(
+    document.getElementById("rangeOfTime").value - time_elapsed
+  );
   lblLives.value = pacman_remain;
   for (var i = 0; i < screenRows; i++) {
     for (var j = 0; j < screenCols; j++) {
@@ -314,35 +316,36 @@ function Draw() {
       }
       //check sprite_board
       if (sprite_board[i][j] == MONSTER) {
-		var monsterNumber = getMonsterInPosotion(i,j);
-		var monsterImage = new Image(1,1);
-		monsterImage.setAttribute('x',center.x-10);
-		monsterImage.setAttribute('y',center.y-10);
-		monsterImage.setAttribute('width',4);
-		monsterImage.setAttribute('height',4);
-		context.beginPath();
-		monsterImage.src = "./Styles/images/Pacman_ghost"+monsterNumber+".svg";
-		//monsterImage.onload = function() {
-		context.drawImage(monsterImage, center.x-10, center.y-10,1,1);
-		//}			
-		context.fill();
-		context.beginPath();
-		context.arc(center.x, center.y, 30, Math.PI, 0*Math.PI); // half circle
-		context.lineTo(center.x, center.y);
-		context.fillStyle = monsters[monsterNumber].color; //color
-		context.fill();
-		context.beginPath();
-		context.rect(center.x-30, center.y, 60, 30);
-		context.fillStyle = monsters[monsterNumber].color; //color
-		context.fill();
-		context.beginPath();
-		context.arc(center.x + 10, center.y - 10, 7, 0, 2 * Math.PI); // circle
-		context.fillStyle = "white"; //color
-		context.fill();
-		context.beginPath();
-		context.arc(center.x - 10, center.y - 10, 7, 0, 2 * Math.PI); // circle
-		context.fillStyle = "white"; //color
-		context.fill();
+        var monsterNumber = getMonsterInPosotion(i, j);
+        var monsterImage = new Image(1, 1);
+        monsterImage.setAttribute("x", center.x - 10);
+        monsterImage.setAttribute("y", center.y - 10);
+        monsterImage.setAttribute("width", 4);
+        monsterImage.setAttribute("height", 4);
+        context.beginPath();
+        monsterImage.src =
+          "./Styles/images/Pacman_ghost" + monsterNumber + ".svg";
+        //monsterImage.onload = function() {
+        context.drawImage(monsterImage, center.x - 10, center.y - 10, 1, 1);
+        //}
+        context.fill();
+        context.beginPath();
+        context.arc(center.x, center.y, 30, Math.PI, 0 * Math.PI); // half circle
+        context.lineTo(center.x, center.y);
+        context.fillStyle = monsters[monsterNumber].color; //color
+        context.fill();
+        context.beginPath();
+        context.rect(center.x - 30, center.y, 60, 30);
+        context.fillStyle = monsters[monsterNumber].color; //color
+        context.fill();
+        context.beginPath();
+        context.arc(center.x + 10, center.y - 10, 7, 0, 2 * Math.PI); // circle
+        context.fillStyle = "white"; //color
+        context.fill();
+        context.beginPath();
+        context.arc(center.x - 10, center.y - 10, 7, 0, 2 * Math.PI); // circle
+        context.fillStyle = "white"; //color
+        context.fill();
       } else if (
         sprite_board[i][j] == MOVING_POINT &&
         moving_point.valid == true
@@ -365,104 +368,104 @@ function Draw() {
 }
 
 function UpdatePosition() {
-	board[shape.i][shape.j] = 0;
-	if(!hult){
-		for(var i=0;i<monsters.length;i++){
-			sprite_board[monsters[i].i][monsters[i].j] = 0;
-			moveMonster(i);
-			sprite_board[monsters[i].i][monsters[i].j] = MONSTER;
-		}
-		movePoint();	
-	}
-	var x = GetKeyPressed();
-	if (x == 1) {
-		if (shape.j > 0 && board[shape.i][shape.j - 1] != WALL) {
-			//move up
-			initial_angle = 1.65 * Math.PI;
-			eyeOffsetX = -15;
-			eyeOffsetY = -5;
-			//shape.j--;
-			directionYpacman = -1;
-			directionXpacman = 0;
-		}
-	}
-	if (x == 2) {
-		if (shape.j < screenCols - 1 && board[shape.i][shape.j + 1] != WALL) {
-			//move down
-			initial_angle = 0.75 * Math.PI;
-			eyeOffsetX = -15;
-			eyeOffsetY = 5;
-			//shape.j++;
-			directionYpacman = 1;
-			directionXpacman = 0;
-		}
-	}
-	if (x == 3) {
-		if (shape.i > 0 && board[shape.i - 1][shape.j] != WALL) {
-			//move left
-			initial_angle = 1.15 * Math.PI;
-			eyeOffsetX = -5;
-			eyeOffsetY = -15;
-			//shape.i--;
-			directionXpacman = -1;
-			directionYpacman = 0;
-		}
-	}
-	if (x == 4) {
-		if (shape.i < (screenRows - 1) && board[shape.i + 1][shape.j] != WALL) {
-			//move right
-			initial_angle = 0.15 * Math.PI;
-			eyeOffsetX = 5;
-			eyeOffsetY = -15;
-			//shape.i++;
-			directionXpacman = 1;
-			directionYpacman = 0;
-		}
-	}
-	if(directionXpacman!=0){
-		switch(shape.i){
-			case 0:{
-					if(directionXpacman==-1)
-						directionXpacman=0;
-					break;
-					}
-			case 9:{
-				if(directionXpacman==1)
-					directionXpacman=0;
-				break;
-			}
-			default:{
-				if((board[shape.i-1][shape.j]==WALL&&directionXpacman==-1)||
-					(board[shape.i+1][shape.j]==WALL&&directionXpacman==1))
-					directionXpacman=0;
-				break;
-			}
-		}
-	}
-	if(directionYpacman!=0){
-		switch(shape.j){
-			case 0:{
-					if(directionYpacman==-1)
-						directionYpacman=0;
-					break;
-					}
-			case 9:{
-				if(directionYpacman==1)
-					directionYpacman=0;
-				break;
-			}
-			default:{
-				if((board[shape.i][shape.j-1]==WALL&&directionYpacman==-1)||
-					(board[shape.i][shape.j+1]==WALL&&directionYpacman==1))
-					directionYpacman=0;
-				break;
-			}
-		}
-	}	
-	//move pacman according to the last key pressed
-	shape.i+=directionXpacman;
-	shape.j+=directionYpacman;
-	
+  board[shape.i][shape.j] = 0;
+  if (!hult) {
+    for (var i = 0; i < monsters.length; i++) {
+      sprite_board[monsters[i].i][monsters[i].j] = 0;
+      moveMonster(i);
+      sprite_board[monsters[i].i][monsters[i].j] = MONSTER;
+    }
+    movePoint();
+  }
+  var x = GetKeyPressed();
+  if (x == 1) {
+    if (shape.j > 0 && board[shape.i][shape.j - 1] != WALL) {
+      //move up
+      initial_angle = 1.65 * Math.PI;
+      eyeOffsetX = -15;
+      eyeOffsetY = -5;
+      //shape.j--;
+      directionYpacman = -1;
+      directionXpacman = 0;
+    }
+  }
+  if (x == 2) {
+    if (shape.j < screenCols - 1 && board[shape.i][shape.j + 1] != WALL) {
+      //move down
+      initial_angle = 0.75 * Math.PI;
+      eyeOffsetX = -15;
+      eyeOffsetY = 5;
+      //shape.j++;
+      directionYpacman = 1;
+      directionXpacman = 0;
+    }
+  }
+  if (x == 3) {
+    if (shape.i > 0 && board[shape.i - 1][shape.j] != WALL) {
+      //move left
+      initial_angle = 1.15 * Math.PI;
+      eyeOffsetX = -5;
+      eyeOffsetY = -15;
+      //shape.i--;
+      directionXpacman = -1;
+      directionYpacman = 0;
+    }
+  }
+  if (x == 4) {
+    if (shape.i < screenRows - 1 && board[shape.i + 1][shape.j] != WALL) {
+      //move right
+      initial_angle = 0.15 * Math.PI;
+      eyeOffsetX = 5;
+      eyeOffsetY = -15;
+      //shape.i++;
+      directionXpacman = 1;
+      directionYpacman = 0;
+    }
+  }
+  if (directionXpacman != 0) {
+    switch (shape.i) {
+      case 0: {
+        if (directionXpacman == -1) directionXpacman = 0;
+        break;
+      }
+      case 9: {
+        if (directionXpacman == 1) directionXpacman = 0;
+        break;
+      }
+      default: {
+        if (
+          (board[shape.i - 1][shape.j] == WALL && directionXpacman == -1) ||
+          (board[shape.i + 1][shape.j] == WALL && directionXpacman == 1)
+        )
+          directionXpacman = 0;
+        break;
+      }
+    }
+  }
+  if (directionYpacman != 0) {
+    switch (shape.j) {
+      case 0: {
+        if (directionYpacman == -1) directionYpacman = 0;
+        break;
+      }
+      case 9: {
+        if (directionYpacman == 1) directionYpacman = 0;
+        break;
+      }
+      default: {
+        if (
+          (board[shape.i][shape.j - 1] == WALL && directionYpacman == -1) ||
+          (board[shape.i][shape.j + 1] == WALL && directionYpacman == 1)
+        )
+          directionYpacman = 0;
+        break;
+      }
+    }
+  }
+  //move pacman according to the last key pressed
+  shape.i += directionXpacman;
+  shape.j += directionYpacman;
+
   //increment the lives counter
   if (board[shape.i][shape.j] == PILL) {
     pacman_remain++;
@@ -487,8 +490,8 @@ function UpdatePosition() {
     board[shape.i][shape.j] = PACMAN;
     if (pacman_remain == 0 && hult == false) {
       hult = true;
-	  window.clearInterval(interval);
-	  musicPlayer.pause();
+      window.clearInterval(interval);
+      musicPlayer.pause();
       alert("Loser!");
     }
   } else if (sprite_board[shape.i][shape.j] == MOVING_POINT) {
@@ -504,8 +507,8 @@ function UpdatePosition() {
     pac_color = "green";
   }
   if (time_elapsed > document.getElementById("rangeOfTime").value) {
-	hult = true;
-	musicPlayer.pause();
+    hult = true;
+    musicPlayer.pause();
     window.clearInterval(interval);
     if (score <= 100) {
       window.alert("You are better Then " + score + " points!!!");
@@ -513,8 +516,8 @@ function UpdatePosition() {
       window.alert("Winner!");
     }
   } else if (!checkForPoints()) {
-	hult = true;
-	musicPlayer.pause();
+    hult = true;
+    musicPlayer.pause();
     window.clearInterval(interval);
     if (score <= 100) {
       window.alert("You are better Then " + score + " points!!!");
@@ -522,7 +525,7 @@ function UpdatePosition() {
       window.alert("Winner!");
     }
   }
-    Draw();
+  Draw();
 }
 // default id's "favcolor5","favcolor15","favcolor25"
 function setBallColors() {
@@ -688,31 +691,28 @@ function movePoint() {
   sprite_board[moving_point.i][moving_point.j] = MOVING_POINT;
 }
 
-function checkForPoints(){
-	for(let i=0;i<screenRows;i++){
-		for(let j=0;j<screenCols;j++){
-			if(
-				board[i][j]==PILL||
-				board[i][j]==BALL_5||
-				board[i][j]==BALL_15||
-				board[i][j]==BALL_25||
-				sprite_board[i][j]==MOVING_POINT){
-					return true;
-				}
-		}
-	}
-	return false;
+function checkForPoints() {
+  for (let i = 0; i < screenRows; i++) {
+    for (let j = 0; j < screenCols; j++) {
+      if (
+        board[i][j] == PILL ||
+        board[i][j] == BALL_5 ||
+        board[i][j] == BALL_15 ||
+        board[i][j] == BALL_25 ||
+        sprite_board[i][j] == MOVING_POINT
+      ) {
+        return true;
+      }
+    }
+  }
+  return false;
 }
-function getMonsterInPosotion(i,j)
-{
-	if(monsters==null||monsters.length==0)
-		return -1; 
-	for(var k=0;k<monsters.length;k++)
-	{
-		if(monsters[k].i==i&&monsters[k].j==j)
-			return k;
-	}
-	return -1;
+function getMonsterInPosotion(i, j) {
+  if (monsters == null || monsters.length == 0) return -1;
+  for (var k = 0; k < monsters.length; k++) {
+    if (monsters[k].i == i && monsters[k].j == j) return k;
+  }
+  return -1;
 }
 function checkForPoints() {
   for (let i = 0; i < screenRows; i++) {

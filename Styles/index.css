@@ -201,9 +201,42 @@ Content H1 {
 
 .alert-black {
   background-color: #000000;
+  margin-left: 10.8em;
 }
 .footer {
   font-family: "pacmanFont";
   font-size: 20px;
   color: #5a2773;
+}
+.centify {
+  margin-left: 1.8em;
+}
+.terminal-like {
+  color: #7cfc00;
+  background-color: #000000;
+}
+.card-terminal {
+  width: 34em;
+}
+.console-underscore {
+  display: inline-block;
+  position: relative;
+  top: -0.14em;
+  left: 2px;
+}
+.hidden {
+  opacity: 0;
+}
+.console-container {
+  color: white;
+  top: 0;
+  height: 8em;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.terminal-button {
+  border-color: #7cfc00;
+  color: #7cfc00;
 }
