@@ -316,27 +316,33 @@
                       <p for="playButtons">Choose game buttons:</p>
                       <div class="keyContainer">
                         <button class="btn btn-outline-warning game-buttons">
-                          <a href="#keyUp" id="linkUp">Up</a>
+                          <a href="#keyUp" id="linkUp" class="controls">Up</a>
                         </button>
                         <span id="chosenUpConfirmed"></span>
                       </div>
 
                       <div class="keyContainer">
                         <button class="btn btn-outline-warning game-buttons">
-                          <a href="#keyDown" id="linkDown">Down</a>
+                          <a href="#keyDown" id="linkDown" class="controls"
+                            >Down</a
+                          >
                         </button>
 
                         <span id="chosenDownConfirmed"></span>
                       </div>
                       <div class="keyContainer">
                         <button class="btn btn-outline-warning game-buttons">
-                          <a href="#keyLeft" id="linkLeft">Left</a>
+                          <a href="#keyLeft" id="linkLeft" class="controls"
+                            >Left</a
+                          >
                         </button>
                         <span id="chosenLeftConfirmed"></span>
                       </div>
                       <div class="keyContainer">
                         <button class="btn btn-outline-warning game-buttons">
-                          <a href="#keyRight" id="linkRight">Right</a>
+                          <a href="#keyRight" id="linkRight" class="controls"
+                            >Right</a
+                          >
                         </button>
                         <span id="chosenRightConfirmed"></span>
                       </div>
@@ -408,7 +414,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer footer-space">
                   <button
                     id="random"
                     class="btn btn-outline-success terminal-button"
@@ -473,33 +479,34 @@
               </ul>
               <p>The difficulties we faced:</p>
               <ul>
-                <li>first</li>
-                <li>second</li>
+                <li>Design with CSS</li>
+                <li>Game Resolution</li>
+                <li>Ghost random movement</li>
               </ul>
             </div>
 
             <div id="keyUp" class="modal custom-modal" tabindex="0" autofocus>
               <p>Please press a key</p>
               <p id="chosenUp"></p>
-              <a href="#" id="confirmKeyUp">confirm</a>
+              <a href="#" id="confirmKeyUp" class="confirmLink">confirm</a>
               <span class="error" id="errorUp"></span>
             </div>
             <div id="keyDown" class="modal custom-modal" tabindex="0">
               <p>Please press a key</p>
               <p id="chosenDown"></p>
-              <a href="#" id="confirmKeyDown">confirm</a>
+              <a href="#" id="confirmKeyDown" class="confirmLink">confirm</a>
               <span class="error" id="errorDown"></span>
             </div>
             <div id="keyLeft" class="modal custom-modal" tabindex="0">
               <p>Please press a key</p>
               <p id="chosenLeft"></p>
-              <a href="#" id="confirmKeyLeft">confirm</a>
+              <a href="#" id="confirmKeyLeft" class="confirmLink">confirm</a>
               <span class="error" id="errorLeft"></span>
             </div>
             <div id="keyRight" class="modal custom-modal" tabindex="0">
               <p>Please press a key</p>
               <p id="chosenRight"></p>
-              <a href="#" id="confirmKeyRight">confirm</a>
+              <a href="#" id="confirmKeyRight" class="confirmLink">confirm</a>
               <span class="error" id="errorRight"></span>
             </div>
           </div>

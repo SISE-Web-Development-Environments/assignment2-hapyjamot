@@ -147,10 +147,10 @@ body {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 } */
 
-/* a {
+a {
   color: white;
   text-decoration: blink;
-} */
+}
 
 /* .Footer {
   padding: 5xpx;
@@ -305,7 +305,7 @@ Content H1 {
 }
 
 .play {
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .game-buttons {
@@ -313,7 +313,19 @@ Content H1 {
   margin-bottom: 0em;
 }
 
-aboutLink.a:hover {
+/* aboutLink.a:hover {
   color: black;
   background-color: black;
+} */
+
+.confirmLink {
+  color: #000000;
+}
+
+.controls:hover {
+  text-decoration: unset;
+  color: #ffffff;
+}
+.footer-space {
+  margin-top: 2em;
 }
