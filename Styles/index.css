@@ -277,3 +277,9 @@ Content H1 {
 .down {
   margin-top: 2em;
 }
+.custom-modal {
+  max-height: 10em;
+}
+.about-modal {
+  max-height: 20em;
+}

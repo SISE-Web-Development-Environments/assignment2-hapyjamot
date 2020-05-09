@@ -4,11 +4,7 @@
     <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/additional-methods.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
-    />
+
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -21,7 +17,11 @@
       integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
       crossorigin="anonymous"
     />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css"
+    />
     <link rel="stylesheet" href="./Styles/modal.css" />
     <link rel="stylesheet" href="./Styles/index.css" />
     <!-- set our script files -->
@@ -307,6 +307,7 @@
                   <a href="#keyUp" id="linkUp">Up</a>
                   <span id="chosenUpConfirmed"></span>
                 </div>
+
                 <div class="keyContainer">
                   <a href="#keyDown" id="linkDown">Down</a>
                   <span id="chosenDownConfirmed"></span>
@@ -410,7 +411,7 @@
             </div>
           </div>
           <div id="modal_container">
-            <div id="about" class="modal">
+            <div id="about" class="modal about-modal">
               <p>Sapir Shamay --- Haim Reyes</p>
               <p>We used the following jQuery plugins:</p>
               <ul>
@@ -423,25 +424,26 @@
                 <li>second</li>
               </ul>
             </div>
-            <div id="keyUp" class="modal" tabindex="0" autofocus>
+
+            <div id="keyUp" class="modal custom-modal" tabindex="0" autofocus>
               <p>Please press a key</p>
               <p id="chosenUp"></p>
               <a href="#" id="confirmKeyUp">confirm</a>
               <span class="error" id="errorUp"></span>
             </div>
-            <div id="keyDown" class="modal" tabindex="0">
+            <div id="keyDown" class="modal custom-modal" tabindex="0">
               <p>Please press a key</p>
               <p id="chosenDown"></p>
               <a href="#" id="confirmKeyDown">confirm</a>
               <span class="error" id="errorDown"></span>
             </div>
-            <div id="keyLeft" class="modal" tabindex="0">
+            <div id="keyLeft" class="modal custom-modal" tabindex="0">
               <p>Please press a key</p>
               <p id="chosenLeft"></p>
               <a href="#" id="confirmKeyLeft">confirm</a>
               <span class="error" id="errorLeft"></span>
             </div>
-            <div id="keyRight" class="modal" tabindex="0">
+            <div id="keyRight" class="modal custom-modal" tabindex="0">
               <p>Please press a key</p>
               <p id="chosenRight"></p>
               <a href="#" id="confirmKeyRight">confirm</a>
